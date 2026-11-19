@@ -12,7 +12,9 @@
     "test": "node --test 'scripts/*.test.mjs'",
     "check:posts": "node scripts/check-posts.mjs",
     "check:links": "node scripts/check-links.mjs dist",
-    "deploy": "astro build && wrangler deploy"
+    "check:drift": "node scripts/check-drift.mjs",
+    "deploy": "npm run build && npm run check:links && wrangler deploy",
+    "prebuild": "mkdir -p public/downloads && rm -f public/downloads/notes-pile.zip && cd examples && zip -qrX ../public/downloads/notes-pile.zip notes-pile -x '*.DS_Store'"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "7.3.10",

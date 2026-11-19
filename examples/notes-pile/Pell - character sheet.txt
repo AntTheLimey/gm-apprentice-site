@@ -1,0 +1,14 @@
+PELL UNDERHILL
+Halfling Rogue 2  (player: Dev)
+Background: Criminal
+
+STR 8  DEX 17  CON 12  INT 13  WIS 10  CHA 14
+HP 15   AC 14 (leather)   Speed 30
+
+Skills: Stealth +5 (expertise +7), Sleight of Hand +5 (exp +7), Perception +2, Deception +4, Thieves Tools +5
+Sneak Attack 1d6, Cunning Action
+
+Weapons: shortsword +5 (1d6+3), shortbow +5 (1d6+3)
+Gear: thieves tools, rope 50ft, the reeve's letter, 12gp
+
+Notes: lucky (halfling), keeps "borrowing" things. Wants to know who R. is.
