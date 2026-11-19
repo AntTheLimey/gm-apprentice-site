@@ -1,0 +1,6 @@
+# The site's real address is gmapprentice.com. The workers.dev address (kept for old
+# links) and every branch preview stay out of search engines.
+https://gm-apprentice.antthelimey.workers.dev/*
+  X-Robots-Tag: noindex
+https://*-gm-apprentice.antthelimey.workers.dev/*
+  X-Robots-Tag: noindex

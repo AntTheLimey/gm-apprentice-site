@@ -1,0 +1,57 @@
+[
+  {
+    "position": 0,
+    "cover": true,
+    "alt": ""
+  },
+  {
+    "position": 1,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 2,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 3,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 4,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 5,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 6,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 7,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 8,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 9,
+    "cover": false,
+    "alt": "Article content"
+  },
+  {
+    "position": 10,
+    "cover": false,
+    "alt": "Article content"
+  }
+]

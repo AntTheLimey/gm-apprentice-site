@@ -28,10 +28,23 @@ npm test         # script tests
   anywhere. The address comes from `SITE_URL`.
 - The build fails on any broken internal link.
 
+## Adding a blog post
+
+1. Make a worktree for the post: `git worktree add .worktrees/post-<slug> -b post/<slug>`.
+2. Write `src/content/docs/blog/<slug>.md` with `title`, `date`, `authors: ant` and an
+   `excerpt`, plus a `cover` if it has one. Pictures go in `src/assets/blog/<slug>/`, each
+   with alt text.
+3. A post republished from LinkedIn also gets `linkedin: <url>`. That shows the
+   "First published on LinkedIn" line, and `npm run check:posts` then holds the
+   post to the text in `sources/linkedin/<slug>.txt` and the picture list in
+   `sources/linkedin/<slug>.images.json`.
+4. Run `scripts/preview.sh` and read the post on the preview link.
+5. Open a PR. After it merges, deploy (below).
+
 ## Publishing
 
 - **A branch preview:** `scripts/preview.sh` builds the branch and uploads it
   as a preview version of the Worker. It prints the preview address. Previews
   are marked `noindex`.
-- **The live site:** after a merge to `main`, `npm run build && npx wrangler
-  deploy`.
+- **The live site:** after a merge to `main`, `npm run deploy` (it always builds
+  first, so a preview build can never go live).

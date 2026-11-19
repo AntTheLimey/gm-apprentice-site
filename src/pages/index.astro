@@ -1,0 +1,402 @@
+---
+import '../styles/theme.css';
+
+// Branch previews (scripts/preview.sh) build with PREVIEW=1 and stay out of search engines.
+const preview = process.env.PREVIEW === '1';
+const canonical = new URL('/', Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+{preview && <meta name="robots" content="noindex">}
+<meta name="description" content="GM-Apprentice: free, open-source AI skills that organize, prep, run and publish your tabletop campaign.">
+<link rel="canonical" href={canonical}>
+<link rel="alternate" type="application/rss+xml" title="GM-Apprentice blog" href="/blog/rss.xml">
+<title>GM-Apprentice</title>
+<style is:global>
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: the gaming table. Deep baize ground, the products laid on it like handouts;
+   one bold moment (the fanned stack of real campaign sites in the hero), a sticky
+   cycle strip Organize → Prep → Run → Publish, everything else quiet. Single dark look by choice. */
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--felt);color:var(--chalk);font:18px/1.55 var(--body);
+  background-image:radial-gradient(ellipse at 50% -10%,#1d3f31 0,transparent 60%);}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--brass)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-wrap:balance;margin:0;line-height:1.08}
+p{margin:0}
+
+/* top bar */
+.top{display:flex;align-items:center;gap:28px;padding-block:20px;position:relative;z-index:3}
+.brand{font-family:var(--display);font-weight:800;font-size:1.35rem;color:var(--chalk);text-decoration:none;display:flex;gap:10px;align-items:center}
+.brand svg{width:28px;height:28px}
+.top nav{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap}
+.top nav a{color:var(--dim);text-decoration:none;font-weight:500}
+.top nav a:hover{color:var(--chalk)}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;font-size:1rem}
+.btn-primary{background:var(--brass);color:var(--brass-ink)}
+.btn-primary:hover{background:#f0c56c}
+.btn-ghost{color:var(--chalk);box-shadow:inset 0 0 0 1.5px var(--dim)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--chalk)}
+
+/* hero: the painted table, full bleed, headline over its dark left side */
+.hero{position:relative;margin-top:-76px;padding-top:76px;min-height:min(760px,92vh);display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url(/img/hero-a.jpg) 70% center/cover no-repeat}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--felt) 0,rgba(18,41,31,.88) 30%,rgba(18,41,31,.25) 62%,rgba(18,41,31,0) 80%),linear-gradient(0deg,var(--felt) 0,rgba(18,41,31,0) 30%)}
+.hero-in{position:relative;width:100%;padding-block:40px 120px}
+.hero-in>div{max-width:36rem}
+.hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);letter-spacing:-.01em;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.hero .lede{font-size:1.25rem;color:var(--chalk);opacity:.85;margin-top:22px;max-width:34rem}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.hero .cost{margin-top:22px;font-size:.98rem;color:var(--dim);max-width:34rem}
+.hero .cost strong{color:var(--chalk);font-weight:500}
+/* the three sites, dealt onto the table below the picture */
+.fan{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:-110px;padding-block:0 56px}
+.fan figure{position:relative;margin:0;border-radius:10px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.fan img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.fan figure:nth-child(1){transform:rotate(-3deg)}
+.fan figure:nth-child(2){transform:rotate(1.5deg) translateY(-14px)}
+.fan figure:nth-child(3){transform:rotate(-1deg)}
+.fan figure:hover{transform:rotate(0) translateY(-8px)}
+.fan figcaption{position:absolute;left:10px;bottom:10px;background:rgba(10,20,15,.82);color:var(--chalk);font-size:.8rem;padding:3px 10px;border-radius:999px}
+.fan .deal{animation:deal .9s cubic-bezier(.2,.8,.2,1) both}
+.fan .deal:nth-child(1){animation-delay:.05s}.fan .deal:nth-child(2){animation-delay:.2s}.fan .deal:nth-child(3){animation-delay:.35s}
+@keyframes deal{from{opacity:.001;translate:0 40px}to{opacity:1;translate:0 0}}
+
+/* systems */
+.systems{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;padding-block:0 40px;color:var(--chalk);font-family:var(--display);font-size:1.1rem}
+.systems .lbl{font-family:var(--body);font-size:.92rem;color:var(--dim)}
+.systems .lbl strong{color:var(--chalk);font-weight:700}
+.systems .ask{color:var(--brass);text-underline-offset:3px}
+/* cycle strip */
+.cycle{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(18,41,31,.93);backdrop-filter:blur(8px);border-block:1px solid var(--felt-3)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--felt)}
+.cycle ol{list-style:none;margin:0 auto;padding-block:0;display:flex;align-items:stretch;max-width:1180px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:auto}
+.cycle li{flex:1;min-width:max-content}
+.cycle a{display:flex;align-items:center;gap:10px;padding:14px 18px 12px;color:var(--dim);text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.15rem;border-bottom:3px solid transparent}
+.cycle a .n{font-family:var(--body);font-size:.8rem;font-weight:700;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px currentColor}
+.cycle a.on{color:var(--brass);border-bottom-color:var(--brass)}
+.cycle .loop{display:flex;align-items:center;color:var(--dim);font-size:.9rem;padding-inline:12px;white-space:nowrap}
+
+/* stages */
+.stage{padding-block:96px 40px;scroll-margin-top:60px}
+.stage-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:44px}
+.stage-name{font-family:var(--display);font-style:italic;font-weight:500;color:var(--brass);font-size:1.3rem;margin-bottom:10px}
+.stage h2{font-size:clamp(2rem,3.8vw,3.1rem)}
+.stage-head ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.stage-head li{padding-left:22px;position:relative;color:var(--dim)}
+.stage-head li strong{color:var(--chalk);font-weight:700}
+.stage-head li::before{content:"";position:absolute;left:0;top:.6em;width:9px;height:9px;transform:rotate(45deg);background:var(--brass)}
+.skills{margin-top:16px;font-size:.9rem;color:var(--dim)}
+.skills code{font-family:var(--body);font-weight:700;color:var(--chalk);background:var(--felt-3);padding:1px 8px;border-radius:4px;margin:0 4px 6px 0;display:inline-block;white-space:nowrap}
+
+/* paper documents on the table */
+.board{display:grid;gap:24px;align-items:start}
+.paper{background:var(--paper);color:var(--ink);border-radius:6px;padding:26px 28px;box-shadow:0 24px 50px -24px rgba(0,0,0,.75);min-width:0;font-size:.96rem;line-height:1.5}
+.paper h4{font-family:var(--display);font-weight:800;font-size:1.25rem;margin:0 0 4px}
+.paper .src{font-size:.78rem;color:#5d6a61;margin-bottom:14px}
+.paper h5{font-family:var(--display);font-weight:700;font-size:1.02rem;margin:16px 0 6px;color:#2f4a3c}
+.paper ol,.paper ul{margin:0;padding-left:20px;display:grid;gap:8px}
+.paper .wl{color:#7a4a12;text-decoration:underline;text-decoration-color:#d7b98a;text-underline-offset:2px}
+.paper table{border-collapse:collapse;width:100%;font-size:.86rem}
+.paper th,.paper td{text-align:left;padding:6px 8px;border-bottom:1px solid #d6cdb9;vertical-align:top}
+.paper th{color:#5d6a61;font-weight:700}
+.tw{overflow-x:auto}
+.shot{margin:0;border-radius:8px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.07);min-width:0;background:#000}
+.shot img{display:block;width:100%;height:auto}
+.shot.crop img{aspect-ratio:16/11;object-fit:cover;object-position:top}
+.cap{font-size:.84rem;color:var(--dim);margin-top:10px}
+
+.b-organize{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.b-organize .tree{font-size:.92rem}
+.tree ul{list-style:none;padding-left:0;gap:4px}
+.tree li span{color:#5d6a61}
+.pick{background:#fff6dc;box-shadow:inset 3px 0 0 #c98a1a;padding:8px 10px;border-radius:3px}
+.b-prep{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr)}
+.b-run{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.chat{display:grid;gap:12px}
+.msg{max-width:88%;padding:12px 16px;border-radius:14px;font-size:.98rem}
+.msg.gm{justify-self:end;background:var(--felt-3);color:var(--chalk);border-bottom-right-radius:4px}
+.msg.ap{justify-self:start;background:var(--paper);color:var(--ink);border-bottom-left-radius:4px}
+.msg .who{display:block;font-size:.75rem;font-weight:700;opacity:.7;margin-bottom:2px}
+.b-publish{grid-template-columns:repeat(3,minmax(0,1fr))}
+.b-publish .wide{grid-column:span 2;grid-row:span 2}
+.lede2{color:var(--dim);font-size:1.12rem;margin-top:16px;max-width:32rem}
+.loopback{margin-top:40px;text-align:center;font-family:var(--display);font-style:italic;font-size:1.25rem;color:var(--brass)}
+.note{margin-top:28px;color:var(--dim);font-size:.95rem;max-width:44rem}
+
+/* gallery */
+.gallery{padding-block:100px 40px}
+.gallery h2,.start h2{font-size:clamp(2rem,3.6vw,2.9rem)}
+.gallery .sub,.start .sub{color:var(--dim);margin-top:12px;max-width:40rem}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:36px}
+.tile{display:block;text-decoration:none;color:var(--chalk)}
+.tile .shot img{aspect-ratio:16/10;object-fit:cover;object-position:top;transition:transform .4s}
+.tile:hover .shot img{transform:scale(1.03)}
+.tile b{display:block;margin-top:12px;font-family:var(--display);font-size:1.2rem}
+.tile span{color:var(--dim);font-size:.92rem}
+
+/* start */
+.start{padding-block:100px 110px}
+.fork{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:36px}
+.door{display:block;text-decoration:none;color:var(--ink);background:var(--paper);border-radius:8px;padding:30px 32px;box-shadow:0 24px 50px -24px rgba(0,0,0,.75);transition:transform .25s}
+.door:hover{transform:translateY(-4px)}
+.door h3{font-size:1.7rem}
+.door p{margin-top:10px;color:#3c4a41}
+.door .go{display:inline-block;margin-top:18px;font-weight:700;color:#7a4a12}
+.newbie{margin-top:24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;color:var(--dim)}
+footer{border-top:1px solid var(--felt-3);padding-block:32px 48px;color:var(--dim);font-size:.92rem}
+footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between}
+footer a{color:var(--dim)}
+
+@media (max-width:900px){
+  .stage-head,.b-organize,.b-prep,.b-run,.fork{grid-template-columns:minmax(0,1fr)}
+  .b-publish{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .b-publish .wide{grid-column:span 2;grid-row:auto}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .top nav a:not(.keep){display:none}
+  .fan{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:-60px}
+  .hero-bg{background-position:72% center}
+  .hero-bg::after{background:linear-gradient(0deg,var(--felt) 0,rgba(18,41,31,.85) 45%,rgba(18,41,31,.55) 100%)}
+  .fan figcaption{display:none}
+  .cycle a{font-size:1rem;padding:12px 12px 10px}
+  .cycle .loop{display:none}
+}
+@media (max-width:520px){.tiles{grid-template-columns:minmax(0,1fr)}.b-publish{grid-template-columns:minmax(0,1fr)}.b-publish .wide{grid-column:auto}.paper{padding:20px}}
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,2 29,9.5 29,22.5 16,30 3,22.5 3,9.5" fill="none" stroke="#e3b55b" stroke-width="2"/><polygon points="16,8 23,20 9,20" fill="#e3b55b"/></svg>
+    GM-Apprentice
+  </a>
+  <nav aria-label="Site">
+    <a href="https://github.com/AntTheLimey/gm-apprentice#skills">Tutorials</a><a href="#gallery">Gallery</a><a href="/blog/">Blog</a><a class="keep" href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+  <div>
+    <h1>Run the game. Your apprentice keeps the books.</h1>
+    <p class="lede">It grows your campaign from a first idea, preps each session from what really happened, answers at the table, and turns every night's play into a story your players can read.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#start">Start your first campaign</a>
+      <a class="btn btn-ghost" href="#gallery">See real campaigns</a>
+    </div>
+    <p class="cost"><strong>The skills are free and open source.</strong> They run inside Claude or Codex, which needs a paid plan: your AI subscription is the cost, not GM-Apprentice.</p>
+  </div>
+  </div>
+</section>
+<div class="wrap fan" aria-label="Three campaign sites built with GM-Apprentice">
+    <figure class="deal"><img src="/img/de-home.jpg" alt="Dead End campaign site: a rusted space station over a planet, green terminal lettering"><figcaption>Dead End · GURPS</figcaption></figure>
+    <figure class="deal"><img src="/img/dk-home.jpg" alt="Drakkenheim campaign site: a carriage under a dead tree at dusk"><figcaption>Drakkenheim · D&amp;D</figcaption></figure>
+    <figure class="deal"><img src="/img/cn-home.jpg" alt="Canticle of the End campaign site: a choir beneath a great bell, a city burning"><figcaption>Canticle of the End · Call of Cthulhu</figcaption></figure>
+  </div>
+
+<div class="wrap systems" aria-label="Game systems supported">
+  <span class="lbl"><strong>Runs with any system.</strong> Deep rules support for</span>
+  <span>Call of Cthulhu 7e</span><span>GURPS 4e</span><span>Blades in the Dark</span><span>D&amp;D 5e 2024</span><span>Pathfinder 2e</span>
+  <a class="lbl ask" href="https://github.com/AntTheLimey/gm-apprentice/issues/new?title=Deep%20support%20for%20">Want yours in depth? Ask, and we'll add it.</a>
+</div>
+
+<nav class="cycle" aria-label="The campaign cycle">
+  <ol>
+    <li><a href="#organize" data-s="organize"><span class="n">1</span>Organize</a></li>
+    <li><a href="#prep" data-s="prep"><span class="n">2</span>Prep</a></li>
+    <li><a href="#run" data-s="run"><span class="n">3</span>Run</a></li>
+    <li><a href="#publish" data-s="publish"><span class="n">4</span>Publish</a></li>
+    <li class="loop">then prep again</li>
+  </ol>
+</nav>
+
+<section id="organize" class="wrap stage">
+  <div class="stage-head">
+    <div>
+      <p class="stage-name">Organize</p>
+      <h2>Start from three ideas, or three hundred pages of old notes.</h2>
+      <p class="lede2">Start with a seed, or bring the campaign you've already been running. Either way you end up with a folder of linked notes: your campaign vault.</p>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Grow a campaign from nothing.</strong> The Midwife offers seeds, asks what you like, and builds the people, places and secrets with you. It asks before it invents.</li>
+        <li><strong>Bring your old notes in.</strong> Scrawled session notes, character sheets, a spreadsheet: sorted into linked notes for every NPC, location and faction.</li>
+        <li><strong>Catch contradictions before your players do.</strong> A dead NPC who turns up in a later scene, two taverns with the same name, a clue nothing points to.</li>
+      </ul>
+      <p class="skills"><code>the-midwife</code><code>vault-ingest</code><code>campaign-organizer</code><code>campaign-qa</code></p>
+    </div>
+  </div>
+  <div class="board b-organize">
+    <div class="paper">
+      <h4>Three seeds</h4>
+      <p class="src">The Midwife's opening offer for Snowbound, 16 November</p>
+      <ol>
+        <li><b>The Bridge Town.</b> A town built along one enormous old bridge, where the Toll Wardens above and the barge-folk in the arches below are one bad night from open war.</li>
+        <li><b>The Last Week of the Fair.</b> A travelling fair's owner has died owing a debt to something that isn't human, and it comes to collect a piece of the fair each night.</li>
+        <li class="pick"><b>Snowbound.</b> A mountain monastery shut in for the winter with a dozen pilgrims, a murder on the first night, and the monks' secret: they have been bargaining with the dragon asleep under the glacier.</li>
+      </ol>
+      <h5>What the GM added</h5>
+      <p>"The monks give the dragon their dead. That is why the pilgrims are being murdered."</p>
+    </div>
+    <div>
+      <figure class="shot crop"><img src="/img/sb-npc.jpg" alt="Snowbound site page for Master Orrin Gilt, a fat moustached merchant in furs, with his overview"></figure>
+      <p class="cap">From that seed: a linked note for every NPC, place and secret, and a merchant who isn't one. <a href="https://snowbound-dnd.pages.dev/characters/npcs/master-orrin-gilt.html">Meet Master Orrin Gilt</a> or <a href="https://snowbound-dnd.pages.dev">see the whole site</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="prep" class="wrap stage">
+  <div class="stage-head">
+    <div>
+      <p class="stage-name">Prep</p>
+      <h2>Prep the game they're actually playing.</h2>
+      <p class="lede2">Last session's detour is this session's starting point. Not the three pages of plot they politely ignored.</p>
+    </div>
+    <div>
+      <ul>
+        <li><strong>It starts from what really happened,</strong> not what you planned. Threads the players chased, the ones they walked past, who's still angry.</li>
+        <li><strong>Every NPC in the scene, on one line each,</strong> with where they are and the one thing you mustn't forget.</li>
+        <li><strong>Fights checked against the rules:</strong> XP budget, stat blocks, the loot you'll want for the next one.</li>
+      </ul>
+      <p class="skills"><code>session-prep</code><code>ttrpg-expert</code></p>
+    </div>
+  </div>
+  <div class="board b-prep">
+    <div class="paper">
+      <h4>Session 03: Peace, Child</h4>
+      <p class="src">From Snowbound's real session plan, written by session-prep. Not a sample adventure.</p>
+      <h5>Active threads</h5>
+      <ul>
+        <li><b>Lucan's accusation.</b> The house drugs its guests and carries them down to a dragon under the glacier; the abbot did not deny it. Seen so far: the register mark, the steam, the chiselled lamps. Not yet: the shards, the crypt, the dragon.</li>
+        <li><b>Where Tam is.</b> Lucan: "Below. With the others." His boot lies in <span class="wl">The Ice Crypt</span>.</li>
+        <li><b>Hesta's sickness.</b> <span class="wl">Grenna Fallowmere</span> knows it is the order's own; <span class="wl">Kael Stonehand</span> does not. The cure is in <span class="wl">Sister Wren</span>'s reliquary.</li>
+      </ul>
+      <h5>NPC quick reference</h5>
+      <div class="tw"><table>
+        <tr><th>NPC</th><th>This session</th><th>Key detail</th></tr>
+        <tr><td><span class="wl">Abbot Severin</span></td><td>The boss</td><td>Gentle the whole fight; never harms Oswin</td></tr>
+        <tr><td><span class="wl">Brother Teodor</span></td><td>Holds the corridor</td><td>Silent; has the crypt key</td></tr>
+        <tr><td><span class="wl">Pip Callow</span></td><td>Arrives round 3 with a lamp</td><td>Worships Oswin; doesn't understand</td></tr>
+      </table></div>
+    </div>
+    <div class="paper">
+      <h4>GM notes</h4>
+      <p class="src">Same plan</p>
+      <ul>
+        <li><b>Fight budget</b> (six PCs at level 5): 4,200 XP. Moderate for six, more with the abbot's lair actions.</li>
+        <li><b>The crypt key</b> is on Teodor's belt.</li>
+        <li><b>The register's Long Night page</b>, already written in Hollis's hand: "Master Orrin Gilt, to rest. Oswin, to carry."</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="run" class="wrap stage">
+  <div class="stage-head">
+    <div>
+      <p class="stage-name">Run</p>
+      <h2>Ask mid-scene. Get one line back.</h2>
+      <p class="lede2">Keep the game moving when a rule, a name, or your own handwriting gets in the way.</p>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Rules at the speed of play.</strong> Grapple, exhaustion, a SAN roll, a GURPS modifier: the answer and the page, nothing else.</li>
+        <li><strong>The fact you forgot,</strong> from your own notes: who has the key, what the abbot promised, which name the players already know.</li>
+        <li><strong>An NPC on the spot</strong> when the players turn left instead of right, and jot notes as you go for the wrap-up.</li>
+      </ul>
+      <p class="skills"><code>session-play</code></p>
+    </div>
+  </div>
+  <div class="board b-run">
+    <div class="chat" aria-label="A real exchange at the table">
+      <p class="msg gm"><span class="who">GM</span>who has the crypt key?</p>
+      <p class="msg ap"><span class="who">Apprentice</span><b>Kael</b> has it. He took it off Brother Teodor's belt in Session 3, after Nim got her snapped pick out of the lock. It's still on his sheet as of Session 4.</p>
+      <p class="msg gm"><span class="who">GM</span>Nim wants to pick the reliquary lock instead. DC?</p>
+      <p class="msg ap"><span class="who">Apprentice</span>The vault doesn't set a DC for the reliquary, so call it <b>DC 15</b> (a medium lock). Nim rolls <b>Dex with Thieves' Tools at +7</b>, and with Fast Hands it only costs her a bonus action.</p>
+      <p class="msg gm"><span class="who">GM</span>note: Nim rolled a 1, the pick snapped in the lock</p>
+      <p class="msg ap"><span class="who">Apprentice</span>Noted. That's her second snapped pick in a monastery lock, and the tip is stuck in the reliquary now.</p>
+      <p class="cap">Real replies from session-play on the Snowbound vault (gm-apprentice 1.12.94), trimmed.</p>
+    </div>
+    <div>
+      <figure class="shot crop"><img src="/img/sb-pc.jpg" alt="Kael Stonehand's character page: portrait, hit points 44 of 44, AC 16, tabs for sheet, combat, spells"></figure>
+      <p class="cap">Every PC's sheet, live on the site, for the GM and the player.</p>
+    </div>
+  </div>
+</section>
+
+<section id="publish" class="wrap stage">
+  <div class="stage-head">
+    <div>
+      <p class="stage-name">Publish</p>
+      <h2>Tonight's play becomes the story your players read tomorrow.</h2>
+      <p class="lede2">Rough notes become a recap. Your players get a place to remember what happened, and who they annoyed.</p>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Rough notes in, a recap out.</strong> Wrap-up writes the session as prose and updates every NPC, place and thread it touched.</li>
+        <li><strong>A website for your players</strong>: the story so far, character sheets, portraits, maps, a timeline, with a look that suits your game.</li>
+        <li><strong>Secrets stay hidden until play reveals them.</strong> The traitor, the thing in the cellar, the patron's real reason: none of it reaches the site until your players find out.</li>
+      </ul>
+      <p class="skills"><code>session-wrapup</code><code>publish-site</code></p>
+    </div>
+  </div>
+  <div class="board b-publish">
+    <figure class="shot wide"><img src="/img/sb-story.jpg" alt="Snowbound Session 02 recap page: prose with portraits of Durgan and Tam, a picture of the chapter house"></figure>
+    <figure class="shot crop"><img src="/img/sb-map.jpg" alt="Painted cutaway map of Saint Aubren's Rest, a monastery on a snowy cliff"></figure>
+    <figure class="shot crop"><img src="/img/sb-timeline.jpg" alt="Snowbound campaign timeline page"></figure>
+  </div>
+  <p class="loopback">And then? Prep again, this time with notes that make sense.</p>
+</section>
+
+<section id="gallery" class="wrap gallery">
+  <h2>Campaigns built with it</h2>
+  <p class="sub">Real games, real tables. Every one of these sites was built from a GM's vault.</p>
+  <div class="tiles">
+    <a class="tile" href="https://canticle-of-the-end.pages.dev"><figure class="shot"><img src="/img/cn-home.jpg" alt="Canticle of the End site"></figure><b>Canticle of the End</b><span>Regency Call of Cthulhu</span></a>
+    <a class="tile" href="https://dead-end.pages.dev"><figure class="shot"><img src="/img/de-home.jpg" alt="Dead End site"></figure><b>Dead End</b><span>Space-noir GURPS</span></a>
+    <a class="tile" href="https://drakkenheim.dorkfish.quest/index.html"><figure class="shot"><img src="/img/dk-home.jpg" alt="Drakkenheim site"></figure><b>Drakkenheim</b><span>D&amp;D 5e</span></a>
+    <a class="tile" href="https://gurps-special-forces.pages.dev"><figure class="shot"><img src="/img/sf-home.jpg" alt="GURPS Special Forces site"></figure><b>GURPS Special Forces</b><span>Military GURPS</span></a>
+    <a class="tile" href="https://snowbound-dnd.pages.dev"><figure class="shot"><img src="/img/sb-home.jpg" alt="Snowbound site"></figure><b>Snowbound</b><span>D&amp;D 5e 2024, made with the Midwife</span></a>
+    <a class="tile" href="https://drnoisys-softworks.github.io/gm-scriptorium/"><figure class="shot"><img src="/img/scr-home.jpg" alt="The Long Lease, GM-Scriptorium's sample campaign"></figure><b>GM-Scriptorium</b><span>A desktop app that publishes the same vaults</span></a>
+  </div>
+</section>
+
+<section id="start" class="wrap start">
+  <h2>Bring your notes. Or just an idea.</h2>
+  <p class="sub">Two ways in. Both end with a vault of linked notes you can prep your next session from.</p>
+  <div class="fork">
+    <a class="door" href="https://github.com/AntTheLimey/gm-apprentice#quickstart"><h3>I have notes already</h3><p>Point it at your folder of session notes, character sheets and scribbles. It sorts them, asks you what really happened, and builds the vault.</p><span class="go">Bring in your notes</span></a>
+    <a class="door" href="https://github.com/AntTheLimey/gm-apprentice#quickstart"><h3>I'm starting a new game</h3><p>Tell the Midwife what you're in the mood for. It offers seeds, builds the world with you, and has session one ready to prep.</p><span class="go">Start with the Midwife</span></a>
+  </div>
+  <p class="newbie">New to Claude or Codex? <a class="btn btn-ghost" href="https://github.com/AntTheLimey/gm-apprentice#installation">Get set up first</a></p>
+</section>
+</main>
+
+<footer><div class="wrap"><span>GM-Apprentice is free and open source. Made by a GM, for GMs.</span><span><a href="/blog/">Blog</a> · <a href="https://github.com/AntTheLimey/gm-apprentice#skills">Tutorials</a> · <a href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a> · <a href="https://github.com/AntTheLimey/gm-apprentice#license">Licences</a></span></div></footer>
+
+
+<script is:inline>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.cycle a'));
+  var secs=links.map(function(a){return document.getElementById(a.dataset.s)});
+  function upd(){
+    var y=window.innerHeight*0.35, cur=null;
+    secs.forEach(function(s,i){var r=s.getBoundingClientRect(); if(r.top<y && r.bottom>y) cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+  }
+  window.addEventListener('scroll',upd,{passive:true}); upd();
+})();
+</script>
+</body>
+</html>

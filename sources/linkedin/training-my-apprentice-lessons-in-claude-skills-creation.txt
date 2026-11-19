@@ -1,0 +1,213 @@
+Date: April 20, 2026
+Title: Training My Apprentice: Lessons in Claude Skills Creation
+
+I run a fair amount of tabletop RPG. I mainly use Call of Cthulhu, GURPS, and Blades in the Dark. When forced to, I run D&D. These four systems, each have their own vocabulary, mechanical philosophy, and their own way of making the GM's life simultaneously wonderful and exasperating. I wanted an assistant that could help me with the grunt work that sucks up a lot of the time - prepping sessions, generating minor NPCs, tracking continuity, and answering rules questions without hallucinating stat blocks or calling a Keeper a Dungeon Master.
+
+So I've been building one. I originally started by trying to build a full web GUI, and started building out Experts for different parts of the thing. This included a TTRPG Expert that knew how RPGs worked, and had a glossary, and knew how to write for RPGs instead of linear book-writing. There is a big difference there. In regular writing, you know what you are writing. its on the wheels you put it on. With RPGs, you may have the concept of a World, and within that, a broad brush-stroke of a story, but your main characters are played by other people. They won't make the same decisions. Usually they'll make completely the opposite decision. So, writing up a massive detailed storyline is an exercise in futility. Instead you are constantly, cyclically writing up "what MIGHT happen next" potentials of the near future, which then get collapsed into the progressing reality of Play at the table when your players engage with your content and choose their actions. These actions, by the way, are usually something you hadn't even conceived they might do, and now you're freewheeling over the chasm of improv while keeping up the implausible pretense that this was EXACTLY WHAT YOU PLANNED ALL ALONG!
+
+My point is that its different, its not linear. its a constant progression of refining future potential based upon past actions that collapses that potential to a moving timeline of reality. Canon starts to matter. You can't re-use Bob The Bartender, if the group killed Bob five sessions ago. The world changes and has to be kept track of, for consistency. I think it was Mark Twain who said something like "the difference between truth and fiction is that fiction has to make sense"
+
+Anyway. There I was building out these experts - first the TTRPG Expert, then a Canon management (which became the continuity engine), then the Graph Expert to maintain relationships (who killed whom, who's a minion of whom, who lives where, etc), then an Expert not just on the mechanics, but also HOW games are played at the table, storytelling techniques, the 3-clue rule, The Monsters Know What They Are Doing - that sort of stuff.
+
+Meanwhile I couldn't get the GUI working how I wanted. I started exporting the experts as skills and shoving them into Claude Desktop, and using them for myself as a chat, while struggling with the GUI. It took a few months before I just said f^&k it, abandoned the GUI and concentrated on the skills.
+
+And thus was born .... The GM's Apprentice!
+
+gm-apprentice is a Claude Code skill plugin with seven skills, 247 commits, and 21 PRs worth of lessons I didn't expect to learn. The plugin works. It generates NPCs with correct AIMS profiles, runs faction turns with proper clock mechanics, writes newspaper handouts in 1920s voice, and catches continuity errors before they reach the table.
+
+This article isn't actually about the plugin. It's about what building it taught me about making LLM tools that actually work, and how every assumption I brought to the project turned out to be wrong at least once.
+
+The Apprentice, Not the Encyclopedia
+
+The first design decision was also the most important one, and I almost got it backwards. My initial instinct was to build a rules lookup tool. A GM asks "what does Fireball do?" and the tool gives them the spell description. Useful, sure. But that's not what makes running a game hard.
+
+What makes running a game hard is the stuff that sits underneath the rules: how to balance spotlight time across four players when one of them is mid-crisis arc and another hasn't had a B-plot in five sessions. How to restart a stalled investigation without railroading. How to run a faction turn so the world feels like it has momentum independent of the player characters. How to write a newspaper handout that embeds a clue players will find on a skim but reward on a close read.
+
+These problems are system-agnostic. A Call of Cthulhu Keeper and a D&D Dungeon Master both struggle with spotlight balance. A Blades in the Dark GM and a GURPS GM both need to manage factions. The patterns of play are universal even when the mechanical implementations diverge.
+
+So gm-apprentice needed two layers of knowledge, woven together. The first layer is system-agnostic GM craft: session planning workflows, the A/B/C plot model for spotlight rotation, the Five-Stage Arc Model for character development, the Three Clue Rule for investigations, NPC generation frameworks (3-Line for improvised, AIMS for recurring, Five-Component for scenario writing), continuity tracking, handout templates, scene framing patterns. This is the "how to be a GM" layer, and it draws on the accumulated wisdom of people like Mike Shea, Justin Alexander, Matthew Colville, Robin Laws, Sandy Petersen, Keith Ammann, and dozens of others who've been thinking about this craft for decades.
+
+The second layer is system-specific mechanical data: CoC 7e skill base chances and the pushing mechanic, GURPS point costs and disadvantage-driven arc fuel, Blades in the Dark action ratings and the engagement roll, D&D 5e spell lists and monster stat blocks. This is the "how does this specific game work" layer, and it comes from the open-source SRDs and licensed content each publisher has made available.
+
+The plugin routes between these layers. A question about spotlight balance hits the session-planner framework. A question about what spells a Paladin can cast hits the D&D SRD files. A question about running a post-score faction turn hits both the system-agnostic world-evolution procedure and the FitD-specific session-procedures file. Getting this routing right, and getting the content in each layer right, turned out to be the hard part. Everything else flowed from that.
+
+Copyright: Building on Other People's Games
+
+Originally I was building for my own usage, so I was shoving in whatever gaming files I had, willy-nilly. When I decided it might be worth publishing these skills, I realized I had to understand what I was legally allowed to include. Every TTRPG has different licensing, and getting this wrong would mean either stripping content later or not publishing at all.
+
+Surprisingly D&D was the most straightforward. Wizards of the Coast publishes the SRD 5.2 under Creative Commons Attribution 4.0 International. That's about as generous as it gets: reproduce it, modify it, use it commercially, just give attribution - a far cry from the OGL debacle I tried to head off a few years ago when I was there. Blades in the Dark is similarly open, with John Harper releasing the full SRD under CC-BY 3.0. Chaosium's Basic Roleplaying system uses the ORC License, which is more structured but still workable for a free game aid.
+
+GURPS was the hard one. Steve Jackson Games has no open SRD. What they do have is the SJG Online Policy, which permits "names, point costs, short notes" in free game aids that aren't for resale. That meant I could include trait names, their point costs, page references, and brief mechanical descriptions, but I couldn't reproduce the detailed rules text from the Basic Set. Every GURPS file in the project had to be written as original descriptions of uncopyrightable game mechanics. Baker v. Selden (1879) acts as the legal basis for understanding the mechanics of how a game system works without copying the publisher's specific expression of those rules.
+
+H.P. Lovecraft's fiction is public domain, which meant I could include literary descriptions of Mythos entities (Deep Ones, Shoggoths, Mi-Go) drawn directly from his stories, cited by composition date. But the game-specific stat blocks and mechanical expressions of those creatures are Chaosium's intellectual property, so the Lovecraft entries in my creatures file carry descriptions only, with a note to use the ORC-licensed Ghoul stat block as a mechanical baseline and scale from there.
+
+The lesson: know your licenses before you write your first file. I spent time on this upfront and it saved me from having to gut the project later. Every file in the repo carries its license attribution in a header block, and the project's ATTRIBUTION.md maps out every source, every license, and every constraint.
+
+The GCS Connector Detour (Or: Don't Build an Engineering Solution to a Content Problem)
+
+GURPS doesn't have an open SRD, but it does have GURPS Character Sheet, created by Richard Wilkes. GCS is a free, open-source character sheet editor that has painstakingly catalogued the entirety of GURPS Fourth Edition into structured data files. Advantages, disadvantages, skills, spells, equipment, modifiers, prerequisites, the lot. If you've ever built a GURPS character, there's a reasonable chance you used GCS to do it, and you owe Richard Wilkes a debt of gratitude for saving you from drowning in the sheer volume of GURPS content. I love GURPS, but the system has more moving parts than a Swiss watch factory. GCS pulls it all together. The man is a genuine hero of the GURPS community, in my book.
+
+There are also the older GCA4 (GURPS Character Assistant) data files sitting on my hard drive, which I'd accumulated over years of play. Between GCS and GCA4, I had structured data for essentially the entire GURPS catalogue.
+
+So naturally, my first instinct was to build a connector. Parse the GCS data files, expose them to the skill, let the agent query traits and costs programmatically. I spent commits on bootstrap validation, a book catalog, a /gurps-books slash command. It felt like the right engineering approach to a data availability problem.
+
+Then I scrapped the entire thing, because the agent doesn't need a horribly inefficient parser against files that are in a bloated format for how agents read. It doesn't need to query a database of 3,000 advantages. It needs curated, pre-digested content organised by the way GMs actually use it: "I'm building a thief character, what traits and skills do I need?" Not a data retrieval problem. A content design problem.
+
+I replaced the connector with seven hand-built chargen kits (combat, magic, social, thief, scholar, outdoor, powers), each bundling the specific traits, skills, equipment, and build guidance an archetype needs. Tables with point costs, page references, and short notes (as permitted by SJG's policy). The kits are 80% structured tables and 20% prose guidance explaining how the pieces fit together for that specific archetype. I'll build out more archetypes as I need them, or as people ask for them. The chargen kits are also a fantastic way to "pre-compile" the "80%" of what the agent really needed, providing greater speed with less token usage
+
+The chargen kits turned out to be nearly impossible to compact later (more on compaction shortly), which I took as validation that they were already in the densest useful format. The GCS connector would have been an engineering layer on top of data that still needed to be curated into useful form, and I'd have ended up building the kits anyway while the connector collected dust.
+
+The first lesson is one I should know by now as a product manager: the problem wasn't "the agent can't access GURPS data." The problem was "the agent doesn't know how to build a SENSIBLE GURPS character." Those are different problems with different solutions, and the second one doesn't need an engineering answer.
+
+The second lesson is one of hierarchical information discovery. Just because you HAVE the full detail, doesn't mean you should present it to the agent as such, and let it go nuts. Providing a layer (or even two if necessary) of summarized "most used" content helps keep the agent fast and on-track, and reduces overall token usage. the full details are there for the edge cases.
+
+SRD Enrichment and the CoC Regression
+
+With the licensing understood and the GURPS connector in the bin, I wrote system-specific content for Call of Cthulhu, Blades in the Dark, and D&D from their respective open SRDs. Each system got a suite of files: character generation workflows, skills references, creature stat blocks, session procedures, equipment lists, setting details.
+
+Then I benchmarked it, and the CoC v2 benchmark was the first time the skill performed worse than having no skill at all. Negative quality delta. The agent with access to my carefully written CoC files gave worse answers than the agent running on its pure training data.
+
+The root cause: I'd written the CoC files using generic BRP (Basic Roleplaying) terminology instead of CoC 7e-specific terms. "Professions" instead of "occupations." Generic skill names instead of the CoC-specific ones (Spot Hidden, not Perception). The content was technically accurate to the BRP universal game engine, but a Call of Cthulhu Keeper doesn't think in BRP terms. They think in CoC terms. And when the agent answered in BRP dialect, it sounded wrong to anyone who actually plays Call of Cthulhu, which made evaluators score it lower than answers generated from the model's own training data (which happened to use the correct CoC terminology, because that's what the internet talks about).
+
+I adapted everything to 7e-specific terminology. Occupations, Dodge, SAN, Luck spending, the pushing mechanic, bonus and penalty dice. The v3 benchmark jumped to +23 quality over the no-skill baseline.
+
+The lesson: system-specific terminology isn't a nice-to-have. If the skill doesn't speak the dialect of the system its working with, and the user it is for, the agent will use the wrong words confidently, and that can be worse than not having the content at all. 
+
+Inventing the Benchmark
+
+The CoC regression reminded me of something more fundamental than terminology: you can't improve what you can't measure, and you especially can't trust your intuition about what "better" looks like when you're the one who wrote the content. So I added a blind evaluation methodology. The setup:
+
+- Control agent (sonnet model, no skill access): answers questions from pure training data
+
+- Test agent (sonnet model, with skill): reads the skill files and follows routing to answer the same questions
+
+- Blind evaluator (opus model): scores both sets of answers without knowing which is control or test, with A/B assignment randomised
+
+The evaluator scores each answer on five dimensions, 1-3 points each, 15 maximum per question:
+
+| Dimension | 1 (Poor) | 2 (Partial) | 3 (Nailed it) |
+| Factual accuracy | Wrong stats, hallucinated names | Mostly correct, minor errors | All verifiable facts correct |
+| System specificity | Could be any system | Right system but generic | System-specific idiom and conventions |
+| Actionability | Needs significant rework | Usable with GM effort | Drop-in ready, use as-is |
+| Mechanical grounding | No concrete numbers | Some mechanics but incomplete | Specific stats, DCs, costs, rolls |
+| Table-ready fiction | Generic or obvious | Fits system but predictable | Evocative, sparks play |
+
+Every PR from #3 onward got benchmarked. 3-5 scenario-based questions targeting specific GM activities (session prep, running play, tracking state, content generation), with metrics recorded for tokens, time, tool uses, and quality scores.
+
+Early on, I discovered that evaluator variance is real and significant. The same control answers scored 128 by one evaluator run and 108 by another. Within-run deltas (control vs test in the same evaluation) were meaningful. Cross-run absolute comparisons were not. This pushed me to multi-run benchmarks (3 runs per change, reporting median) starting from the compaction passes.
+
+The benchmark became the backbone of the project. I stopped trusting my instincts about whether a change was good and started trusting the numbers. The numbers were frequently surprising.
+
+Named Frameworks Beat General Wisdom
+
+One of the first benchmark surprises: the agent produced dramatically better session-planning output when the skill files contained named frameworks with specific thresholds than when they contained general good-practice advice.
+
+"Give underserved PCs more scenes" is good advice. Any experienced GM knows it. But it scored six points lower than "Delgado is below the 15% floor. Assign B-plot. Use the Weaving technique to embed personal content in group scenes."
+
+The difference is that named frameworks give the model concrete structures to work with. The "15% floor" is a specific threshold the model can check against. The "A/B/C plot model" is a named pattern with defined time allocations (A-plot 50-60%, B-plot 25-35%, C-plot 10-15%). The "Five-Stage Arc Model" gives the model a vocabulary for tracking where a character is in their development (Establishment, Testing, Crisis, Transformation, New Equilibrium) and what GM actions are appropriate at each stage.
+
+This led to the Quick Commands system: named shortcuts for common GM tasks (Spotlight Check, Canon Grounding, Chekhov Protocol, Arc Stage, Fail Forward). The Quick Commands benchmark hit a perfect 75/75, with a +22 quality delta over the no-skill baseline. Named frameworks with thresholds and vocabularies are the single highest-value content type in the entire skill.
+
+Compaction Pass 1: Discovering the Difference Between Routing and Priming
+
+By version 1.1.0, the skill worked well but the files were bloated. SKILL.md (the routing entry point) was 20K characters. INDEX.md (the secondary router) was 14K. Framework files like session-planner.md ran to 31K. The total across all skill-layer files was 236K characters, and every token of that was potential context window budget that could be spent on something more useful.
+
+I started compacting. The first pass targeted SKILL.md and INDEX.md, compressing them from 34K to 14K combined (59% reduction). Verbose routing prose became terse arrow notation, and multi-paragraph Quick Command descriptions collapsed into single-line directives.
+
+The v1 benchmark was disappointing, improving quality by only +3 over the pre-compaction baseline despite a 59% size reduction.
+
+Looking at the per-question scores, I found the problem: I'd stripped the priming content from the Quick Commands. The verbose routing ("Read session-planner.md, follow the full 7-step workflow, pay special attention to Step 7 which is non-negotiable") compressed fine. But the priming phrases ("Flag below 15% floor. Assign B/C plots." and "Review last 2-3 sessions per-PC. Check Chekhov elements older than 5 sessions.") had been cut as redundant, and they weren't redundant at all.
+
+I restored compact priming to the Quick Commands. Quality jumped to +15.
+
+This became the governing principle for everything that followed: routing compresses aggressively, priming must be preserved. The distinction is whether the text tells the agent where to look (routing, compressible) or what to focus on and what thresholds matter (priming, sacred). "Read session-planner.md Step 6" is routing. "Flag below 15% floor" is priming. The line between filler and load-bearing content is whether it shapes the quality of the output.
+
+Compaction at Scale: 236K to 114K
+
+Armed with the routing/priming principle, I ran four compaction passes across 15 framework files, cutting the total from 236K to 114K characters (52% reduction). The results consistently surprised me:
+
+| Pass | Files | Before | After | Reduction | Quality Delta |
+| Pass 1 | SKILL/INDEX | 34K | 14K | 59% | +15/75 |
+| Pass 2 | sessions | 77K | 33K | 58% | +8/75 |
+| Pass 3 | frameworks | 84K | 42K | 50% | -2/75 (neutral) |
+| Pass 4 | reference | 41K | 25K | 40% | +1 (compaction) / +10.5 (with routing) |
+
+Quality improved on three of the four passes. The one neutral result (Pass 3, -2 median across 3 runs) was within evaluator variance.
+
+The mechanism is counterintuitive but consistent: verbose prose dilutes signal. When a 31K session-planner file gets compressed to 12K, the actionable content (templates, thresholds, tables, named frameworks) becomes a larger proportion of what the agent reads. The model finds the useful bits faster and produces more focused output. Tables in particular compress beautifully because they preserve information density while taking less space than the equivalent prose.
+
+The GURPS chargen kits were the exception that proved the rule. At 80% structured tables and 20% build-guidance prose, they were already near-optimal density. Attempting to compact them further would have meant cutting actual data (trait names, point costs, page references), which is the one thing you categorically cannot do. When I hit a file that resists compaction, it usually means the file is already in its densest useful form.
+
+Cross-Routing: The Biggest Quality Lever I Found
+
+Pass 4 produced the most unexpected finding of the entire project. The four reference files (random-generation, rpg-terminology, entity-types, gm-session-patterns) were system-agnostic by design. They contained tables, schemas, and glossaries that any system could use. Compacting them was straightforward and the quality delta was +1 (neutral, as expected for reference-heavy files).
+
+Then I noticed the benchmark scores were lower than I'd like across the board, for both control and test. The test agent was reading the reference files, getting "good enough" answers from the system-agnostic content, and stopping there without routing to the system-specific SRD files that would have grounded its answers in actual game mechanics.
+
+So I added cross-routing prompts to the top of each reference file:
+
+```markdown
+System-specific generation: after rolling on tables here,
+read the relevant system file for stat blocks and mechanical
+grounding:
+- CoC 7e: systems/coc-7e/occupations.md
+- D&D 5e: systems/dnd-5e-2024/monsters.md
+- GURPS 4e: systems/gurps-4e/character-generation.md
+- FitD: systems/fitd/factions.md
+```
+
+The quality delta jumped to +8 to +13 over the pre-compaction baseline. Not just better than compacted-without-routing, but better than the original verbose files that cost twice the tokens.
+
+The mechanism: compacted files felt "complete enough" that agents stopped reading further. The verbose originals had the same problem, actually, they just cost more tokens to not solve it. Cross-routing prompts nudge the agent to keep going, to pull in the system-specific detail that turns a generic answer into a mechanically grounded one. The token budget freed by compaction gets reinvested in deeper, more specific reads.
+
+I applied cross-routing to all the framework files (session-planner, handouts, continuity-engine, npc-generation, and others). The pattern held: P2 files gained +6 quality, P3 files gained +4. Consistent, reproducible improvement from a few lines of routing text.
+
+The FitD Reversion: Some "Filler" Is Load-Bearing
+
+The Forged in the Dark system files were the most dramatically compactable. Four files (rules-reference, session-procedures, mechanics, factions) went from 56K to 23K, a 59% reduction. A big chunk of the savings came from deduplication: the original files had ~11K of content (score setup, teamwork, downtime phase, payoff, clocks, consequences, harm) appearing in two or three files simultaneously. I consolidated each topic into one canonical location and removed the duplicates.
+
+The benchmark came back at -6 quality, consistent across two runs.
+
+I dug into the per-question scores and found the loss was almost entirely in one dimension: table-ready fiction. The compacted files scored 3/3 on factual accuracy, system specificity, actionability, and mechanical grounding. But they scored 2/3 on table-ready fiction for every single question. "Fits system but predictable" instead of "evocative, system-native, sparks play."
+
+The culprit was the GM-guidance prose I'd trimmed as obvious filler. Concrete ruling examples: "If you corner someone on 4-5, they're cornered. Maybe they grab your weapon during the scuffle, but they don't escape." Faction character details: "Pickett quietly investigates while Bazso rages at the Leaky Bucket and calls in favours." Flashback usage guidance: "Best use: when the engagement roll goes badly, flash back to a preparation you made just in case."
+
+These aren't filler. They're the concrete examples that teach the agent what "table-ready" actually means for this system. Without them, the agent produces correct, mechanically sound, actionable answers that nonetheless feel like reference documents rather than something a GM could run straight from the text. The examples are the difference between a tool that knows the rules and a tool that knows how to play.
+
+I restored approximately 1.5K of the most impactful GM-guidance prose. The quality flipped to +13. The files still saved 56% of the original size, but the critical examples were back.
+
+I also discovered a second problem in the deduplication. When I removed content from one file because it existed in another, I hadn't left any breadcrumbs. An agent reading mechanics.md looking for "how does downtime work?" found nothing. No content, and no pointer saying "downtime procedures are in session-procedures.md." I added "Topics in Other FitD Files" sections at every removal point, so agents always find either the content or a redirect to the content.
+
+The taxonomy I ended up with: routing compresses, priming preserves, concrete examples are sacred, and deduplication needs breadcrumbs.
+
+Restructuring the D&D Spell List (And Why GURPS Didn't Need It)
+
+One targeted compaction illustrates the general principle well. The D&D spells file was the single largest file in the skill at 91K characters: 337 spells with descriptions, plus a 13K block of class spell lists at the top (comma-separated lists of every spell each class can cast).
+
+The class lists were pure duplication. Every spell in those lists already had a full entry below. The lists existed as a lookup convenience for "what can my wizard cast?" questions, but they cost 13K tokens every time the file was loaded, even when someone just asked "how does Fireball work?" - because the agent reads the entire file. it doesnt stop when it finds what its looking for.
+
+So I restructured: removed the class lists and added inline class tags to each spell entry instead. Fireball became Fireball | Evocation | A | 150 feet | Inst | Sor,Wiz | ... with a legend at the top (sor=sorceror, wiz=wizard). The file dropped 13% (91K to 79K), and filtered lookups actually got easier because the agent could scan one section for spells tagged with Pal rather than cross-referencing between a Paladin class list and the main spell list.
+
+GURPS, by contrast, resisted compaction entirely because the chargen kits were already 80% structured tables with the trait files as dense reference data. When I measured the table-to-prose ratio across the seven chargen kits, only 330 lines of prose existed across all of them combined, spread across 120K+ characters of structured tables. There was nothing to compress that wouldn't mean cutting actual data.
+
+This became a useful diagnostic: if a file resists compaction, it's probably already well-structured. Files that compress dramatically were carrying unnecessary prose. Files that don't compress were already doing their job efficiently.
+
+Build the Measurement First
+
+Here's the meta-lesson that runs underneath all the specific findings: building LLM tools is empirical, not theoretical, and you cannot reason your way to quality. Every assumption I brought to this project was wrong at least once. BRP terminology is fine for Call of Cthulhu (wrong, it was actively harmful). Verbose descriptions help the model understand context (wrong, they dilute the signal). Cutting flavour text and GM-guidance examples is safe because they're not mechanically relevant (wrong, they're the most load-bearing content in the skill). Cross-routing is unnecessary because the agent already knows how to navigate between files (wrong, it's the single biggest quality lever I found). GURPS data files need a programmatic connector (wrong, they need curated content kits).
+
+The benchmark caught every one of these mistakes. The blind evaluator, the 5-dimension rubric, the 3-run median, the within-run delta. Without measurement, I would have shipped a tool that made GMs worse at their job in at least three different ways, and I would have been confidently wrong about each one.
+
+If you're building LLM tool content of any kind (skill plugins, system prompts, RAG knowledge bases, agent instructions), build the measurement first. Define what "good" looks like in terms an evaluator can score. Run the benchmark before you start optimising, so you know your baseline. Run it after every change, so you know whether you helped or hurt. Trust the numbers over your instincts, because your instincts are probably wrong about at least one thing that matters. My instincts were wrong about at least five things.
+
+Words of Gratitude: Standing on the Shoulders of Game Designers
+
+This skill plugin exists because brilliant people made their work available, and I want to be explicit about that.
+
+The game designers and publishers who created and opened their systems made the entire project possible. John Harper released Blades in the Dark under CC-BY 3.0 with a generosity that the TTRPG community doesn't always recognise. Wizards of the Coast published the SRD 5.2 under CC-BY 4.0. Chaosium created the ORC License for Basic Roleplaying. Steve Jackson Games permits free game aids under their Online Policy. Without these decisions, projects like gm-apprentice simply couldn't exist.
+
+Richard Wilkes deserves a special mention. His work on GCS (GURPS Character Sheet) is a labour of love that has made the full breadth of the Generic Universal RPG System available for so many people. The GCS master library catalogues every trait, skill, spell, and piece of equipment across the entire GURPS Fourth Edition line. I didn't end up building a connector to it (as described above), but GCS was invaluable as reference material for building the chargen kits. 
+
+The GM craft frameworks that form the system-agnostic layer of gm-apprentice are drawn from the work of people who've been thinking about how to run games for decades. Mike Shea (Sly Flourish) created the Lazy DM prep method and the "Step Zero: Review the Characters" approach that anchors the session-planner workflow. Justin Alexander (The Alexandrian developed the Three Clue Rule and Node-Based Scenario Design, both of which are fundamental to how the skill approaches investigation scenarios. Matthew Colville (MCDM) created Action-Oriented Monster design. Keith Ammann wrote The Monsters Know What They're Doing. Johnn Four (Roleplaying Tips) created the Five Room Dungeon and the 3-Line NPC. Sandy Petersen developed the Onion Layer structure for Call of Cthulhu scenario design. Robin Laws created GUMSHOE and wrote Robin's Laws of Good Game Mastering. Vincent Baker designed Fronts for Apocalypse World. Luke Crane designed the Beliefs, Instincts, and Traits system for Burning Wheel. Shawn Tomkin created the Ironsworn oracle system. The Gnome Stew community has produced years of practical GM advice.
+
+The open gaming movement, broadly, made all of this possible. Every one of these creators chose to share their work, their ideas, and their mechanical innovations in ways that others could build on. gm-apprentice is a downstream beneficiary of that generosity, and I'm grateful for it.
