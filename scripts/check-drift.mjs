@@ -45,7 +45,13 @@ function pagesIn(dir) {
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const out = execFileSync('git', ['ls-remote', '--tags', 'https://github.com/AntTheLimey/gm-apprentice'], { encoding: 'utf8' });
+  let out;
+  try {
+    out = execFileSync('git', ['ls-remote', '--tags', 'https://github.com/AntTheLimey/gm-apprentice'], { encoding: 'utf8' });
+  } catch {
+    console.log('::warning::check:drift could not reach the plugin repo; skipped');
+    process.exit(0);
+  }
   const tags = out.split('\n').map((l) => l.split('refs/tags/')[1]).filter((t) => t && !t.endsWith('^{}'));
   const latest = latestTag(tags);
   const pages = pagesIn('src/content/docs');

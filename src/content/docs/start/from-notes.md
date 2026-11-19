@@ -20,7 +20,7 @@ New to all this? [Get set up](/start/setup/) first.
 ## Try it on our pile first
 
 **[Download the notes pile](/downloads/notes-pile.zip)** (a made-up
-two-session D&D one-shot, about a thousand words): two sessions' scrawled
+two-session D&D one-shot, about 650 words): two sessions' scrawled
 notes, an NPC list, one character sheet, a file of loose ideas and a
 hand-drawn village map. A name is spelled two ways, the ideas file mixes
 in things that never happened, and nobody wrote down the year. Like real

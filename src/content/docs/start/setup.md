@@ -37,8 +37,11 @@ The skills' scripts need **Python 3.10 or newer**.
   screen, tick **Add python.exe to PATH**. Then in a new terminal,
   `python --version` should print 3.10 or higher.
 
-You don't need Node unless you want a campaign website. That's covered in
-the tutorial on publishing your site.
+Cowork, Claude Code and Codex need nothing else. The "any other agent"
+route below installs with `npx`, which comes with
+[Node](https://nodejs.org) (22.21 or newer). Node is also what builds a
+campaign website, if you want one later
+([publishing in the plugin docs](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/publish-tool.md)).
 
 ## Install the plugin
 
