@@ -12,6 +12,7 @@
     "test": "node --test 'scripts/*.test.mjs'",
     "check:posts": "node scripts/check-posts.mjs",
     "check:links": "node scripts/check-links.mjs dist",
+    "check:drift": "node scripts/check-drift.mjs",
     "deploy": "astro build && wrangler deploy"
   },
   "dependencies": {

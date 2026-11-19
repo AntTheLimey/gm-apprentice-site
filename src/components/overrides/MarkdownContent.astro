@@ -1,14 +1,22 @@
 ---
 // Wraps starlight-blog's post content to add a "First published on LinkedIn" line
-// to any post whose frontmatter has `linkedin`. Nothing to remember per post.
+// to any post whose frontmatter has `linkedin`, and a "Checked against" line to any
+// tutorial page with `checkedAgainst`. Nothing to remember per page.
 import BlogMarkdownContent from 'starlight-blog/overrides/MarkdownContent.astro';
 
 const { entry } = Astro.locals.starlightRoute;
 // The post's date (shown just above by starlight-blog) is the LinkedIn date.
-const { linkedin } = entry.data as { linkedin?: string };
+const { linkedin, checkedAgainst } = entry.data as { linkedin?: string; checkedAgainst?: string };
 ---
 
 <BlogMarkdownContent>
+  {
+    checkedAgainst && (
+      <p class="checked-against">
+        Checked against GM-Apprentice {checkedAgainst}.
+      </p>
+    )
+  }
   {
     linkedin && (
       <p class="first-published">
@@ -18,3 +26,10 @@ const { linkedin } = entry.data as { linkedin?: string };
   }
   <slot />
 </BlogMarkdownContent>
+
+<style>
+  .checked-against {
+    font-size: 0.875rem;
+    color: var(--sl-color-gray-3);
+  }
+</style>

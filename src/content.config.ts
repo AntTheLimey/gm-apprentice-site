@@ -15,6 +15,8 @@ export const collections = {
         blogSchema(context).extend({
           // Where the post was first published, for republished LinkedIn articles.
           linkedin: z.string().url().optional(),
+          // The plugin release a tutorial's example was last run on (scripts/check-drift.mjs).
+          checkedAgainst: z.string().optional(),
         }),
     }),
   }),
