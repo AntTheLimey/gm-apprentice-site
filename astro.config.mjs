@@ -5,7 +5,7 @@ import starlightBlog from 'starlight-blog';
 import starlightLinksValidator from 'starlight-links-validator';
 
 // The public address comes from SITE_URL so a custom domain is a one-value change.
-const site = process.env.SITE_URL ?? 'https://gm-apprentice.antthelimey.workers.dev';
+const site = process.env.SITE_URL ?? 'https://gmapprentice.com';
 // Branch previews (scripts/preview.sh) set PREVIEW=1 and stay out of search engines.
 const preview = process.env.PREVIEW === '1';
 
