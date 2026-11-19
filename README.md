@@ -26,7 +26,9 @@ npm test         # script tests
   pictures against the original it came from.
 - `scripts/check-host.sh` fails if the site's own address is hard-coded
   anywhere. The address comes from `SITE_URL`.
-- The build fails on any broken internal link.
+- The build fails on any broken internal link in a Starlight page, and
+  `npm run check:links` checks every internal link and picture in the built
+  site, front page included.
 
 ## Adding a blog post
 

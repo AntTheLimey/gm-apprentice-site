@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "test": "node --test 'scripts/*.test.mjs'",
     "check:posts": "node scripts/check-posts.mjs",
+    "check:links": "node scripts/check-links.mjs dist",
     "deploy": "astro build && wrangler deploy"
   },
   "dependencies": {

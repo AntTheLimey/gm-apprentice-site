@@ -1,9 +1,11 @@
 ---
 import '../styles/theme.css';
+import { gallery } from '../data/gallery.mjs';
 
 // Branch previews (scripts/preview.sh) build with PREVIEW=1 and stay out of search engines.
 const preview = process.env.PREVIEW === '1';
 const canonical = new URL('/', Astro.site);
+const campaigns = gallery.filter((e) => e.campaign);
 ---
 <!doctype html>
 <html lang="en">
@@ -13,6 +15,7 @@ const canonical = new URL('/', Astro.site);
 {preview && <meta name="robots" content="noindex">}
 <meta name="description" content="GM-Apprentice: free, open-source AI skills that organize, prep, run and publish your tabletop campaign.">
 <link rel="canonical" href={canonical}>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="GM-Apprentice blog" href="/blog/rss.xml">
 <title>GM-Apprentice</title>
 <style is:global>
@@ -142,6 +145,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .tile:hover .shot img{transform:scale(1.03)}
 .tile b{display:block;margin-top:12px;font-family:var(--display);font-size:1.2rem}
 .tile span{color:var(--dim);font-size:.92rem}
+.gallery .more{margin-top:28px}.gallery .more a{color:var(--brass)}
 
 /* start */
 .start{padding-block:100px 110px}
@@ -180,7 +184,7 @@ footer a{color:var(--dim)}
     GM-Apprentice
   </a>
   <nav aria-label="Site">
-    <a href="https://github.com/AntTheLimey/gm-apprentice#skills">Tutorials</a><a href="#gallery">Gallery</a><a href="/blog/">Blog</a><a class="keep" href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a>
+    <a href="https://github.com/AntTheLimey/gm-apprentice#skills">Tutorials</a><a href="/gallery/">Gallery</a><a href="/blog/">Blog</a><a class="keep" href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a>
   </nav>
 </header>
 
@@ -363,13 +367,11 @@ footer a{color:var(--dim)}
   <h2>Campaigns built with it</h2>
   <p class="sub">Real games, real tables. Every one of these sites was built from a GM's vault.</p>
   <div class="tiles">
-    <a class="tile" href="https://canticle-of-the-end.pages.dev"><figure class="shot"><img src="/img/cn-home.jpg" alt="Canticle of the End site"></figure><b>Canticle of the End</b><span>Regency Call of Cthulhu</span></a>
-    <a class="tile" href="https://dead-end.pages.dev"><figure class="shot"><img src="/img/de-home.jpg" alt="Dead End site"></figure><b>Dead End</b><span>Space-noir GURPS</span></a>
-    <a class="tile" href="https://drakkenheim.dorkfish.quest/index.html"><figure class="shot"><img src="/img/dk-home.jpg" alt="Drakkenheim site"></figure><b>Drakkenheim</b><span>D&amp;D 5e</span></a>
-    <a class="tile" href="https://gurps-special-forces.pages.dev"><figure class="shot"><img src="/img/sf-home.jpg" alt="GURPS Special Forces site"></figure><b>GURPS Special Forces</b><span>Military GURPS</span></a>
-    <a class="tile" href="https://snowbound-dnd.pages.dev"><figure class="shot"><img src="/img/sb-home.jpg" alt="Snowbound site"></figure><b>Snowbound</b><span>D&amp;D 5e 2024, made with the Midwife</span></a>
-    <a class="tile" href="https://drnoisys-softworks.github.io/gm-scriptorium/"><figure class="shot"><img src="/img/scr-home.jpg" alt="The Long Lease, GM-Scriptorium's sample campaign"></figure><b>GM-Scriptorium</b><span>A desktop app that publishes the same vaults</span></a>
+    {campaigns.map((e) => (
+      <a class="tile" href={e.url}><figure class="shot"><img src={e.img} alt={e.alt}></figure><b>{e.name}</b><span>{e.system}</span></a>
+    ))}
   </div>
+  <p class="more"><a href="/gallery/">See the whole gallery</a></p>
 </section>
 
 <section id="start" class="wrap start">
