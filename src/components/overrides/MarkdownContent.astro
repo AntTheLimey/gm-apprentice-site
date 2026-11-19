@@ -1,0 +1,25 @@
+---
+// Wraps starlight-blog's post content to add a "First published on LinkedIn" line
+// to any post whose frontmatter has `linkedin`. Nothing to remember per post.
+import BlogMarkdownContent from 'starlight-blog/overrides/MarkdownContent.astro';
+
+const { entry } = Astro.locals.starlightRoute;
+const { linkedin, date } = entry.data as { linkedin?: string; date?: Date };
+const shown = date
+  ? new Intl.DateTimeFormat('en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(date)
+  : undefined;
+---
+
+<BlogMarkdownContent>
+  {
+    linkedin && (
+      <p class="first-published">
+        <em>
+          First published on <a href={linkedin}>LinkedIn</a>
+          {shown && `, ${shown}`}.
+        </em>
+      </p>
+    )
+  }
+  <slot />
+</BlogMarkdownContent>

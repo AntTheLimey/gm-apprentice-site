@@ -11,10 +11,15 @@ const preview = process.env.PREVIEW === '1';
 
 export default defineConfig({
   site,
+  // Republished posts keep the author's own characters: no automatic curly quotes,
+  // dashes or ellipses.
+  markdown: { smartypants: false },
   integrations: [
     starlight({
       title: 'GM-Apprentice',
       customCss: ['./src/styles/theme.css'],
+      // Wraps starlight-blog's own override (see the component).
+      components: { MarkdownContent: './src/components/overrides/MarkdownContent.astro' },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/AntTheLimey/gm-apprentice' },
       ],

@@ -1,0 +1,193 @@
+Date: May 8, 2026
+Title: Training My Apprentice: Skill Priming and Routing
+
+I extracted 21 lines of duplicated text from seven files into one shared file. Solid engineering practice. The DRY principle (Don't Repeat Yourself), applied to prompt engineering. Any code reviewer on the planet would have approved it. Four hours later, the proof runs came back: 4% more expensive, zero quality improvement. I reverted the whole thing before dinner.
+
+Six weeks earlier, I'd done the exact same thing with a 414-line entity schema, extracting four partial copies into one shared file, and the benchmarks showed zero quality regression with a measurable reduction in drift risk. Same technique, same codebase, opposite outcomes. The difference was found in understanding what the extracted content actually does inside a language model's context window, and that understanding comes down to two concepts that mostly get treated as synonyms when they are, in fact, completely different engineering problems.
+
+This is the third in a series about building gm-apprentice, a Claude Code skill plugin with eight skills for tabletop RPG game masters. The first blog covered building the plugin and discovering that measurement beats intuition. The second covered turning mistakes into reusable agents. This one is about the two concepts that sit underneath every decision I've made since: priming and routing. What they are, how they differ, when each one helps, and (critically) when applying them makes things worse.
+
+What Priming Actually Is
+
+Priming is the irreducible context that shapes how a model behaves before it ever sees the user's request. Not the content it references. Not the instructions it follows. The identity it adopts, the constraints it operates under, the behavioral dispositions that colour every token it generates.
+
+Here's the complete Identity priming for my session-play skill, the one that helps GMs during a live game at the table:
+
+Table-side assistant for live TTRPG sessions. Players are waiting. Every response must be immediately usable.
+
+Twenty words. And those twenty words transform the model's behaviour more than the 3,000 tokens of reference files that load afterward. "Players are waiting" creates urgency that caps response length at one to five sentences without ever stating a word count. "Immediately usable" kills hedging language, suggestions for further research, and the model's natural inclination to show its working. The priming doesn't tell the model what to do. It tells the model what it IS, and the what-to-do follows naturally from that.
+
+Compare the campaign-qa skill, which audits campaign vaults for contradictions:
+
+You are a campaign quality assurance engine. You systematically read the vault, find problems, and walk the GM through fixing each one. You are a validator and repairer, not a content creator.
+
+"Not a content creator" is doing as much work as everything that precedes it. Without that line, the model generates fixes autonomously. With it, the model surfaces problems and proposes fixes for the human to approve or reject. That single negation flips the entire interaction pattern from autonomous to advisory, and it costs four words.
+
+I discovered the hard way that priming and routing are different things, during a compaction pass where I treated them as interchangeable. The Quick Commands in my ttrpg-expert skill had two kinds of text mixed together: routing text ("Read session-planner.md, follow the full 7-step workflow") and priming text ("Flag below 15% floor. Assign B/C plots to underserved PCs."). When I compressed the Quick Commands, I stripped the priming along with the verbose routing prose, because they looked the same to me. Quality barely moved, improving by a pathetic 3 points despite a 59% file size reduction. When I restored the compact priming phrases while keeping the routing compressed, quality jumped to +15. The verbose routing had been noise. The terse priming had been load-bearing. They just happened to live in the same paragraph.
+
+The Five Priming Layers
+
+Working through eight skills over several months, I found that effective priming stacks in layers. Each one narrows the model's behaviour further, and each one serves a distinct purpose. The diagram below shows all five layers as they appear in one real skill file, with the routing section dimmed to make the distinction visible.
+
+
+
+
+Identity sets the role. "Table-side assistant" produces different output than "quality assurance engine" produces different output than "campaign librarian." The model's opening instruction shapes its default behaviour for everything that follows, including how it interprets ambiguous requests and how much it explains its reasoning.
+
+Constraints set the boundaries, and they're often more valuable than positive instructions because they prevent the model's most common failure modes. "Not a content creator." "Never silently fix." "Never default to the current working directory." Each of these exists because, at some point during development, the model did exactly the thing the constraint now prevents, and I had to add the line to stop it happening again.
+
+Shared references load on first invocation. Session principles, document chain rules, entity schemas. These establish the vocabulary and structural assumptions that all subsequent operations build on. They're expensive (each file read burns tokens) but they prevent the model from inventing its own incompatible terminology partway through a conversation, which is a failure mode I've seen enough times to pay the prevention cost gladly.
+
+Environment detection adapts the skill to runtime conditions. Is the vault running the latest schema version? Is Obsidian available, or are we in filesystem-only mode? These checks gate downstream behaviour, and they need to happen early because later instructions depend on the answers.
+
+Behavioral dispositions are the subtlest layer and the easiest to underestimate. "1-5 sentences." "Speed over polish." "Every finding gets a decision." These don't tell the model what to do in any specific situation. They create a bias that shapes every output, across every request type. A skill with "speed over polish" will generate shorter, more direct content whether you're asking for a rules lookup or an improvised NPC, without needing separate length instructions for each use case.
+
+What makes the layering visible is what breaks when you pull a layer out. Without identity, the model defaults to generic assistant register: longer responses, more hedging, more "here are some options to consider" when the GM needs one answer now. Without constraints, the model cheerfully reorganises raw play notes into structured markdown mid-session, or offers tactical suggestions to the GM that players at the table can overhear. Without shared references, the model invents its own Play Notes frontmatter schema, which session-wrapup then can't parse because it's expecting the schema defined in session-document-chain.md. Without environment detection, the model writes entity files with v1.3 frontmatter into a v1.4 vault, producing valid-looking files that silently break graph queries.
+
+Behavioral dispositions are the sneakiest layer to lose because the degradation is gradual, not catastrophic. Without "speed over polish," responses creep from three sentences toward eight. Without "generated content is provisional," the model presents improvised NPCs as established canon, and the GM has to mentally downgrade everything it says. The skill doesn't break. It just gets worse in ways that are hard to notice until you compare output with and without the disposition lines side by side.
+
+What Routing Actually Is
+
+If priming tells the model what it IS, routing tells it where to LOOK. Routing is the decision architecture that determines which content loads, when it loads, and in what order. The distinction matters because priming and routing have opposite engineering properties: priming is small, always-loaded, and resistant to compression. Routing is large, conditional, and compresses beautifully.
+
+The simplest routing is a pattern match. My ttrpg-expert skill has a Quick Commands table with 30+ entries mapping user intent directly to files:
+
+"Build me a character" / "create a PC"
+→ systems/{system}/character-generation.md + mechanics.md
+
+"CoC creature" → systems/coc-7e/creatures.md
+
+"D&D spell" → systems/dnd-5e-2024/spells.md (index)
+  → detail: spells-cantrips.md, spells-1.md through spells-9.md
+
+"Match user intent, go directly to the file, skip clarification." That's the instruction. The model reads the table, finds the closest match, and loads the right file. The table makes the decision deterministic rather than leaving it to the model's judgment about which filename looks most promising from a directory listing.
+
+The Routing Table Revolution
+
+I have numbers on how much deterministic routing matters, and they surprised me enough that I ran the benchmark twice to make sure.
+
+Before the routing table, the model found files by reading directory listings and guessing. After adding a structured routing table to session-play's SKILL.md (49 lines of routing directives added to an 80-line file), the same five benchmark queries produced dramatically different performance profiles.
+
+Without the table: 2.7 files read on average, 27,000 tokens consumed, 38 seconds wall clock. With the table: 1.0 files read, 19,000 tokens, 21 seconds. Zero quality degradation. The routing table didn't make the answers better. It made the model stop wasting time and tokens on wrong guesses before reaching the right file.
+
+The single biggest win was a spotlight balance query that went from 31,000 tokens and 50 seconds (the model read three files before finding the right one) down to 19,000 tokens and 20 seconds (it went straight to arc-spotlight-reference.md on the first try). Sixty percent wall-clock improvement from one line in a routing table.
+
+Six Routing Strategies
+
+Over the course of 40 PRs, I ended up with six distinct routing patterns, each suited to different situations. The taxonomy is worth knowing because the wrong routing strategy for a given situation can be worse than no routing at all.
+
+Pattern-match routing is the Quick Commands table described above. User says a thing, the table maps it to a file. Fast, deterministic, zero ambiguity. Best for the 80% of requests that fit a known pattern.
+
+Table-based routing maps request types to files within a specific game system. GURPS trait lookups go to one file, combat rules to another, character generation to a third. The routing table lives in a system-specific section of SKILL.md and only activates when that system is in play.
+
+Index-based routing handles content that would be catastrophic to load in full. D&D has 337 spells across 11 level-based files. Rather than loading 91K characters of spell data every time someone asks about Fireball, the spells.md index file lists every spell with its level, school, and classes (but not the full descriptions). The model reads the index, finds the spell, then loads only the specific level file it needs. An 8K read instead of a 91K read, for the same information.
+
+Overlay routing handles variant systems without duplicating their base content. Regency Cthulhu is a historical variant of Call of Cthulhu 7e set in the 1820s. When the model detects "Regency" in the context, it loads the base CoC file AND the Regency overlay. The overlay adds period-specific occupations, equipment, and social rules on top of the base mechanics. One routing pattern, two files, zero content duplication.
+
+Section routing directs the model's attention to a specific section within a file, but it doesn't reduce what loads. The whole file still enters the context window. My check-procedures.md has six distinct audit procedures, and the model reads all of them regardless of which one was requested. The § marker in the routing instruction ("Read check-procedures.md § Timeline Validation") tells the model which section it was sent there for. 
+
+The benefit is accuracy, not token savings. Without the section pointer, the model has to decide which of six procedures applies to "check my timeline for contradictions." It usually picks the right one, but sometimes it hedges by pulling from two or three sections, conflating their steps into a hybrid procedure that doesn't match any of the six it was supposed to follow. The section pointer eliminates that ambiguity. The model still sees the other five procedures (they're sitting right there in context), but it knows which one the caller asked for, so it commits fully to one procedure instead of improvising a blend.
+
+This is priming in disguise. The section marker doesn't save tokens or reduce file reads. It constrains the model's interpretation of what it reads, which is the same thing an identity line does at the skill level, just applied to a single file rather than the whole conversation.
+
+Fallback routing catches everything the other strategies miss. The INDEX.md file in ttrpg-expert is a comprehensive routing table (several hundred lines) that maps every conceivable request type to a file path. It loads only when the Quick Commands table didn't match, functioning as the default case in what is effectively a big switch statement. You don't want it to fire often, but when it does, it needs to be thorough.
+
+The Advisor/Doer Split
+
+I covered this pattern in the previous blog, but it matters here because it's the cleanest way I've found to separate priming from routing at the architectural level.
+
+An advisor skill is pure reference: frameworks, mental models, named patterns, terminology. It primes the model with ways of thinking. My ttrpg-expert skill is a pure advisor with no workflow steps. It holds the Five-Stage Arc Model, the spotlight rotation theory, NPC generation frameworks, the continuity engine, and dozens of other reference files that define how to think about running games.
+
+A doer skill is pure workflow: numbered steps, progressive file writes, routing instructions that point to the advisor when theory is needed. Session-prep is a 17-step workflow that reads arc-spotlight-reference.md from ttrpg-expert when it needs to evaluate character arcs, then routes back to its own procedure for the next step.
+
+This separation has a concrete engineering payoff: it makes compaction safe. You can compress the routing prose in the doer (step descriptions, file pointers, transition logic) without touching the priming content in the advisor (frameworks, thresholds, definitions). When those live in the same file, compaction becomes a knife fight because you can't always tell which text is routing and which is priming until you cut something and the benchmark yells at you.
+
+When I split the monolithic session-lifecycle skill into three focused doers (session-prep, session-play, session-wrapup) sharing one set of advisor references, the benchmarks confirmed it was the right call. The split won or tied in every single comparison across nine runs, three skills times three runs each. Prep improved by an average of +7, wrapup by +5.7, and play was flat.
+
+The pattern in the chart is the point. Prep needs thoroughness (17-step workflow, deep reference reads). Wrapup needs completeness (process every entity, miss nothing). Play needs urgency ("players are waiting"). Cramming those three dispositions into one skill forces the model to pick a register, and it picks wrong for at least two out of three. Splitting lets each skill adopt its own identity, and the shared advisor references stay untouched.
+
+When to Duplicate and When to Deduplicate
+
+This is where the software engineering instinct leads you directly into a trap. DRY is deeply correct in code, where duplication means divergence and bugs. In language model skill systems, DRY is a tradeoff with a hidden cost that most people don't discover until they've shipped something measurably worse.
+
+Every file read in Claude Code costs approximately 90 tokens of fixed overhead. The tool call itself, the response wrapper, the line numbers added by the output formatter. For a 414-line file, that 90-token tax is trivial (less than 5% of the content). For a 21-line file, the tax is nearly as large as the content itself. And when that file gets read on every single invocation of every single skill, those 90 tokens multiply fast.
+
+When Extraction Wins: The Entity Schema
+
+My first successful extraction was the entity schema: 414 lines defining the full type hierarchy, frontmatter formats, and relationship types for the campaign vault. Four skills had their own copies, each slightly different. The copies had already started drifting, with one skill listing field names that another skill didn't recognise.
+
+I extracted the four copies into skills/shared/entity-schema.md, replaced the inline content with read instructions, and ran the benchmarks. Zero quality regression. The maintenance story improved immediately because there was now exactly one place to update when the schema changed, and four fewer places where subtle inconsistencies could creep in.
+
+The file economics tell an honest story. I removed nearly 17KB of duplicated content from individual skills and created about 17KB of shared files. The net byte savings were essentially zero, because the merged entity schema was more complete and more authoritative than any single copy it replaced. This extraction was never about saving bytes. It was about eliminating a class of consistency bug (one skill referencing field names that another skill didn't recognise) and creating a single update point for content that changed frequently. The 90-token read overhead was negligible against a 12KB file, and the content loaded conditionally (not every invocation needs the full entity schema), so most queries never paid the overhead at all.
+
+When Extraction Loses: The Version Check
+
+The version check is a six to eight line procedure that runs on first invocation of every vault-aware skill. Read the vault version from config, compare it against the migration registry, hand off to the migration workflow if there's a mismatch. Seven skills had nearly identical copies of this text inlined in their respective SKILL.md files.
+
+I extracted it to shared/version-check.md at 9:36 in the morning. Added a CI lint guard to prevent anyone from re-inlining it. Clean, defensible, by the book.
+
+The proof runs came back that afternoon. Twelve queries, five runs each, sixty data points per condition. The extraction had increased total token cost by 4% with zero measurable quality improvement. Every single skill invocation was now paying 90 tokens of file-read overhead to load 21 lines of content that used to be free, because it was already in the SKILL.md the model had already loaded at the start of the conversation.
+
+I reverted the extraction, deleted the shared file, removed the CI lint guard, and restored the inline copies in all seven SKILL.md files. Total round trip from extraction to reversion: under twelve hours.
+
+The aggregate +4% hides what's actually happening. The per-query breakdown tells a more interesting story.
+
+Simple, single-file queries (CoC Chase rules, GURPS grappling, an improvised NPC) broke even or got slightly cheaper. The model read the shared version-check file, loaded one reference file, answered the question. The 90-token overhead was absorbed by normal variance. But multi-file workflow queries got hammered. Session Prep, which runs a 17-step workflow that reads shared principles, the document chain, the plan file, and multiple reference files, jumped 23% (11,000 extra tokens). The Three Clue Rule query, which crosses from the continuity engine into system-specific SRD content, jumped 18%.
+
+The mechanism: adding one more file read to an already-heavy routing chain doesn't just cost 90 tokens. It pushes the model deeper into "reading mode," where it becomes more inclined to speculatively read additional files that it might have skipped otherwise. The overhead cascades. A simple query with one or two file reads absorbs the extra read without changing its behaviour. A complex workflow with five or six reads uses the extra read as a springboard for further exploration that the model wouldn't have done if the version check had been inline and invisible.
+
+The Threshold Rule
+
+The version check fiasco produced a threshold rule that now lives in the project's CLAUDE.md and has held up across every subsequent change:
+
+Inline when the content is always needed AND smaller than about 500 bytes. The file-read overhead exceeds the duplication cost.
+
+Extract when the content is larger than about 2KB OR needed less than half the time. The duplication cost (maintenance burden, drift, wasted tokens on copies) exceeds the read overhead.
+
+The grey zone between 500 bytes and 2KB depends on how frequently the content loads. Something that fires on 10% of invocations can tolerate a lower extraction threshold because the overhead gets amortized across the 90% of invocations that don't pay it. Something that fires on 100% of invocations gets no amortization at all.
+
+The practical version is even simpler: if you're extracting something small that every skill needs every time, stop. You're trading free inline bytes for expensive file reads. If you're extracting something large that only some skills need some of the time, go ahead. You're trading redundant tokens for shared maintenance and consistency.
+
+Cross-Routing: Turning Savings into Quality
+
+Compaction frees tokens. Cross-routing spends the freed budget wisely. This was the most unexpected finding of the entire project, and the one that changed how I think about the relationship between token cost and output quality.
+
+I'd compacted my system-agnostic reference files (NPC generation tables, random generation procedures, GM session patterns) down to roughly half their original size. Quality was flat, which was expected for reference-heavy files. But the benchmark scores were lower than I wanted across the board, for both the control agent and the test agent.
+
+The issue: the model was reading the system-agnostic reference file, getting a "good enough" answer from the generic content, and stopping there. It wasn't routing onward to the system-specific SRD files that would have grounded its answer in actual CoC 7e mechanics or GURPS 4e point costs. The compacted file felt complete enough that the model treated it as the final word rather than a waypoint.
+
+I added cross-routing prompts to the top of each reference file:
+
+After rolling on tables here, read the relevant system file for stat blocks and mechanical grounding:
+- CoC 7e: systems/coc-7e/occupations.md
+- D&D 5e: systems/dnd-5e-2024/monsters.md
+- GURPS 4e: systems/gurps-4e/character-generation.md
+- FitD: systems/fitd/factions.md
+
+Quality jumped by 8 to 13 points over the pre-compaction baseline. Not just better than the compacted version without cross-routing, but better than the original verbose files that cost twice the tokens.
+
+The mechanism is worth understanding because it applies far beyond my specific project. Compacted files feel "complete enough" to the model, so the model stops reading further. Verbose files have the same problem (they also feel complete, they just cost more tokens to feel that way). Cross-routing explicitly tells the model "you're not done yet, go read the system-specific detail," and the token budget freed by compaction pays for the deeper, more targeted read. You spend fewer total tokens and get better output, because the tokens are going to the right content instead of being wasted on verbose prose that says the same thing three different ways.
+
+When NOT to Do Any of This
+
+The overhead of a skill system is real, and I have the numbers to prove it's substantial. Across my non-compaction benchmarks, the skill-equipped agent averaged 37,000 tokens per query compared to 9,200 for the no-skill baseline. Roughly 4x the token cost and 2.6x the wall clock time. The quality improvement was always positive (ranging from +5 to +27 on a 75-point scale), but a +5 quality uplift for 4x the tokens is not always a trade worth making.
+
+If your task is simple and well-defined, skip the skill system. "Convert this JSON to YAML" does not benefit from priming layers, routing tables, or shared reference files. The overhead would dwarf the actual work. Skills exist to manage complexity. If there isn't much complexity to manage, the skill is just overhead.
+
+If your content fits in a single file under 2K tokens, don't split it. A skill system manages the problem of having more content than fits in context simultaneously. If everything fits in one shot, put it in one file and save yourself the routing infrastructure.
+
+If your split doesn't create divergent priming requirements, keep the monolith. My session-lifecycle split worked because the three resulting skills needed fundamentally different identities: urgency for play, thoroughness for prep, completeness for wrapup. If your skill has one consistent disposition and one workflow, splitting it adds routing overhead without adding priming value.
+
+Not every optimisation is an improvement. I ran an experiment replacing markdown tables with TSV (tab-separated values) across nine reference files, hypothesising that the simpler format would save tokens without losing information. Token savings were substantial: 15% to 34% depending on the file. Quality dropped by 5 points. Consistently. Across every TSV configuration I tested.
+
+The model parsed the TSV correctly (no column misalignment, no data errors) but produced less precise mechanical answers. Something about the markdown table format, possibly the visual structure or the header row semantics, helps the model reason about structured data more effectively than raw tab-separated values. The 15-34% token savings weren't worth a consistent 5-point quality regression. I scrapped the experiment and kept the markdown tables.
+
+The Evidence
+
+Across the life of the project: 15 content files compacted from 236K to 114K characters (52% reduction), quality maintained or improved across four benchmark passes. Routing tables cut file reads by 63% and wall clock time by 45%. Cross-routing converted compaction savings into 8 to 13 points of quality improvement. The session lifecycle split into three focused skills improved quality with 18% fewer total lines. One extraction was reverted within 12 hours because the data said it was a net negative.
+
+Every one of those findings came from running the numbers, and several of them directly contradicted my initial assumptions. The version check extraction was good engineering practice by any standard I know. The TSV format change was a clever optimisation that should have worked. Both made things measurably worse, and I only know that because I measured.
+
+If you're building skill systems, agent frameworks, or any kind of structured context for language models, priming and routing are two concepts to get right before anything else matters. They have different engineering properties, different compression characteristics, different rules about when to duplicate and when to consolidate. Treating them as the same thing (which is what "prompt engineering" usually implies, all of it mashed together in one file) is how you end up with verbose, expensive skills that produce mediocre output and resist every attempt at improvement.
+
+Separate them. Measure them. And when the numbers tell you your good idea made things worse, revert it before dinner.
