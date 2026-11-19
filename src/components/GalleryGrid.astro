@@ -1,0 +1,99 @@
+---
+// Cards for gallery entries: picture, name, short line, what it shows off, any note.
+import { gallery } from '../data/gallery.mjs';
+
+interface Props {
+  campaigns: boolean;
+}
+const entries = gallery.filter((e) => e.campaign === Astro.props.campaigns);
+---
+
+<ul class:list={["gallery-grid", "not-content", { single: entries.length === 1 }]}>
+  {
+    entries.map((e) => (
+      <li class="card">
+        <a class="pic" href={e.url}>
+          <img src={e.img} alt={e.alt} width="1200" height="750" loading="lazy" />
+        </a>
+        <h3>
+          <a href={e.url}>{e.name}</a>
+        </h3>
+        <p class="system">{e.system}</p>
+        <p>{e.blurb}</p>
+        {e.note && <p class="note">{e.note}</p>}
+        {e.link && (
+          <p class="note">
+            <a href={e.link.url}>{e.link.label}</a>
+          </p>
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .gallery-grid {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+  .gallery-grid.single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .card p {
+    margin: 0;
+  }
+  .gallery-grid .pic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px var(--sl-color-gray-5);
+    background: none;
+    padding: 0;
+  }
+  .pic {
+    margin-bottom: 0.5rem;
+  }
+  h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  h3 a {
+    color: var(--sl-color-white);
+    text-decoration: none;
+  }
+  h3 a:hover {
+    color: var(--sl-color-accent);
+  }
+  .system {
+    color: var(--sl-color-accent);
+    font-size: 0.92rem;
+  }
+  .note {
+    color: var(--sl-color-gray-3);
+    font-size: 0.92rem;
+  }
+  .note a {
+    color: var(--sl-color-accent);
+  }
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

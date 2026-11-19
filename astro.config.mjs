@@ -24,6 +24,9 @@ export default defineConfig({
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/AntTheLimey/gm-apprentice' },
       ],
+      sidebar: [
+        { label: 'Gallery', link: '/gallery/' },
+      ],
       head: preview ? [{ tag: 'meta', attrs: { name: 'robots', content: 'noindex' } }] : [],
       plugins: [
         starlightBlog({
