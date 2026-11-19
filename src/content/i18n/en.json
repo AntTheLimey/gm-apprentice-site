@@ -1,0 +1,3 @@
+{
+  "starlightBlog.post.date": "{{date, datetime(dateStyle: medium; timeZone: UTC)}}"
+}

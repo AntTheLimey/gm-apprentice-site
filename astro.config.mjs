@@ -14,6 +14,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'GM-Apprentice',
+      customCss: ['./src/styles/theme.css'],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/AntTheLimey/gm-apprentice' },
       ],

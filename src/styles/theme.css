@@ -1,0 +1,83 @@
+/* The gaming table: green baize and brass, Alegreya for display, Alegreya Sans for body.
+   Token names are the mockup's own (--felt, --chalk, --brass...), so the front page and
+   the Starlight pages share one palette. Dark is the felt; light is the paper. */
+@import '@fontsource/alegreya/500.css';
+@import '@fontsource/alegreya/700.css';
+@import '@fontsource/alegreya/800.css';
+@import '@fontsource/alegreya/500-italic.css';
+@import '@fontsource/alegreya-sans/400.css';
+@import '@fontsource/alegreya-sans/500.css';
+@import '@fontsource/alegreya-sans/700.css';
+@import '@fontsource/alegreya-sans/400-italic.css';
+
+:root {
+  --felt: #12291f;
+  --felt-2: #183528;
+  --felt-3: #21453a;
+  --paper: #efe9dc;
+  --ink: #1d241f;
+  --chalk: #e8efe9;
+  --dim: #a9bdb1;
+  --brass: #e3b55b;
+  --brass-ink: #2a1f08;
+  --display: 'Alegreya', Georgia, serif;
+  --body: 'Alegreya Sans', system-ui, sans-serif;
+
+  --sl-font: var(--body);
+  --sl-text-base: 1.0625rem;
+
+  /* Dark: the felt. */
+  --sl-color-accent-low: #3a2e12;
+  --sl-color-accent: var(--brass);
+  --sl-color-accent-high: #f3dca8;
+  --sl-color-white: var(--chalk);
+  --sl-color-gray-1: #d3ddd6;
+  --sl-color-gray-2: var(--dim);
+  --sl-color-gray-3: #7e968a;
+  --sl-color-gray-4: #4f6a5d;
+  --sl-color-gray-5: var(--felt-3);
+  --sl-color-gray-6: var(--felt-2);
+  --sl-color-black: var(--felt);
+}
+
+:root[data-theme='light'] {
+  /* Light: the paper. */
+  --sl-color-accent-low: #f1dfb4;
+  --sl-color-accent: #8a6418;
+  --sl-color-accent-high: #4a3608;
+  --sl-color-white: var(--ink);
+  --sl-color-gray-1: #2c362f;
+  --sl-color-gray-2: #46534a;
+  --sl-color-gray-3: #6b7a70;
+  --sl-color-gray-4: #9aa69e;
+  --sl-color-gray-5: #c9c3b2;
+  --sl-color-gray-6: #e4dccb;
+  --sl-color-gray-7: #f5f0e5;
+  --sl-color-black: var(--paper);
+}
+
+.site-title,
+.sl-markdown-content :is(h1, h2, h3, h4),
+h1#_top {
+  font-family: var(--display);
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+/* Charts were drawn for a white page: give every picture in a post a paper backing,
+   so dark lettering stays readable on the felt. */
+.sl-markdown-content img {
+  box-sizing: border-box;
+  max-width: 100%;
+  height: auto;
+  background: var(--paper);
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+/* Wide tables scroll inside themselves, never the page. */
+.sl-markdown-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
