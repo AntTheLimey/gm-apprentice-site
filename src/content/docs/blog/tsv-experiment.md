@@ -2,7 +2,7 @@
 title: "Experiment: Can TSV Replace Markdown Tables in LLM Skill Files?"
 date: 2026-11-19
 authors: ant
-excerpt: "Markdown tables carry formatting overhead that LLMs don't need. Does the model read TSV as accurately, and do the token savings cost quality?"
+excerpt: "Markdown tables carry formatting overhead that LLMs don't need."
 ---
 
 ## The Idea

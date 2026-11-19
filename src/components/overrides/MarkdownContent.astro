@@ -4,20 +4,15 @@
 import BlogMarkdownContent from 'starlight-blog/overrides/MarkdownContent.astro';
 
 const { entry } = Astro.locals.starlightRoute;
-const { linkedin, date } = entry.data as { linkedin?: string; date?: Date };
-const shown = date
-  ? new Intl.DateTimeFormat('en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(date)
-  : undefined;
+// The post's date (shown just above by starlight-blog) is the LinkedIn date.
+const { linkedin } = entry.data as { linkedin?: string };
 ---
 
 <BlogMarkdownContent>
   {
     linkedin && (
       <p class="first-published">
-        <em>
-          First published on <a href={linkedin}>LinkedIn</a>
-          {shown && `, ${shown}`}.
-        </em>
+        <em>First published on <a href={linkedin}>LinkedIn</a>.</em>
       </p>
     )
   }
