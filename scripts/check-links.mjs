@@ -39,9 +39,28 @@ export function checkLinks(distDir) {
   return [...new Set(broken)];
 }
 
+// Start and tutorial pages: no Claude Code-only slash commands (readers may be in Cowork
+// or Codex), and nothing private from the machine the examples were captured on.
+const FORBIDDEN = ['/gm-apprentice:', 'antonypegg', 'gmail', '/Users/', '/private/tmp',
+  'Canticle', 'Dead End', 'Special Forces', 'Drakkenheim'];
+
+/** One "<page>: \"<text>\"" line per forbidden string in dist/start/ or dist/tutorials/. */
+export function checkText(distDir) {
+  const hits = [];
+  for (const page of htmlFiles(distDir).sort()) {
+    if (!/^(start|tutorials)\//.test(page.split(path.sep).join('/'))) continue;
+    const text = cheerio.load(fs.readFileSync(path.join(distDir, page), 'utf8'))('main').text() || cheerio.load(fs.readFileSync(path.join(distDir, page), 'utf8'))('body').text();
+    for (const f of FORBIDDEN) if (text.includes(f)) hits.push(`${page}: "${f}"`);
+  }
+  return hits;
+}
+
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const broken = checkLinks(process.argv[2] ?? 'dist');
+  const dist = process.argv[2] ?? 'dist';
+  const broken = checkLinks(dist);
   for (const line of broken) console.error(`broken link: ${line}`);
-  if (broken.length) process.exit(1);
+  const text = checkText(dist);
+  for (const line of text) console.error(`not allowed on a start or tutorial page: ${line}`);
+  if (broken.length || text.length) process.exit(1);
   console.log('check:links: every internal link resolves');
 }

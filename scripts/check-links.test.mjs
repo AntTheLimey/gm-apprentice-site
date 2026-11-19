@@ -33,3 +33,18 @@ test('a link to a file path resolves to the file', () => {
   });
   assert.deepEqual(checkLinks(dist), []);
 });
+
+import { checkText } from './check-links.mjs';
+
+test('start and tutorial pages may not carry slash commands or private paths', () => {
+  const dist = makeDist({
+    'start/a/index.html': '<p>Ask: /gm-apprentice:the-midwife go</p>',
+    'tutorials/b/index.html': '<p>saved in /Users/someone/x</p>',
+    'tutorials/c/index.html': '<p>all clean</p>',
+    'gallery/index.html': '<p>Canticle /gm-apprentice:x</p>',
+  });
+  assert.deepEqual(checkText(dist), [
+    'start/a/index.html: "/gm-apprentice:"',
+    'tutorials/b/index.html: "/Users/"',
+  ]);
+});
