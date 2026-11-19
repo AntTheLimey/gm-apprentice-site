@@ -46,5 +46,5 @@ npm test         # script tests
 - **A branch preview:** `scripts/preview.sh` builds the branch and uploads it
   as a preview version of the Worker. It prints the preview address. Previews
   are marked `noindex`.
-- **The live site:** after a merge to `main`, `npm run build && npx wrangler
-  deploy`.
+- **The live site:** after a merge to `main`, `npm run deploy` (it always builds
+  first, so a preview build can never go live).

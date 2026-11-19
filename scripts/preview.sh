@@ -13,5 +13,7 @@ fi
 
 PREVIEW=1 npm run build
 npx wrangler versions upload --preview-alias "$alias"
+# The preview build carries noindex: never leave it where a later deploy could ship it.
+rm -rf dist
 echo
 echo "Preview: https://${alias}-gm-apprentice.antthelimey.workers.dev"

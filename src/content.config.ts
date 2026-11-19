@@ -5,8 +5,8 @@ import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
 import { blogSchema } from 'starlight-blog/schema';
 
 export const collections = {
-  // Post dates are calendar days: format them in UTC so the build machine's time zone
-  // can't shift a 19 November post to 18 November.
+  // Translation overrides. src/content/i18n/en.json formats post dates in UTC: they are
+  // calendar days, and the build machine's time zone must not shift 19 November to 18.
   i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema() }),
   docs: defineCollection({
     loader: docsLoader(),

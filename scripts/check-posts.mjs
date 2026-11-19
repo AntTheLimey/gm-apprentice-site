@@ -51,6 +51,10 @@ export function isoDate(linkedinDate) {
   return `${m[3]}-${String(MONTHS.indexOf(m[1]) + 1).padStart(2, '0')}-${m[2].padStart(2, '0')}`;
 }
 
+function norm(text) {
+  return words(text).join(' ');
+}
+
 function words(text) {
   return text
     .replace(/[‘’‛′]/g, "'")
@@ -77,10 +81,15 @@ function around(list, i) {
 export function checkPost({ slug, distDir, sourcesDir, postsDir }) {
   const problems = [];
   const source = readFileSync(join(sourcesDir, `${slug}.txt`), 'utf8');
-  const [dateLine, , , ...bodyLines] = source.split('\n');
+  const [dateLine, titleLine, , ...bodyLines] = source.split('\n');
   const sourceDate = isoDate(dateLine.replace(/^Date:\s*/, ''));
+  const sourceTitle = titleLine.replace(/^Title:\s*/, '').trim();
   const images = JSON.parse(readFileSync(join(sourcesDir, `${slug}.images.json`), 'utf8'));
   const post = matter(readFileSync(join(postsDir, `${slug}.md`), 'utf8'));
+
+  if (norm(post.data.title ?? '') !== norm(sourceTitle)) {
+    problems.push(`title: the post says "${post.data.title}", LinkedIn says "${sourceTitle}"`);
+  }
 
   const postDate = new Date(post.data.date).toISOString().slice(0, 10);
   if (postDate !== sourceDate) problems.push(`date: the post says ${postDate}, LinkedIn says ${sourceDate}`);
@@ -108,30 +117,57 @@ export function checkPost({ slug, distDir, sourcesDir, postsDir }) {
     );
   }
 
-  const shown = content.find('img').length + (post.data.cover ? 1 : 0);
-  if (shown < images.length) {
-    problems.push(`images: LinkedIn shows ${images.length}, the post shows ${shown}; first missing is position ${shown}`);
+  // Pictures must match exactly, so an extra picture can't hide a missing one. The cover
+  // is LinkedIn's position 0 when LinkedIn has one, and the frontmatter cover here.
+  const linkedinCover = Boolean(images[0]?.cover);
+  if (Boolean(post.data.cover) !== linkedinCover) {
+    problems.push(`cover: LinkedIn ${linkedinCover ? 'has' : 'has no'} cover, the post ${post.data.cover ? 'has' : 'has no'} cover`);
+  }
+  const shown = content.find('img').length + (linkedinCover && post.data.cover ? 1 : 0);
+  if (shown !== images.length) {
+    const where = shown < images.length ? `; first missing is position ${shown}` : '';
+    problems.push(`images: LinkedIn shows ${images.length}, the post shows ${shown}${where}`);
   }
 
   return { ok: problems.length === 0, problems };
 }
 
-// CLI: check every post whose frontmatter names a LinkedIn original.
+/**
+ * Every LinkedIn source and every post that names LinkedIn, checked. A source whose
+ * post has lost its `linkedin` line, or has no post at all, fails instead of
+ * dropping out of the check.
+ * @param {{ distDir: string, sourcesDir: string, postsDir: string }} where
+ * @returns {{ slug: string, ok: boolean, problems: string[] }[]}
+ */
+export function checkAll(where) {
+  const list = (dir, ext) => (existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(ext)).map((f) => f.slice(0, -ext.length)) : []);
+  const fromSources = list(where.sourcesDir, '.txt');
+  const fromPosts = list(where.postsDir, '.md').filter(
+    (slug) => matter(readFileSync(join(where.postsDir, `${slug}.md`), 'utf8')).data.linkedin,
+  );
+  return [...new Set([...fromSources, ...fromPosts])].sort().map((slug) => {
+    const postPath = join(where.postsDir, `${slug}.md`);
+    if (!existsSync(join(where.sourcesDir, `${slug}.txt`))) {
+      return { slug, ok: false, problems: [`no LinkedIn source: sources/linkedin/${slug}.txt is missing`] };
+    }
+    if (!existsSync(postPath)) {
+      return { slug, ok: false, problems: [`no post: ${postPath} is missing for this LinkedIn source`] };
+    }
+    if (!matter(readFileSync(postPath, 'utf8')).data.linkedin) {
+      return { slug, ok: false, problems: ['the post has no linkedin line, but a LinkedIn source exists for it'] };
+    }
+    return { slug, ...checkPost({ slug, ...where }) };
+  });
+}
+
+// CLI: check every LinkedIn source and every post that names LinkedIn.
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const postsDir = 'src/content/docs/blog';
-  const where = { distDir: 'dist', sourcesDir: 'sources/linkedin', postsDir };
-  let failed = 0;
-  let checked = 0;
-  for (const file of existsSync(postsDir) ? readdirSync(postsDir) : []) {
-    if (!file.endsWith('.md')) continue;
-    const slug = file.slice(0, -3);
-    if (!matter(readFileSync(join(postsDir, file), 'utf8')).data.linkedin) continue;
-    checked++;
-    const { ok, problems } = checkPost({ slug, ...where });
+  const results = checkAll({ distDir: 'dist', sourcesDir: 'sources/linkedin', postsDir: 'src/content/docs/blog' });
+  for (const { slug, ok, problems } of results) {
     console.log(`${ok ? 'ok  ' : 'FAIL'} ${slug}`);
     for (const p of problems) console.log(`     ${p}`);
-    if (!ok) failed++;
   }
-  console.log(`check-posts: ${checked} checked, ${failed} failed`);
+  const failed = results.filter((r) => !r.ok).length;
+  console.log(`check-posts: ${results.length} checked, ${failed} failed`);
   process.exit(failed ? 1 : 0);
 }

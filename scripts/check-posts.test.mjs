@@ -3,14 +3,14 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { cutBody, checkPost } from './check-posts.mjs';
+import { cutBody, checkPost, checkAll } from './check-posts.mjs';
 
 // A real LinkedIn capture (the launch post, article element only, captured 2026-11-19).
 const RAW = readFileSync(new URL('./fixtures/launch-raw.txt', import.meta.url), 'utf8');
 const SLUG = 'launch';
 
 /** Build a site-shaped tree: a post, its committed source, its image list, its rendered page. */
-function tree({ body, date = '2026-04-15', sourceDate = 'April 15, 2026', images = 1, cover = true, renderedImages = 0, chrome = '' }) {
+function tree({ body, date = '2026-04-15', sourceDate = 'April 15, 2026', images = 1, cover = true, linkedinCover = true, renderedImages = 0, chrome = '', title, linkedin = true }) {
   const root = mkdtempSync(join(tmpdir(), 'check-posts-'));
   const postsDir = join(root, 'posts');
   const sourcesDir = join(root, 'sources');
@@ -22,11 +22,11 @@ function tree({ body, date = '2026-04-15', sourceDate = 'April 15, 2026', images
   writeFileSync(join(sourcesDir, `${SLUG}.txt`), `Date: ${sourceDate}\nTitle: ${cut.title}\n\n${cut.body}\n`);
   writeFileSync(
     join(sourcesDir, `${SLUG}.images.json`),
-    JSON.stringify(Array.from({ length: images }, (_, n) => ({ position: n, cover: n === 0, src: `https://x/${n}`, alt: '' }))),
+    JSON.stringify(Array.from({ length: images }, (_, n) => ({ position: n, cover: linkedinCover && n === 0, alt: '' }))),
   );
   writeFileSync(
     join(postsDir, `${SLUG}.md`),
-    `---\ntitle: T\ndate: ${date}\nlinkedin: https://www.linkedin.com/pulse/x/\n${cover ? 'cover:\n  image: ./c.jpg\n  alt: c\n' : ''}---\n\nbody\n`,
+    `---\ntitle: ${JSON.stringify(title ?? cut.title)}\ndate: ${date}\n${linkedin ? 'linkedin: https://www.linkedin.com/pulse/x/\n' : ''}${cover ? 'cover:\n  image: ./c.jpg\n  alt: c\n' : ''}---\n\nbody\n`,
   );
   const paras = (body ?? cut.body).split(/\n+/).map((p) => `<p>${p.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</p>`).join('\n');
   const imgs = '<img src="/a.png" alt="">'.repeat(renderedImages);
@@ -91,8 +91,37 @@ test("starlight-blog's own furniture is not counted as the post", () => {
   const r = checkPost(tree({ chrome, body: undefined, renderedImages: 0 }));
   // The source has no "Heading" line, so build one that does:
   const t = tree({ chrome });
-  writeFileSync(join(t.sourcesDir, `${SLUG}.txt`), `Date: April 15, 2026\nTitle: T\n\n${body}\n`);
+  writeFileSync(join(t.sourcesDir, `${SLUG}.txt`), `Date: April 15, 2026\nTitle: ${cutBody(RAW).title}\n\n${body}\n`);
   const r2 = checkPost(t);
   assert.deepEqual(r2.problems, []);
   assert.ok(r.problems.every((p) => !/images/.test(p)), 'the cover image is counted once, from frontmatter');
+});
+
+test('picture counts must match exactly, so an extra one cannot hide a missing one', () => {
+  // LinkedIn: cover + 1 chart. The page: cover + 2 pictures.
+  const r = checkPost(tree({ images: 2, renderedImages: 2 }));
+  assert.equal(r.ok, false);
+  assert.ok(r.problems.some((p) => /images/.test(p)));
+});
+
+test('a cover counts only when LinkedIn has one', () => {
+  // LinkedIn has one body picture and no cover; the post adds a cover anyway.
+  const r = checkPost(tree({ images: 1, linkedinCover: false, renderedImages: 1, cover: true }));
+  assert.equal(r.ok, false);
+  assert.ok(r.problems.some((p) => /cover/.test(p)));
+  assert.equal(checkPost(tree({ images: 1, linkedinCover: false, renderedImages: 1, cover: false })).ok, true);
+});
+
+test('title mismatch fails', () => {
+  const r = checkPost(tree({ title: 'A Different Title' }));
+  assert.equal(r.ok, false);
+  assert.ok(r.problems.some((p) => p.includes('A Different Title')));
+});
+
+test('a source whose post lost its linkedin line fails', () => {
+  const t = tree({ linkedin: false });
+  const results = checkAll(t);
+  assert.equal(results.length, 1);
+  assert.equal(results[0].ok, false);
+  assert.match(results[0].problems[0], /linkedin/);
 });

@@ -3,7 +3,7 @@ title: "Training My Apprentice: Teaching Your Tools to Remember Your Mistakes"
 date: 2026-05-02
 authors: ant
 linkedin: https://www.linkedin.com/pulse/training-my-apprentice-teaching-your-tools-remember-mistakes-pegg-kpxsc/
-excerpt: "Training My Apprentice: Teaching Your Tools to Remember Your Mistakes"
+excerpt: "I refactored a skill, benchmarked it, and got a quality tie."
 cover:
   image: ../../../assets/blog/training-my-apprentice-teaching-tools-to-remember/cover.jpg
   alt: "A glowing, translucent apprentice and an older craftsman at a table, three bound reference books laid out between them"

@@ -5,7 +5,8 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 SITE_URL=https://example.test npm run build > /dev/null
-if hits="$(grep -rlE 'workers\.dev|gmapprentice\.com' dist/)"; then
+# dist/_headers names the workers.dev hosts on purpose (to keep them out of search).
+if hits="$(grep -rlE --exclude=_headers 'workers\.dev|gmapprentice\.com' dist/)"; then
   echo "check-host: the site's own host is hard-coded in:" >&2
   echo "$hits" >&2
   exit 1

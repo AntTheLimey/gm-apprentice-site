@@ -10,9 +10,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "node --test 'scripts/*.test.mjs'",
-    "check:posts": "node scripts/check-posts.mjs"
+    "check:posts": "node scripts/check-posts.mjs",
+    "deploy": "astro build && wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/markdown-remark": "7.3.10",
     "@astrojs/starlight": "0.43.1",
     "@fontsource/alegreya": "5.3.0",
     "@fontsource/alegreya-sans": "5.3.0",

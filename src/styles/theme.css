@@ -75,6 +75,12 @@ h1#_top {
   border-radius: 6px;
 }
 
+/* Covers are photographs, not charts: no paper frame. */
+.sl-markdown-content .sl-blog-cover img {
+  background: none;
+  padding: 0;
+}
+
 /* Wide tables scroll inside themselves, never the page. */
 .sl-markdown-content table {
   display: block;
