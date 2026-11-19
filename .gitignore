@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.worktrees/
+.superpowers/
+.DS_Store
+# Raw LinkedIn page captures carry other people's comments and names.
+sources/raw/
