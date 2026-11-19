@@ -25,6 +25,21 @@ export default defineConfig({
         { icon: 'github', label: 'GitHub', href: 'https://github.com/AntTheLimey/gm-apprentice' },
       ],
       sidebar: [
+        {
+          label: 'Start here',
+          items: [
+            { label: 'Get set up', link: '/start/setup/' },
+            { label: 'Start a new game', link: '/start/new-game/' },
+            { label: 'Start from your notes', link: '/start/from-notes/' },
+          ],
+        },
+        {
+          label: 'Tutorials',
+          items: [
+            { label: 'Grow a campaign from an idea', link: '/tutorials/grow-a-campaign/' },
+            { label: 'Bring in an existing campaign', link: '/tutorials/bring-in-a-campaign/' },
+          ],
+        },
         { label: 'Gallery', link: '/gallery/' },
       ],
       head: preview ? [{ tag: 'meta', attrs: { name: 'robots', content: 'noindex' } }] : [],

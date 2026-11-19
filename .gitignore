@@ -7,3 +7,4 @@ dist/
 .DS_Store
 # Raw LinkedIn page captures carry other people's comments and names.
 sources/raw/
+public/downloads/
