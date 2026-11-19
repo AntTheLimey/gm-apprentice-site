@@ -73,6 +73,8 @@ p{margin:0}
 /* systems */
 .systems{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;padding-block:0 40px;color:var(--chalk);font-family:var(--display);font-size:1.1rem}
 .systems .lbl{font-family:var(--body);font-size:.92rem;color:var(--dim)}
+.systems .lbl strong{color:var(--chalk);font-weight:700}
+.systems .ask{color:var(--brass);text-underline-offset:3px}
 /* cycle strip */
 .cycle{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(18,41,31,.93);backdrop-filter:blur(8px);border-block:1px solid var(--felt-3)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--felt)}
@@ -204,8 +206,9 @@ footer a{color:var(--dim)}
   </div>
 
 <div class="wrap systems" aria-label="Game systems supported">
-  <span class="lbl">Bring your system</span>
+  <span class="lbl"><strong>Runs with any system.</strong> Deep rules support for</span>
   <span>Call of Cthulhu 7e</span><span>GURPS 4e</span><span>Blades in the Dark</span><span>D&amp;D 5e 2024</span><span>Pathfinder 2e</span>
+  <a class="lbl ask" href="https://github.com/AntTheLimey/gm-apprentice/issues/new?title=Deep%20support%20for%20">Want yours in depth? Ask, and we'll add it.</a>
 </div>
 
 <nav class="cycle" aria-label="The campaign cycle">
