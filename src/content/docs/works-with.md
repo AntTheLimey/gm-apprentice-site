@@ -59,6 +59,7 @@ with the people you invite to a world. If you keep a world there, the
   without that yes.
 - **Your GM Notes stay in your folder.** They are never sent to mobRPG.
 
-It needs a mobRPG account and Python 3.10 or newer, and installs from a
+It needs a mobRPG account, which you can sign up for on
+[mobrpg.com](https://www.mobrpg.com), and Python 3.10 or newer, and installs from a
 copy of the GM-Apprentice repository. Setup, sign-in and every command:
 [the mobrpg README](https://github.com/AntTheLimey/gm-apprentice/tree/main/tools/mobrpg#readme).
