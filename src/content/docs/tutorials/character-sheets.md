@@ -1,6 +1,6 @@
 ---
 title: Character sheets
-description: Build a new player's character to the rules, see the full sheet on the campaign site, and how the party page keeps up.
+description: Build a new player's character to the rules, see the full sheet on the campaign site, keep D&D characters in step with D&D Beyond, and how the party page keeps up.
 checkedAgainst: "1.12.98"
 ---
 
