@@ -38,6 +38,10 @@ export default defineConfig({
           items: [
             { label: 'Grow a campaign from an idea', link: '/tutorials/grow-a-campaign/' },
             { label: 'Bring in an existing campaign', link: '/tutorials/bring-in-a-campaign/' },
+            { label: 'House rules', link: '/tutorials/house-rules/' },
+            { label: 'Publish your site', link: '/tutorials/publish-your-site/' },
+            { label: 'Change the look', link: '/tutorials/change-the-look/' },
+            { label: 'Add pictures', link: '/tutorials/add-pictures/' },
           ],
         },
         { label: 'Gallery', link: '/gallery/' },
