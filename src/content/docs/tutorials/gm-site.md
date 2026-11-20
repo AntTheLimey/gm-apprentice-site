@@ -76,8 +76,8 @@ player site leaves out (prep, drafts), hidden sections such as GM Notes,
 GM-only relationships, GM-only and spoiler blocks, and the real names
 behind anyone the player site calls "someone". Comments you leave
 yourself in notes stay out unless you switch them on. One thing to
-know: a hidden word that lands in a page's title or a picture's
-description shows there without a mark.
+know: a hidden word that lands in a page's title or description, or a
+picture's description, shows there without a mark.
 
 The live party board and the players' request box stay on the players'
 site.

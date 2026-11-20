@@ -6,8 +6,8 @@ checkedAgainst: "1.12.98"
 
 <!-- video -->
 
-GM-Apprentice comes with the free rules for each game it knows (the SRD
-and ORC texts). Those cover the rules, not the setting: no named
+GM-Apprentice comes with the free rules for each game it knows (the open
+SRD and ORC texts, and for GURPS the plugin's own summaries). Those cover the rules, not the setting: no named
 factions, no adventure NPCs, no monsters from the book you bought. If you
 own the book, you can turn the parts you need into your own reference
 files. They stay on your computer, are never published, and the

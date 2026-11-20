@@ -79,6 +79,9 @@ On game night:
    Players need it to send anything.
 3. Leave it alone. It waits without using anything until a request
    arrives.
+4. At the end of the evening, say "stop", or just wrap up the session
+   as usual. Either way the hit points players marked are written back
+   into their notes.
 
 When one does:
 
@@ -87,7 +90,8 @@ When one does:
   rebuilt and published, and the player gets a tick.
 - **Anything unclear** goes back to the player asking which they meant.
   If you've already said yes at the table, they add "GM said OK" and it
-  goes through even if they can't afford it.
+  goes through even if they can't afford it (GURPS and Call of Cthulhu;
+  D&D has no points to spend, so the sheet's limits always hold).
 - **A question** gets a short answer from what's on their sheet. If the
   answer would need something only you know, it says so instead.
 

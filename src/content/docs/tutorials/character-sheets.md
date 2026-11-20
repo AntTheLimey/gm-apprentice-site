@@ -7,9 +7,9 @@ checkedAgainst: "1.12.98"
 <!-- video -->
 
 Each player character is one note in your vault. The apprentice builds it
-to the rules, checking every number, and the campaign site turns it into
-a full character sheet for Call of Cthulhu, GURPS, D&D or Pathfinder.
-Forged in the Dark characters get a simpler page for now. The note also
+to the rules, checking the numbers as it goes, and the campaign site
+turns it into a full character sheet for Call of Cthulhu, GURPS or D&D.
+Pathfinder and Forged in the Dark characters get a simpler page for now. The note also
 records who plays the character and how they're doing, so the site's
 party page is built from the same notes.
 
