@@ -56,6 +56,7 @@ can go in [your own rulebook files](/tutorials/your-own-books/).
 | What it does | Skill |
 |---|---|
 | Turns your rough notes into a written recap, and updates every character, place and thread the session touched. [Tutorial](/tutorials/wrap-up-a-session/) | `session-wrapup` |
+| Takes a GM Assistant recording's export as the session's notes: its recap kept word for word, every name spelled your way, its moments turned into cards. [How](/works-with/#gm-assistant) | `session-wrapup` |
 | Publishes a website for your players, free on Cloudflare or GitHub: the story so far, a page for everyone and everything they've met, search, and a timeline. [Tutorial](/tutorials/publish-your-site/) | `publish-site` |
 | Keeps secrets off the site until play reveals them, and checks for leaks before it publishes. | `publish-site` |
 | Shows full character sheets for Call of Cthulhu, GURPS and D&D, with a skin and portrait frame to suit. Pathfinder and Forged in the Dark get simpler sheets for now. [Tutorial](/tutorials/character-sheets/) | `publish-site` |
