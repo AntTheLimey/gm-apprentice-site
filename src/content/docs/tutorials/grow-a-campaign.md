@@ -80,9 +80,13 @@ the replies are the Midwife's own, trimmed (`[...]`) but not reworded.
 
 **Turn 1.**
 
+> [!you]
+>
 > I want to run a short D&D 2024 one-shot for four players, something with a
 > haunted lighthouse, but I've got nothing else yet
 
+> [!apprentice]
+>
 > [...] My first question is the one everything else hangs on: **what is
 > the haunting actually about?** [...]
 >
@@ -96,10 +100,14 @@ the replies are the Midwife's own, trimmed (`[...]`) but not reworded.
 
 **Turn 2.**
 
+> [!you]
+>
 > Number 2, the drowned coming up the stairs a bit higher every night. I love
 > that. My players are level 3 and like talking to NPCs more than fighting.
 > One session, about four hours.
 
+> [!apprentice]
+>
 > [...] **One structural thought.** In a single session, "a bit higher every
 > night" works best as the final night. The players arrive when the drowned
 > are already halfway up the tower. Every bell, tide-turn or hour, they climb
@@ -115,10 +123,14 @@ the replies are the Midwife's own, trimmed (`[...]`) but not reworded.
 
 **Turn 3.**
 
+> [!you]
+>
 > The first one, the crew of one ship. And the keeper is still alive, very
 > old, living in the lighthouse. The players are hired by the keeper's
 > granddaughter to find out why he's stopped answering letters.
 
+> [!apprentice]
+>
 > That's a strong hook. A worried granddaughter is a very human reason to go
 > [...] It also gives you exactly three key NPCs, which is the right number
 > for one session [...]
@@ -132,9 +144,13 @@ the replies are the Midwife's own, trimmed (`[...]`) but not reworded.
 
 **Turn 4.**
 
+> [!you]
+>
 > Option 2. Twist the knife. I think that's enough for me to run it, can you
 > set it up so I can start prepping?
 
+> [!apprentice]
+>
 > Your campaign folder is set up and ready for prep, with the adventure
 > written up in it. [...]
 >
@@ -145,11 +161,15 @@ the replies are the Midwife's own, trimmed (`[...]`) but not reworded.
 
 **Turn 5.**
 
+> [!you]
+>
 > One house rule: a natural 1 on a death save counts as one failure, not two.
 > And names: the keeper is Old Abel Marrow, the granddaughter is Wenna
 > Marrow, the captain is Captain Isolde Crane of the Gannet, and the village
 > is Saltreach.
 
+> [!apprentice]
+>
 > Your house rule and all the names are in, and the three NPCs and two
 > places now have their own notes linked from the brief and overview. [...]
 >
@@ -159,6 +179,8 @@ the replies are the Midwife's own, trimmed (`[...]`) but not reworded.
 
 The brief it wrote opens like this:
 
+> [!vault]
+>
 > [[Old Abel Marrow]] has kept the light above [[Saltreach]] for longer than
 > most of the village has been alive. Now he has stopped answering his
 > granddaughter [[Wenna Marrow]]'s letters. [...] When they arrive, the light

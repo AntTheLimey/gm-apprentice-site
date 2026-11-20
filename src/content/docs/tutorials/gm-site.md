@@ -19,10 +19,14 @@ On GM-Apprentice 1.12.98, using the [Snowbound sample vault](https://github.com/
 (tag `sample-v2`). We typed the GM's side; the replies are the agent's
 own, trimmed (`[...]`) but not reworded.
 
+> [!you]
+>
 > I'd like my own GM copy of the campaign site, with everything in it,
 > that I can look at on my tablet during the game. My players mustn't be
 > able to see it.
 
+> [!apprentice]
+>
 > Your GM copy of the Snowbound site is built and running. To see it on
 > your tablet, connect to the same Wi-Fi as this computer and open:
 >

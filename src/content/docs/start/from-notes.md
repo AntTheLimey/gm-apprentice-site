@@ -30,11 +30,15 @@ Or use your own. Put everything in one folder.
 
 ## 1. Open your agent next to the notes and ask
 
+> [!you]
+>
 > I've got a folder of old notes from a one-shot I ran, in notes-pile. Can
 > you turn them into a vault so I can pick the game back up?
 
 It reads everything first and writes nothing yet:
 
+> [!apprentice]
+>
 > | File | Type | What it covers | When |
 > |---|---|---|---|
 > | `session 1 notes.txt` | Notes from play | Hollin Ford, Tobin missing, Pell lifts the reeve's letter, the cellar rat fight, a trapdoor locked from below | Session 1, 14 Mar |
@@ -49,6 +53,8 @@ rules edition, what year the sessions were, and a name for the campaign.
 
 ## 2. Answer, and say yes to the preview
 
+> [!you]
+>
 > A new Hollin Ford folder next to notes-pile is good. 2024 rules. The
 > sessions were March 2026. Call it The Bell Man of Hollin Ford.
 
@@ -60,14 +66,20 @@ This is the part that matters. Notes say what happened in a hurry; the
 interview recovers what you meant. It asks about each player character,
 then about the gaps, one question at a time:
 
+> [!apprentice]
+>
 > **The Bell Man:** In the chamber, Hale tanked it and Oswin cast Cure
 > Wounds twice. It said "Rendal" before it "went down." Was it destroyed
 > for good, or did it just fall back into the water, so it could still be
 > down there?
 
+> [!you]
+>
 > It sank back into the water. The players think it's gone, but it's still
 > down there.
 
+> [!apprentice]
+>
 > Recorded. In the vault, the Bell Man is **still active** at the bottom of
 > the chamber pool. The players believe it's gone, so that fact will go in
 > GM-only sections that never appear on a player-facing page.
@@ -98,6 +110,8 @@ Hollin Ford/
 Each session's wrap-up has a recap you can read to your players. From
 "Pell picked it, took ages, nat 1 first try lol":
 
+> [!vault]
+>
 > [[Pell Underhill]] set to work on the trapdoor locked from below. His first
 > try went badly wrong, and the lock took ages, but it opened.
 

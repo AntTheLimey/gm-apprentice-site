@@ -32,18 +32,26 @@ On GM-Apprentice 1.12.98, using the [Snowbound sample vault](https://github.com/
 (clone or download tag `sample-v2` to follow along). We typed the GM's
 side; the replies are the agent's own, trimmed (`[...]`) but not reworded.
 
+> [!you]
+>
 > We're playing session 5 right now. New house rule from tonight: a natural
 > 1 on a death save counts as one failure, not two.
 
+> [!apprentice]
+>
 > I've added the rule. It's under a new **House Rules** section in
 > `_Campaign/Campaign Overview.md`: *Death saves: a natural 1 counts as one
 > failure, not two (from Session 5).*
 
 Later that night, it matters:
 
+> [!you]
+>
 > Nim is at 0 HP with one failed death save already, and she's just rolled a
 > natural 1. What happens?
 
+> [!apprentice]
+>
 > Nim now has **2 failed death saves**. Under tonight's house rule the
 > natural 1 counts as one failure, not two, so she isn't dead yet.
 >

@@ -99,6 +99,8 @@ says which have.
 
 Make an empty folder for your campaign, open your agent in it, and ask:
 
+> [!you]
+>
 > What GM-Apprentice skills do you have?
 
 It should list the Midwife, session prep, wrap-up and the rest. You don't

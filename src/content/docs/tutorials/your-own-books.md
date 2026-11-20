@@ -26,9 +26,13 @@ own, trimmed (`[...]`) but not reworded. For the test we used a
 four-section adventure we wrote ourselves, *The Drowned Mill*, so no
 publisher's text was copied anywhere.
 
+> [!you]
+>
 > I own the PDF of a D&D adventure book and I'd like you to be able to
 > use its monsters and NPCs when I'm running it. How do I do that?
 
+> [!apprentice]
+>
 > gm-apprentice handles this with **personal reference files**. You turn
 > the parts of the book you need into markdown notes, and Claude checks
 > them whenever the built-in rules don't cover something. [...]
@@ -38,12 +42,16 @@ publisher's text was copied anywhere.
 
 So we did:
 
+> [!you]
+>
 > Let's try it on a short one first: ../drowned-mill.pdf is a four-page
 > adventure I wrote myself. Set it up for me.
 
 It drafted an overview, the NPCs and the monsters, then asked about two
 things our adventure had left loose, rather than making numbers up:
 
+> [!apprentice]
+>
 > 1. **Mill Rats are missing their ability scores**, and so Initiative.
 >    I've marked them "—" rather than make numbers up. [...]
 > 2. **Is Pull Under a trait or an action?** It's in italics after
@@ -53,9 +61,13 @@ things our adventure had left loose, rather than making numbers up:
 We answered, and it saved the files. Then, in a fresh conversation on
 game night:
 
+> [!you]
+>
 > It's not in the vault, it's in my own reference files for D&D. Check
 > there.
 
+> [!apprentice]
+>
 > Found it in your D&D 5e personal files (`drowned-mill/`).
 >
 > **Old Wat** is the eel-catcher. He watches the river and trades what

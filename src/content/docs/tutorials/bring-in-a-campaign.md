@@ -67,6 +67,8 @@ From GM-Apprentice 1.12.98, on the [downloadable pile](/downloads/notes-pile.zip
 We typed the GM's side; the replies are the agent's own, trimmed (`[...]`)
 but not reworded.
 
+> [!apprentice]
+>
 > **Pell (Dev's halfling rogue):** In session 1 he picked the reeve's pocket
 > and came away with 4gp and the letter to "R." In session 2 he got the
 > trapdoor open, after a nat 1 on his first try. His sheet ends with "wants
@@ -77,6 +79,8 @@ but not reworded.
 
 You can answer more than one question at once, and it keeps up:
 
+> [!you]
+>
 > Pell is pure curiosity, he collects secrets. After the Rendal reveal he
 > kept the letter and didn't tell Corwin, he wants leverage. To save time,
 > the others: Oswin is a cleric of the dawn, he sided with Brother Eamon
@@ -84,6 +88,8 @@ You can answer more than one question at once, and it keeps up:
 > to Tobin, she has his whistle. Hale only made session 2, a fighter, quiet,
 > he took most of the Bell Man's hits.
 
+> [!apprentice]
+>
 > I've recorded all four arcs as confirmed play: [...]
 >
 > **The Bell Man:** In the chamber, Hale tanked it and Oswin cast Cure
@@ -93,13 +99,19 @@ You can answer more than one question at once, and it keeps up:
 
 And "I don't know" is an answer:
 
+> [!you]
+>
 > Haven't decided. Leave it open.
 
+> [!apprentice]
+>
 > Got it. The thing in the water stays undecided, and I'll keep it as an
 > open thread in the GM-only notes.
 
 At the end:
 
+> [!apprentice]
+>
 > **Where to start when you pick it back up:** open the Session 2 wrap-up.
 > Its GM-only "Handoff" section says where things stand [...]
 >

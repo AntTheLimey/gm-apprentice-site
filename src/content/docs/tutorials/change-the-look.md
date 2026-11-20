@@ -23,8 +23,12 @@ first set up.
 
 ![Snowbound's home page in its own slate and amber colours, the party's portraits in cards](/img/tutorials/look-before.jpg)
 
+> [!you]
+>
 > Give the campaign site the fantasy look, then rebuild it so I can see it.
 
+> [!apprentice]
+>
 > The Snowbound site now uses the fantasy look and has been rebuilt on your
 > machine. [...]
 >
@@ -38,9 +42,13 @@ first set up.
 
 Then the character sheets:
 
+> [!you]
+>
 > Nice. Now give the character sheets the parchment look with a gilt frame
 > round the portraits, and rebuild.
 
+> [!apprentice]
+>
 > The character sheets now use the parchment look with a gilt frame round
 > the portraits, and the site has been rebuilt. [...]
 >

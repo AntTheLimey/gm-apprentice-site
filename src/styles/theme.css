@@ -87,3 +87,45 @@ h1#_top {
   max-width: 100%;
   overflow-x: auto;
 }
+
+/* Tutorial conversations (src/plugins/rehype-exchanges.mjs). What the GM types reads
+   as typed input: a typewriter face on a brass-tinted box with a solid brass edge.
+   The apprentice's reply is the page's own text on a quiet panel. Excerpts of files
+   it wrote sit on the page with a dashed edge. Each carries its label. */
+.sl-markdown-content blockquote.exchange {
+  margin-inline: 0;
+  padding: 0.75rem 1rem 0.85rem;
+  border-radius: 0 6px 6px 0;
+  font-style: normal;
+}
+.sl-markdown-content blockquote.exchange > .exchange-label {
+  margin: 0 0 0.35rem;
+  font-family: var(--body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.sl-markdown-content blockquote.exchange-you {
+  border-inline-start: 4px solid var(--sl-color-accent);
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-white);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
+.sl-markdown-content blockquote.exchange-you > .exchange-label {
+  color: var(--sl-color-accent-high);
+}
+.sl-markdown-content blockquote.exchange-apprentice {
+  border-inline-start: 4px solid var(--sl-color-gray-4);
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-gray-1);
+}
+.sl-markdown-content blockquote.exchange-vault {
+  border-inline-start: 4px dashed var(--sl-color-gray-4);
+  background: transparent;
+}
+.sl-markdown-content blockquote.exchange-apprentice > .exchange-label,
+.sl-markdown-content blockquote.exchange-vault > .exchange-label {
+  color: var(--sl-color-gray-3);
+}
