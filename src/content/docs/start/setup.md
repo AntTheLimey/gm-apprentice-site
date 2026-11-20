@@ -6,8 +6,9 @@ checkedAgainst: "1.12.108"
 
 GM-Apprentice is a set of skills: instructions and small scripts that an AI
 agent follows when you ask it for help with your game. The skills are free
-and open source. The agent that runs them is not: you need a paid plan with
-one of the companies below. This page gets you from nothing to an installed
+and open source. You bring the agent: Claude, Codex, Cursor or another one
+that takes skills, including an agent running a model on your own computer.
+This page gets you from nothing to an installed
 plugin. If you already have it installed, skip to
 [Start a new game](/start/new-game/) or [Start from your notes](/start/from-notes/).
 
@@ -72,8 +73,14 @@ Cowork? Read on.
 | want the least typing in a terminal | **Cowork**, in the Claude desktop app (Mac or Windows) | A paid Claude plan that includes Cowork ([Claude pricing](https://claude.com/pricing)) |
 | are at home at a command prompt | **Claude Code**, Anthropic's agent for the terminal | A paid Claude plan, Pro or above ([Claude pricing](https://claude.com/pricing)) |
 | already pay for ChatGPT | **Codex**, OpenAI's agent for the terminal | A ChatGPT plan that includes Codex, Plus or above ([ChatGPT pricing](https://chatgpt.com/pricing)) |
+| use another agent, or want a model on your own computer | **Cursor, Gemini CLI, OpenCode** or another agent that takes skills ([the list](https://github.com/vercel-labs/skills)) | Whatever that agent needs. Some, like OpenCode, can run a local model at no cost beyond your own hardware |
 
-All three run the same skills on the same campaign folder, so you can
+Claude Code, Codex and Cursor have been tested end to end. The others
+install the same way but haven't been tested yet, and prep and wrap-up
+are long jobs that ask a lot of a model, so a small local model may
+struggle with them.
+
+They all run the same skills on the same campaign folder, so you can
 switch later without losing anything. Your campaign lives in ordinary
 Markdown files on your own computer, which [Obsidian](https://obsidian.md)
 (free) shows as a linked wiki. Obsidian is optional but recommended.
