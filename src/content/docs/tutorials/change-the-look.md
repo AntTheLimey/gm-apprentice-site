@@ -63,9 +63,9 @@ light/dark button goes, because only the ready-made looks come in pairs.
 Ask for "my own colours: deep red accent, cream background..." and the
 apprentice fills in all four.
 
-**Lettering.** A heading face, a body face and one for labels. By
-default the site downloads the typefaces once and serves them itself, so
-your players' browsers never contact Google. You can also use your own
+**Lettering.** A heading face, a body face and one for labels. A site
+the apprentice sets up downloads the typefaces once and serves them
+itself, so your players' browsers never contact Google. You can also use your own
 font files.
 
 **Character sheets.** Five skins (`plain`, `parchment`, `case-file`,

@@ -23,8 +23,18 @@ the apprentice never picks for you:
 | The agent's own tool | The agent's own image tool, when it has one (Codex running the skills, for example) | Nothing beyond the plan |
 | A paid service | Google's Gemini (or another service) on **your own API key** | Paid per picture, inside spending limits you set in the vault |
 
-Until you choose, it asks. With a paid service it counts what each
-picture costs and stays inside the limits you set.
+Until you choose, it asks.
+
+**Two things to know before you choose Codex.** If your ChatGPT account
+has bought extra Codex credits, Codex may spend them once the plan's
+allowance runs out; OpenAI bills that, outside the apprentice's limits.
+And if Codex stops part-way (the plan's limit reached, say), the apprentice
+tells you and stops. It never switches to a paid service by itself.
+
+**With a paid service**, every picture is counted against limits in your
+vault settings, in US cents: by default at most 10 cents for one attempt,
+200 for one batch and 2,000 in a month. Change them to suit you. It asks
+before it goes past any of them.
 
 ## From a real run
 
@@ -91,10 +101,13 @@ Then it stopped, because Brother Matthias is a secret:
   or been told, as above.
 - **One look for the whole campaign.** An Image Guidance note in the vault
   sets the style, so every picture belongs to the same world.
-- **Drawing without being asked.** Turn on automatic drawing and it adds
-  pictures after a wrap-up (scenes for the session's big moments, placed in
-  the recap) and after new notes are made. It tells you how many, what
-  draws them and any cost, and "not now" puts the job off.
+- **Drawing without being asked.** Turn on automatic drawing
+  (`vault.images.auto`, off unless you turn it on) and it adds pictures
+  after a wrap-up (scenes for the session's big moments, placed in the
+  recap) and after new notes are made. It draws last, then tells you in one
+  line how many pictures, what drew them and any cost. With a paid service
+  that cost is spent before you hear about it, inside your limits, and it
+  never draws more than ten pictures unasked. Say "not now" to put a job off.
 - **Scene pictures in recaps.** Ask for "a picture of the moment the dragon
   woke" and it goes under the right paragraph of the session's recap.
 
