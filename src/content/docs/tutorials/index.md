@@ -51,6 +51,9 @@ ends with a vault of your own.
   for your players, with your secrets left out (publish-site).
 - [Connections](/tutorials/connections/): who and what each page is
   tied to, drawn as a tree, a web or cards (publish-site).
+- [Handouts](/tutorials/handouts/): letters, clippings and printouts,
+  laid out to print and shown when the players find them (ttrpg-expert,
+  publish-site).
 - [Character sheets](/tutorials/character-sheets/): full sheets on the
   site, built to the rules (publish-site).
 - [Add pictures](/tutorials/add-pictures/): your own art, or pictures
