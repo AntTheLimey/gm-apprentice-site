@@ -1,7 +1,7 @@
 ---
 title: Get set up
 description: Paste one line into your coding agent and it installs GM-Apprentice for you; or pick an agent, install Python and install it by hand.
-checkedAgainst: "1.12.105"
+checkedAgainst: "1.12.108"
 ---
 
 GM-Apprentice is a set of skills: instructions and small scripts that an AI
@@ -38,15 +38,16 @@ version installed:
 
 > [!apprentice]
 >
-> gm-apprentice is installed and the health check passed with no problems.
+> gm-apprentice is installed and up to date at version 1.12.108 (updated
+> from 1.12.105).
 >
-> **Health check results:**
+> **Install check:**
 >
 > ```
 > ok  Python 3.14.4
-> ok  gm-apprentice 1.12.105, the Claude Code plugin
+> ok  gm-apprentice 1.12.108, the Claude Code plugin
 > ok  Node 25.5.0
-> ok  the publish tool 1.70.42
+> ok  the publish tool 1.70.43
 > Ready.
 > ```
 >
@@ -54,9 +55,9 @@ version installed:
 >
 > **Next steps:**
 >
-> 1. Start a new Claude Code session, or type `/reload-plugins` in this
->    one, so the new version loads.
-> 2. Then say: **"help me start a new campaign"**.
+> - The skills load in a new session. To use them in this one, run
+>   `/reload-plugins`.
+> - Then say **"help me start a new campaign"**.
 
 If the check prints a line marked `fail`, the agent tells you what it
 says and stops; fix that and paste the line again.
@@ -152,8 +153,8 @@ says which have.
 New releases come often. To move to the latest, in a terminal:
 
 - **Claude Code:** `claude plugin marketplace update gm-apprentice`, then
-  `claude plugin update gm-apprentice@gm-apprentice`, then start a new
-  session.
+  `claude plugin update gm-apprentice@gm-apprentice --scope user`, then
+  start a new session.
 - **Codex:** `codex plugin marketplace upgrade gm-apprentice`, then the
   `codex plugin add` line above again.
 - **Any other agent:** `npx skills update -g`.
