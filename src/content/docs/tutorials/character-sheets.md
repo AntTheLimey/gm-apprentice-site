@@ -91,6 +91,31 @@ There's no separate party list to keep up to date. Each character's note
 says who plays them and whether they're still in the game, and the board
 follows.
 
+## Characters kept on D&D Beyond
+
+If your players keep their D&D characters on D&D Beyond, they don't have
+to keep two copies. Make the character's page public on D&D Beyond, and
+paste its link into the character's note in the `dndbeyond` field (or
+ask the apprentice to). From then on the note is brought up to date from
+D&D Beyond: level, ability scores, proficiencies, features, feats,
+spells and slots, gear, magic items, coins and attacks. Armour class,
+hit points and attack bonuses are worked out from the same data. If the
+note has no portrait, it takes the D&D Beyond one.
+
+Your own changes are safe:
+
+- **Write a reason in brackets** and the number is yours: `15 (homebrew
+  plate)` or `40 ft (boots of striding)` is never overwritten.
+- **Backstory, appearance and personality** you've edited stay yours. If
+  the player later changes theirs on D&D Beyond, you're told, not
+  overruled.
+- **Where it's unsure**, it writes nothing and tells you what to check.
+
+It runs when you ask ("bring Tamsin up to date from D&D Beyond"), or
+before every site update if you'd rather (`vault.dndbeyond_sync: build`).
+It only ever talks to D&D Beyond, and only reads public characters.
+D&D 5e (2024 rules) only.
+
 ## Players changing their own sheets
 
 During play, players can mark their own hit points and conditions on
