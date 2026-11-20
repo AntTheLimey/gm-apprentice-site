@@ -66,6 +66,7 @@ export default defineConfig({
           ],
         },
         { label: 'Everything it does', link: '/features/' },
+        { label: 'Works with', link: '/works-with/' },
         { label: 'Gallery', link: '/gallery/' },
       ],
       head: [
