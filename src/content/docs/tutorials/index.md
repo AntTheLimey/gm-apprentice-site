@@ -49,6 +49,8 @@ ends with a vault of your own.
   into a recap, updated notes and what carries forward (session-wrapup).
 - [Publish your site](/tutorials/publish-your-site/): a campaign website
   for your players, with your secrets left out (publish-site).
+- [Connections](/tutorials/connections/): who and what each page is
+  tied to, drawn as a tree, a web or cards (publish-site).
 - [Character sheets](/tutorials/character-sheets/): full sheets on the
   site, built to the rules (publish-site).
 - [Add pictures](/tutorials/add-pictures/): your own art, or pictures

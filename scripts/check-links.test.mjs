@@ -41,6 +41,7 @@ test('start and tutorial pages may not carry slash commands or private paths', (
     'start/a/index.html': '<p>Ask: /gm-apprentice:the-midwife go</p>',
     'tutorials/b/index.html': '<p>saved in /Users/someone/x</p>',
     'tutorials/c/index.html': '<p>all clean</p>',
+    'tutorials/d/index.html': '<p>Albin Herzfeld, Canticle of the End; Six in Dead End</p>',
     'gallery/index.html': '<p>Canticle /gm-apprentice:x</p>',
   });
   assert.deepEqual(checkText(dist), [
