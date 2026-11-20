@@ -44,8 +44,12 @@ the replies are the agent's own, trimmed (`[...]`) but not reworded.
 
 ### Your own picture
 
+> [!you]
+>
 > I've got a picture for Pip Callow at ../pip.png. Use it as his portrait.
 
+> [!apprentice]
+>
 > Pip Callow now has your picture as his portrait. I copied `../pip.png`
 > into the vault as `_attachments/characters/pip-callow.png` and set
 > `portrait:` in `Characters/NPCs/Pip Callow.md` to point at it, the same
@@ -57,8 +61,12 @@ and it matches each one to the right note.
 
 ### Drawing what's missing
 
+> [!you]
+>
 > Thanks. Now fill in the missing pictures.
 
+> [!apprentice]
+>
 > There are 6 notes with no picture (player characters not included): [...]
 >
 > The vault is set to draw with Codex on your ChatGPT plan, so this costs
@@ -69,10 +77,14 @@ and it matches each one to the right note.
 >
 > Shall I go ahead?
 
+> [!you]
+>
 > Just Brother Matthias for now, please.
 
 Then it stopped, because Brother Matthias is a secret:
 
+> [!apprentice]
+>
 > I need a decision from you before I draw Brother Matthias. A normal
 > head-and-shoulders portrait would be a mistake here.
 >
@@ -85,10 +97,14 @@ Then it stopped, because Brother Matthias is a secret:
 > trestle in the chapel full of small lamps, with the brothers singing
 > softly. I'd use that as his picture instead [...]
 
+> [!you]
+>
 > Good catch. Yes, draw the shroud.
 
 ![A candlelit monastery chapel: an old abbot rests his hand on a white shroud on a trestle while monks sing; snowy peaks in the window](/img/tutorials/matthias-shroud.jpg)
 
+> [!apprentice]
+>
 > Brother Matthias now has the shroud picture, and I looked at it before
 > filing it. [...] The shroud is a soft mound of linen with no head or feet
 > showing, so the picture doesn't say whether anyone is inside. [...]

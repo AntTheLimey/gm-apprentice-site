@@ -20,6 +20,8 @@ On GM-Apprentice 1.12.98, using the [Snowbound sample vault](https://github.com/
 typed the GM's side; the replies are the agent's own, trimmed (`[...]`)
 but not reworded.
 
+> [!you]
+>
 > A new player, Jo, is joining next session with a level 3 wood elf
 > ranger called Tamsin Reedwater. Can you make her character? She rolled
 > 15, 14, 13, 12, 10 and 8.
@@ -27,6 +29,8 @@ but not reworded.
 It didn't start building. It checked the campaign first and came back
 with three things that didn't fit:
 
+> [!apprentice]
+>
 > 1. **The vault already has a player called Jo.** [...]
 > 2. **The party is level 5 and Tamsin would be level 3.** All six PCs
 >    are level 5. A level 3 character works, but she'd have about 10
@@ -37,11 +41,15 @@ with three things that didn't fit:
 
 Fair on all three; the name was our mistake.
 
+> [!you]
+>
 > Sorry, my mistake: the new player is Priya, not Jo. Make Tamsin level 5
 > to match the party. Snowbound carries on into the spring, so she joins
 > this campaign. Priya says Outlander background and Gloom Stalker; pick
 > sensible spells and mark them so she can change them.
 
+> [!apprentice]
+>
 > Tamsin Reedwater is built as a level 5 wood elf ranger (Gloom Stalker)
 > at `Characters/PCs/Tamsin Reedwater.md`. Her player is Priya. The sheet
 > passes the vault's rules check with nothing wrong or flagged. [...]
@@ -60,9 +68,13 @@ twice. A real table would have spotted that sooner.)
 
 Then we asked to see it, without publishing:
 
+> [!you]
+>
 > Commit it. Then build the site on this computer so I can look at her
 > sheet before Priya sees it. Don't publish anything yet.
 
+> [!apprentice]
+>
 > Tamsin's note is committed, and the site is built and running on this
 > computer only. Nothing has been deployed or uploaded. [...]
 >

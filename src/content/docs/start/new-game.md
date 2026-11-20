@@ -25,9 +25,13 @@ use Obsidian, open the same folder as a vault.
 However little it is. You don't need to name the Midwife: say you want to
 run a game and it comes.
 
+> [!you]
+>
 > I want to run a short D&D 2024 one-shot for four players, something with a
 > haunted lighthouse, but I've got nothing else yet
 
+> [!apprentice]
+>
 > A haunted lighthouse is a good place to start. It's one building with one
 > way up and the sea on every side, which is exactly the kind of closed
 > setting a one-shot needs. [...]
@@ -46,6 +50,8 @@ Each question comes with a few answers to react to. Take one, change one,
 combine two, or say none of them fit. Tell it about your table while you're
 at it.
 
+> [!you]
+>
 > Number 2, the drowned coming up the stairs a bit higher every night. I love
 > that. My players are level 3 and like talking to NPCs more than fighting.
 > One session, about four hours.
@@ -58,9 +64,13 @@ ago (the wreckers paid him, and the village was built on the money).
 
 ## 4. Say when you've got enough
 
+> [!you]
+>
 > Option 2. Twist the knife. I think that's enough for me to run it, can you
 > set it up so I can start prepping?
 
+> [!apprentice]
+>
 > Your campaign folder is set up and ready for prep, with the adventure
 > written up in it. [...]
 >
@@ -75,6 +85,8 @@ ago (the wreckers paid him, and the village was built on the money).
 
 ## 5. Answer the last questions
 
+> [!you]
+>
 > One house rule: a natural 1 on a death save counts as one failure, not two.
 > And names: the keeper is Old Abel Marrow, the granddaughter is Wenna
 > Marrow, the captain is Captain Isolde Crane of the Gannet, and the village
@@ -83,6 +95,8 @@ ago (the wreckers paid him, and the village was built on the money).
 The three NPCs and two places got notes of their own, each NPC with a stat
 block built for the party. The captain's is built to be beaten by talking:
 
+> [!apprentice]
+>
 > - **Rewards honesty:** her fear attack automatically fails against anyone
 >   who has told the truth.
 

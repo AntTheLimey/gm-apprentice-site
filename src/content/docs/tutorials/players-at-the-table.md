@@ -26,10 +26,14 @@ On GM-Apprentice 1.12.98, using the [Snowbound sample vault](https://github.com/
 (tag `sample-v2`). We typed the GM's side; the reply is the agent's own,
 trimmed (`[...]`) but not reworded.
 
+> [!you]
+>
 > During the game I'd like my players to update their own hit points on
 > their character pages, and to be able to send me requests like 'can I
 > swap a spell'. Can the site do that?
 
+> [!apprentice]
+>
 > Yes, the site can do both. Each one is an optional feature you turn
 > on, and neither is on yet. [...]
 >

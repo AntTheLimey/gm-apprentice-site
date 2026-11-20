@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 import starlightBlog from 'starlight-blog';
 import starlightLinksValidator from 'starlight-links-validator';
 import { unified } from '@astrojs/markdown-remark';
+import rehypeExchanges from './src/plugins/rehype-exchanges.mjs';
 
 // The public address comes from SITE_URL so a custom domain is a one-value change.
 const site = process.env.SITE_URL ?? 'https://gmapprentice.com';
@@ -14,7 +15,8 @@ export default defineConfig({
   site,
   // Republished posts keep the author's own characters: no automatic curly quotes,
   // dashes or ellipses.
-  markdown: { processor: unified({ smartypants: false }) },
+  // Tutorial conversations: [!you] / [!apprentice] / [!vault] blockquotes (see the plugin).
+  markdown: { processor: unified({ smartypants: false }), rehypePlugins: [rehypeExchanges] },
   integrations: [
     starlight({
       title: 'GM-Apprentice',

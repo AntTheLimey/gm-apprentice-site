@@ -43,6 +43,22 @@ npm test         # script tests
 4. Run `scripts/preview.sh` and read the post on the preview link.
 5. Open a PR. After it merges, deploy (below).
 
+## Conversations in tutorials
+
+Tutorial and start-here pages quote real runs. Mark each quote with what it is,
+on its own line, then a blank quote line:
+
+```md
+> [!you]
+>
+> Put this campaign online for my players.
+```
+
+`[!you]` is what the GM typed, `[!apprentice]` is the reply, and `[!vault]` is an
+excerpt of a file the apprentice wrote. The build gives each its own look and label
+(`src/plugins/rehype-exchanges.mjs`, styles in `src/styles/theme.css`); an unknown
+marker fails the build.
+
 ## Publishing
 
 - **A branch preview:** `scripts/preview.sh` builds the branch and uploads it

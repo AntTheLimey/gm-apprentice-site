@@ -28,11 +28,15 @@ On GM-Apprentice 1.12.98, using the [Snowbound sample vault](https://github.com/
 (clone or download tag `sample-v2` to follow along). We typed the GM's
 side; the replies are the agent's own, trimmed (`[...]`) but not reworded.
 
+> [!you]
+>
 > Put this campaign online for my players.
 
 It checks your computer first, then asks for the few things it can't
 decide for you, each with a suggestion:
 
+> [!apprentice]
+>
 > The vault is ready and your computer passed the Cloudflare check: Node,
 > git and a logged-in Cloudflare account are all in place. [...]
 >
@@ -43,6 +47,8 @@ decide for you, each with a suggestion:
 > 3. **Homepage image.** This picture goes on the homepage and the 404 page.
 >    [...]
 
+> [!you]
+>
 > Call the project tutorial-scratch-campaign, put the site folder at
 > ../snowbound-site next to the vault, and use the Saint Aubren's Rest
 > picture.
@@ -50,6 +56,8 @@ decide for you, each with a suggestion:
 Then it builds the site and goes through what your players will see before
 anything is uploaded:
 
+> [!apprentice]
+>
 > - **Which pages players see:** the vault already had a list of which pages
 >   go on the site. It puts 74 pages online: the four sessions with their
 >   wrap-ups, the NPCs and player characters, locations, items, creatures,
