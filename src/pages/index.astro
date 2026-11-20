@@ -101,7 +101,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* stages */
 .stage{padding-block:96px 40px;scroll-margin-top:60px}
-.stage-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:44px}
+.stage-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start;margin-bottom:44px}
 .stage-name{font-family:var(--display);font-style:italic;font-weight:500;color:var(--brass);font-size:1.3rem;margin-bottom:10px}
 .stage h2{font-size:clamp(2rem,3.8vw,3.1rem)}
 .stage-head ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
@@ -134,6 +134,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .tree li span{color:#5d6a61}
 .pick{background:#fff6dc;box-shadow:inset 3px 0 0 #c98a1a;padding:8px 10px;border-radius:3px}
 .b-prep{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr)}
+.b-prep .col{display:grid;gap:24px;align-content:start}
+.b-prep .col .cap{margin-top:-14px}
 .b-run{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .chat{display:grid;gap:12px}
 .msg{max-width:88%;padding:12px 16px;border-radius:14px;font-size:.98rem}
@@ -310,14 +312,18 @@ footer a{color:var(--dim)}
         <tr><td><span class="wl">Pip Callow</span></td><td>Arrives round 3 with a lamp</td><td>Worships Oswin; doesn't understand</td></tr>
       </table></div>
     </div>
-    <div class="paper">
-      <h4>GM notes</h4>
-      <p class="src">Same plan</p>
-      <ul>
-        <li><b>Fight budget</b> (six PCs at level 5): 4,200 XP. Moderate for six, more with the abbot's lair actions.</li>
-        <li><b>The crypt key</b> is on Teodor's belt.</li>
-        <li><b>The register's Long Night page</b>, already written in Hollis's hand: "Master Orrin Gilt, to rest. Oswin, to carry."</li>
-      </ul>
+    <div class="col">
+      <div class="paper">
+        <h4>GM notes</h4>
+        <p class="src">Same plan</p>
+        <ul>
+          <li><b>Fight budget</b> (six PCs at level 5): 4,200 XP. Moderate for six, more with the abbot's lair actions.</li>
+          <li><b>The crypt key</b> is on Teodor's belt.</li>
+          <li><b>The register's Long Night page</b>, already written in Hollis's hand: "Master Orrin Gilt, to rest. Oswin, to carry."</li>
+        </ul>
+      </div>
+      <figure class="shot crop"><img src="/img/tutorials/gm-site-notes.jpg" alt="Abbot Severin's stat block in his GM Notes: AC 15, HP 99, ability scores, CR 6, built up as session 3's boss"></figure>
+      <p class="cap">The abbot, built to the rules as that session's boss, on the GM's copy of the site.</p>
     </div>
   </div>
 </section>
