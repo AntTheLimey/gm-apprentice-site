@@ -20,6 +20,13 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'GM-Apprentice',
+      // The raven logo (brand pack, 2026-11-20): brass on green in dark mode, green in light.
+      logo: {
+        dark: './src/assets/logo-horizontal-dark.svg',
+        light: './src/assets/logo-horizontal-light.svg',
+        replacesTitle: true,
+      },
+      favicon: '/favicon.svg',
       customCss: ['./src/styles/theme.css'],
       // Wraps starlight-blog's own override (see the component).
       components: { MarkdownContent: './src/components/overrides/MarkdownContent.astro' },
@@ -61,7 +68,15 @@ export default defineConfig({
         { label: 'Everything it does', link: '/features/' },
         { label: 'Gallery', link: '/gallery/' },
       ],
-      head: preview ? [{ tag: 'meta', attrs: { name: 'robots', content: 'noindex' } }] : [],
+      head: [
+        { tag: 'link', attrs: { rel: 'icon', href: '/favicon.ico', sizes: 'any' } },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } },
+        { tag: 'link', attrs: { rel: 'manifest', href: '/site.webmanifest' } },
+        { tag: 'meta', attrs: { property: 'og:image', content: new URL('/social-card.png', site).href } },
+        { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
+        { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+        ...(preview ? [{ tag: 'meta', attrs: { name: 'robots', content: 'noindex' } }] : []),
+      ],
       plugins: [
         starlightBlog({
           title: 'Blog',

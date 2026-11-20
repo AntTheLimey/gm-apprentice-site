@@ -16,6 +16,17 @@ const campaigns = gallery.filter((e) => e.campaign);
 <meta name="description" content="GM-Apprentice: free, open-source AI skills that organize, prep, run and publish your tabletop campaign.">
 <link rel="canonical" href={canonical}>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GM-Apprentice">
+<meta property="og:description" content="Free, open-source AI skills that organize, prep, run and publish your tabletop campaign.">
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={new URL('/social-card.png', Astro.site)}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="application/rss+xml" title="GM-Apprentice blog" href="/blog/rss.xml">
 <title>GM-Apprentice</title>
 <style is:global>
@@ -37,9 +48,9 @@ h1,h2,h3{font-family:var(--display);font-weight:800;text-wrap:balance;margin:0;l
 p{margin:0}
 
 /* top bar */
-.top{display:flex;align-items:center;gap:28px;padding-block:20px;position:relative;z-index:3}
+.top{--top-h:84px;min-height:var(--top-h);display:flex;align-items:center;gap:28px;padding-block:20px;position:relative;z-index:3}
 .brand{font-family:var(--display);font-weight:800;font-size:1.35rem;color:var(--chalk);text-decoration:none;display:flex;gap:10px;align-items:center}
-.brand svg{width:28px;height:28px}
+.brand img{display:block;height:44px;width:auto}
 .top nav{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap}
 .top nav a{color:var(--dim);text-decoration:none;font-weight:500}
 .top nav a:hover{color:var(--chalk)}
@@ -50,7 +61,7 @@ p{margin:0}
 .btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--chalk)}
 
 /* hero: the painted table, full bleed, headline over its dark left side */
-.hero{position:relative;margin-top:-76px;padding-top:76px;min-height:min(760px,92vh);display:flex;align-items:center;overflow:hidden}
+.hero{--top-h:84px;position:relative;margin-top:calc(-1 * var(--top-h));padding-top:var(--top-h);min-height:min(760px,92vh);display:flex;align-items:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:url(/img/hero-a.jpg) 70% center/cover no-repeat}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--felt) 0,rgba(18,41,31,.88) 30%,rgba(18,41,31,.25) 62%,rgba(18,41,31,0) 80%),linear-gradient(0deg,var(--felt) 0,rgba(18,41,31,0) 30%)}
 .hero-in{position:relative;width:100%;padding-block:40px 120px}
@@ -161,12 +172,17 @@ footer{border-top:1px solid var(--felt-3);padding-block:32px 48px;color:var(--di
 footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between}
 footer a{color:var(--dim)}
 
+@media (max-width:600px){
+  .top nav{margin-left:0;width:100%;gap:20px}
+  .brand img{height:36px}
+  .top,.hero{--top-h:116px}
+}
 @media (max-width:900px){
   .stage-head,.b-organize,.b-prep,.b-run,.fork{grid-template-columns:minmax(0,1fr)}
   .b-publish{grid-template-columns:repeat(2,minmax(0,1fr))}
   .b-publish .wide{grid-column:span 2;grid-row:auto}
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .top nav a:not(.keep){display:none}
+  .top{flex-wrap:wrap;row-gap:12px}
   .fan{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:-60px}
   .hero-bg{background-position:72% center}
   .hero-bg::after{background:linear-gradient(0deg,var(--felt) 0,rgba(18,41,31,.85) 45%,rgba(18,41,31,.55) 100%)}
@@ -180,12 +196,9 @@ footer a{color:var(--dim)}
 <body>
 
 <header class="wrap top">
-  <a class="brand" href="/">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><polygon points="16,2 29,9.5 29,22.5 16,30 3,22.5 3,9.5" fill="none" stroke="#e3b55b" stroke-width="2"/><polygon points="16,8 23,20 9,20" fill="#e3b55b"/></svg>
-    GM-Apprentice
-  </a>
+  <a class="brand" href="/"><img src="/brand/logo-horizontal-dark.svg" alt="GM-Apprentice" width="200" height="44"></a>
   <nav aria-label="Site">
-    <a href="/tutorials/">Tutorials</a><a href="/gallery/">Gallery</a><a href="/blog/">Blog</a><a class="keep" href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a>
+    <a href="/tutorials/">Tutorials</a><a href="/gallery/">Gallery</a><a href="/blog/">Blog</a><a href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a>
   </nav>
 </header>
 
