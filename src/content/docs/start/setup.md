@@ -1,6 +1,6 @@
 ---
 title: Get set up
-description: Pick an AI agent, install Python, then paste one line and let the agent install GM-Apprentice, or install it by hand.
+description: Paste one line into your coding agent and it installs GM-Apprentice for you; or pick an agent, install Python and install it by hand.
 checkedAgainst: "1.12.105"
 ---
 
@@ -11,45 +11,10 @@ one of the companies below. This page gets you from nothing to an installed
 plugin. If you already have it installed, skip to
 [Start a new game](/start/new-game/) or [Start from your notes](/start/from-notes/).
 
-## Pick an agent
+## Install in one line
 
-| If you... | Use | You need |
-|---|---|---|
-| want the least typing in a terminal | **Cowork**, in the Claude desktop app (Mac or Windows) | A paid Claude plan that includes Cowork ([Claude pricing](https://claude.com/pricing)) |
-| are at home at a command prompt | **Claude Code**, Anthropic's agent for the terminal | A paid Claude plan, Pro or above ([Claude pricing](https://claude.com/pricing)) |
-| already pay for ChatGPT | **Codex**, OpenAI's agent for the terminal | A ChatGPT plan that includes Codex, Plus or above ([ChatGPT pricing](https://chatgpt.com/pricing)) |
-
-All three run the same skills on the same campaign folder, so you can
-switch later without losing anything. Your campaign lives in ordinary
-Markdown files on your own computer, which [Obsidian](https://obsidian.md)
-(free) shows as a linked wiki. Obsidian is optional but recommended.
-
-## Install Python
-
-The skills' scripts need **Python 3.10 or newer**. If you let your agent
-do the install (below), it checks this first and tells you if it's
-missing or too old.
-
-- **Mac:** the `python3` a Mac comes with is 3.9, which is too old.
-  Install the latest from [python.org](https://www.python.org/downloads/),
-  or with Homebrew: `brew install python`. Then, in a new Terminal
-  window, `python3 --version` should print 3.10 or higher.
-- **Windows:** install the latest Python from the **Microsoft Store**.
-  Its `python3` is the one the skills call; the python.org installer
-  gives you only `python` and `py`.
-- **Linux:** from your package manager or
-  [python.org](https://www.python.org/downloads/).
-
-You'll also want [Node](https://nodejs.org) (22.21 or newer) if you plan a
-campaign website, or if your agent installs with `npx` (the "any other
-agent" route). Cowork, Claude Code and Codex need nothing else.
-
-## Install the plugin
-
-### Let your agent do it
-
-For **Claude Code, Codex, Cursor and other coding agents.** Open your agent
-in any folder and paste this line:
+Have **Claude Code, Codex, Cursor or another coding agent** already? Open
+it in any folder and paste this line:
 
 ```text wrap
 Fetch https://raw.githubusercontent.com/AntTheLimey/gm-apprentice/main/INSTALL.md with curl and follow it.
@@ -95,6 +60,47 @@ version installed:
 
 If the check prints a line marked `fail`, the agent tells you what it
 says and stops; fix that and paste the line again.
+
+Then skip to [Now pick a path](#now-pick-a-path). New to all this, or using
+Cowork? Read on.
+
+## Pick an agent
+
+| If you... | Use | You need |
+|---|---|---|
+| want the least typing in a terminal | **Cowork**, in the Claude desktop app (Mac or Windows) | A paid Claude plan that includes Cowork ([Claude pricing](https://claude.com/pricing)) |
+| are at home at a command prompt | **Claude Code**, Anthropic's agent for the terminal | A paid Claude plan, Pro or above ([Claude pricing](https://claude.com/pricing)) |
+| already pay for ChatGPT | **Codex**, OpenAI's agent for the terminal | A ChatGPT plan that includes Codex, Plus or above ([ChatGPT pricing](https://chatgpt.com/pricing)) |
+
+All three run the same skills on the same campaign folder, so you can
+switch later without losing anything. Your campaign lives in ordinary
+Markdown files on your own computer, which [Obsidian](https://obsidian.md)
+(free) shows as a linked wiki. Obsidian is optional but recommended.
+
+## Install Python
+
+The skills' scripts need **Python 3.10 or newer**. If you let your agent
+do the install (above), it checks this first and tells you if it's
+missing or too old.
+
+- **Mac:** the `python3` a Mac comes with is 3.9, which is too old.
+  Install the latest from [python.org](https://www.python.org/downloads/),
+  or with Homebrew: `brew install python`. Then, in a new Terminal
+  window, `python3 --version` should print 3.10 or higher.
+- **Windows:** install the latest Python from the **Microsoft Store**.
+  Its `python3` is the one the skills call; the python.org installer
+  gives you only `python` and `py`.
+- **Linux:** from your package manager or
+  [python.org](https://www.python.org/downloads/).
+
+You'll also want [Node](https://nodejs.org) (22.21 or newer) if you plan a
+campaign website, or if your agent installs with `npx` (the "any other
+agent" route). Cowork, Claude Code and Codex need nothing else.
+
+## Install the plugin
+
+If you have a coding agent now, the [one line](#install-in-one-line) above
+does it all. Otherwise:
 
 ### Cowork (Claude desktop app)
 
