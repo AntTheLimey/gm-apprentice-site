@@ -37,6 +37,8 @@ that was never published.
 
 Say what it is, who wrote it and what it has to tell the players:
 
+> [!you]
+>
 > Write a handout: the letter Hesta gave Tam before he went up the pass.
 > She's telling him not to pay the brothers' price for the cure.
 
@@ -145,6 +147,8 @@ You can name the page (*Dead End* calls it **Handout Props**, and
 intro and a picture at the top, and add a box of the newest handouts to
 the site's front page. Say which you want:
 
+> [!you]
+>
 > Call the props page "The Evidence Locker" and show the three newest
 > handouts on the front page.
 
@@ -163,4 +167,6 @@ them into the vault as prop notes. It checks every live page first, and
 puts the vault back as it was if a page would go missing, lose words or
 links, or show something that should stay hidden. Ask:
 
+> [!you]
+>
 > Move my site's old handouts into the vault.

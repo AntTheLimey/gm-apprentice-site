@@ -63,6 +63,8 @@ the tie, and the sessions where both of them turned up.
 Say which one you want and the apprentice changes the setting and
 rebuilds the site:
 
+> [!you]
+>
 > Show the Connections on my campaign site as a web.
 
 The setting is `player_site.features.connections` in
