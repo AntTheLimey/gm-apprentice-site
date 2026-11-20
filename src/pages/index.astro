@@ -127,6 +127,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .shot img{display:block;width:100%;height:auto}
 .shot.crop img{aspect-ratio:16/11;object-fit:cover;object-position:top}
 .cap{font-size:.84rem;color:var(--dim);margin-top:10px}
+.cap b{color:var(--chalk);font-weight:700}
+.cap .how{color:var(--brass);white-space:nowrap}.cap .how::after{content:" \2192"}
+.pic{display:block}
+.pic .shot{transition:transform .25s,box-shadow .25s}
+.pic:hover .shot,.pic:focus-visible .shot{transform:translateY(-4px);box-shadow:0 30px 60px -24px rgba(0,0,0,.85),0 0 0 2px var(--brass)}
 
 .b-organize{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
 .b-organize .tree{font-size:.92rem}
@@ -144,6 +149,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .msg .who{display:block;font-size:.75rem;font-weight:700;opacity:.7;margin-bottom:2px}
 .b-publish{grid-template-columns:repeat(3,minmax(0,1fr))}
 .b-publish .wide{grid-column:span 2;grid-row:span 2}
+.b-publish > div{min-width:0}
 .b-publish .strip{grid-column:1 / -1}
 .lede2{color:var(--dim);font-size:1.12rem;margin-top:16px;max-width:32rem}
 .loopback{margin-top:40px;text-align:center;font-family:var(--display);font-style:italic;font-size:1.25rem;color:var(--brass)}
@@ -221,9 +227,9 @@ footer a{color:var(--dim)}
   </div>
 </section>
 <div class="wrap fan" aria-label="Three campaign sites built with GM-Apprentice">
-    <figure class="deal"><img src="/img/de-home.jpg" alt="Dead End campaign site: a rusted space station over a planet, green terminal lettering"><figcaption>Dead End · GURPS</figcaption></figure>
-    <figure class="deal"><img src="/img/dk-home.jpg" alt="Drakkenheim campaign site: a carriage under a dead tree at dusk"><figcaption>Drakkenheim · D&amp;D</figcaption></figure>
-    <figure class="deal"><img src="/img/cn-home.jpg" alt="Canticle of the End campaign site: a choir beneath a great bell, a city burning"><figcaption>Canticle of the End · Call of Cthulhu</figcaption></figure>
+    <figure class="deal"><a href="https://dead-end.pages.dev"><img src="/img/de-home.jpg" alt="Dead End campaign site: a rusted space station over a planet, green terminal lettering"></a><figcaption>Dead End · GURPS</figcaption></figure>
+    <figure class="deal"><a href="https://drakkenheim.dorkfish.quest/index.html"><img src="/img/dk-home.jpg" alt="Drakkenheim campaign site: a carriage under a dead tree at dusk"></a><figcaption>Drakkenheim · D&amp;D</figcaption></figure>
+    <figure class="deal"><a href="https://canticle-of-the-end.pages.dev"><img src="/img/cn-home.jpg" alt="Canticle of the End campaign site: a choir beneath a great bell, a city burning"></a><figcaption>Canticle of the End · Call of Cthulhu</figcaption></figure>
   </div>
 
 <div class="wrap systems" aria-label="Game systems supported">
@@ -272,8 +278,8 @@ footer a{color:var(--dim)}
       <p>"The monks give the dragon their dead. That is why the pilgrims are being murdered."</p>
     </div>
     <div>
-      <figure class="shot crop"><img src="/img/sb-npc.jpg" alt="Snowbound site page for Master Orrin Gilt, a fat moustached merchant in furs, with his overview"></figure>
-      <p class="cap">From that seed: a linked note for every NPC, place and secret, and a merchant who isn't one. <a href="https://snowbound-dnd.pages.dev/characters/npcs/master-orrin-gilt.html">Meet Master Orrin Gilt</a> or <a href="https://snowbound-dnd.pages.dev">see the whole site</a>.</p>
+      <a class="pic" href="/tutorials/grow-a-campaign/"><figure class="shot crop"><img src="/img/sb-npc.jpg" alt="Snowbound site page for Master Orrin Gilt, a fat moustached merchant in furs, with his overview"></figure></a>
+      <p class="cap">From that seed: a linked note for every NPC, place and secret, and a merchant who isn't one. <a href="https://snowbound-dnd.pages.dev/characters/npcs/master-orrin-gilt.html">Meet Master Orrin Gilt</a> or <a href="https://snowbound-dnd.pages.dev">see the whole site</a>. <a class="how" href="/tutorials/grow-a-campaign/">How a campaign grows from a seed</a></p>
     </div>
   </div>
 </section>
@@ -322,8 +328,8 @@ footer a{color:var(--dim)}
           <li><b>The register's Long Night page</b>, already written in Hollis's hand: "Master Orrin Gilt, to rest. Oswin, to carry."</li>
         </ul>
       </div>
-      <figure class="shot"><img src="/img/prep-statblock.jpg" alt="Abbot Severin's stat block in his GM Notes: AC 15, HP 99, ability scores, CR 6, built up as session 3's boss"></figure>
-      <p class="cap">The abbot, built to the rules as that session's boss, on the GM's copy of the site.</p>
+      <a class="pic" href="/tutorials/rules-npcs-and-ideas/"><figure class="shot"><img src="/img/prep-statblock.jpg" alt="Abbot Severin's stat block in his GM Notes: AC 15, HP 99, ability scores, CR 6, built up as session 3's boss"></figure></a>
+      <p class="cap"><b>A stat block.</b> The abbot, built to the rules as that session's boss, on the GM's copy of the site. <a class="how" href="/tutorials/rules-npcs-and-ideas/">How it's made</a></p>
     </div>
   </div>
 </section>
@@ -356,8 +362,8 @@ footer a{color:var(--dim)}
       <p class="cap">Real replies from session-play on the Snowbound vault (gm-apprentice 1.12.94), trimmed.</p>
     </div>
     <div>
-      <figure class="shot crop"><img src="/img/sb-pc.jpg" alt="Kael Stonehand's character page: portrait, hit points 44 of 44, AC 16, tabs for sheet, combat, spells"></figure>
-      <p class="cap">Every PC's sheet, live on the site, for the GM and the player.</p>
+      <a class="pic" href="/tutorials/character-sheets/"><figure class="shot crop"><img src="/img/sb-pc.jpg" alt="Kael Stonehand's character page: portrait, hit points 44 of 44, AC 16, tabs for sheet, combat, spells"></figure></a>
+      <p class="cap"><b>A character sheet.</b> Every PC's sheet, live on the site, for the GM and the player. <a class="how" href="/tutorials/character-sheets/">How sheets work</a></p>
     </div>
   </div>
 </section>
@@ -382,10 +388,10 @@ footer a{color:var(--dim)}
     </div>
   </div>
   <div class="board b-publish">
-    <figure class="shot wide"><img src="/img/sb-story.jpg" alt="Snowbound Session 02 recap page: prose with portraits of Durgan and Tam, a picture of the chapter house"></figure>
-    <figure class="shot crop"><img src="/img/sb-map.jpg" alt="Painted cutaway map of Saint Aubren's Rest, a monastery on a snowy cliff"></figure>
-    <figure class="shot crop"><img src="/img/connections-web-home.jpg" alt="Connections drawn as a web: a villain in the middle, the people tied to him around him, hostile ties in red"></figure>
-    <div class="strip"><figure class="shot"><img src="/img/handouts-home.jpg" alt="Three handouts: a torn note in a quick hand ending Burn this, a report in green capitals on a datapad, and a corporate notice of unrecovered property"></figure><p class="cap">Handouts from Canticle of the End and Dead End, as they appear on their sites.</p></div>
+    <div class="wide"><a class="pic" href="/tutorials/wrap-up-a-session/"><figure class="shot"><img src="/img/sb-story.jpg" alt="Snowbound Session 02 recap page: prose with portraits of Durgan and Tam, a picture of the chapter house"></figure></a><p class="cap"><b>A session's story page.</b> The recap wrap-up wrote, with pictures of who and where. <a class="how" href="/tutorials/wrap-up-a-session/">How wrap-up works</a></p></div>
+    <div><a class="pic" href="/tutorials/add-pictures/"><figure class="shot crop"><img src="/img/sb-map.jpg" alt="Painted cutaway map of Saint Aubren's Rest, a monastery on a snowy cliff"></figure></a><p class="cap"><b>A map,</b> drawn for the campaign. <a class="how" href="/tutorials/add-pictures/">Adding pictures</a></p></div>
+    <div><a class="pic" href="/tutorials/connections/"><figure class="shot crop"><img src="/img/connections-web-home.jpg" alt="Connections drawn as a web: a villain in the middle, the people tied to him around him, hostile ties in red"></figure></a><p class="cap"><b>Connections:</b> everyone tied to a villain, friends in green, enemies in red. <a class="how" href="/tutorials/connections/">What it shows</a></p></div>
+    <div class="strip"><a class="pic" href="/tutorials/handouts/"><figure class="shot"><img src="/img/handouts-home.jpg" alt="Three handouts: a torn note in a quick hand ending Burn this, a report in green capitals on a datapad, and a corporate notice of unrecovered property"></figure></a><p class="cap"><b>Handouts</b> from Canticle of the End and Dead End, as they appear on their sites. <a class="how" href="/tutorials/handouts/">Making handouts</a></p></div>
   </div>
   <p class="loopback">And then? Prep again, this time with notes that make sense.</p>
   <p class="more"><a href="/features/">See everything it does</a></p>
