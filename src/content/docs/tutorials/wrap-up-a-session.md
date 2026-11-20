@@ -21,14 +21,14 @@ starts from what the wrap-up says happened.
 ## When to reach for it
 
 - As soon as you can after a session, while you still remember it.
-- When you have a transcript, or a GM-Assistant (gmassistant.app) export.
+- When you have a transcript, or a [GM Assistant](/works-with/#gm-assistant) export.
 - When the game stopped mid-fight and you need to record where everyone
   stood.
 
 Starting phrases that work:
 
 - "Session's over, here are my notes." (paste them in)
-- "Here's my GM-Assistant export from tonight."
+- "Here's my GM Assistant export from tonight."
 - "We stopped mid-fight; save where everyone is."
 - "What carries forward to next session?"
 
@@ -248,8 +248,9 @@ What it carries forward, in the GM-only part of the wrap-up:
   learned tonight, and they go up on the next publish.
 - **No guesses.** A value your notes don't give is left alone or added
   to your checklist, and gaps in who did what come back as questions.
-- **Your notes, as written.** A GM-Assistant export's summary is used as
-  your recap, word for word.
+- **Your notes, as written.** A GM Assistant export's summary is used as
+  your recap, word for word, with your spelling of every name.
+  [More on GM Assistant](/works-with/#gm-assistant).
 
 ## Other things to ask it
 
