@@ -54,18 +54,20 @@ before it files anything.
 
 Underneath, a handout is an ordinary note in its chapter's `Props`
 folder. This is Hesta's letter in the
-[Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound/tree/sample-v2),
-trimmed:
+[Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound/tree/sample-v2).
+A few lines at the top say which look it takes and the session the
+players found it in:
+
+```yaml
+name: "Hesta's Letter"
+type: prop
+prop_style: "letter"
+revealed_in: "[[Session 04 - Long Night Early]]"
+```
+
+Then the note itself, trimmed:
 
 > [!vault]
->
-> ```markdown
-> ---
-> name: "Hesta's Letter"
-> type: prop
-> prop_style: "letter"
-> revealed_in: "[[Session 04 - Long Night Early]]"
-> ---
 >
 > ## Description
 >
@@ -83,12 +85,14 @@ trimmed:
 > >
 > > Your Hesta
 >
+> [...]
+>
 > ## GM Notes
 >
 > ### What It Reveals
 >
 > Hesta knew the house might ask a price, and told Tam not to pay it.
-> ```
+> [...]
 
 What's under **The Text** is what goes on the page. The **GM Notes**
 never reach the site.
@@ -156,9 +160,6 @@ A handout can also hold others: a bookshelf, a strongbox, a dead man's
 pockets. Its page lists what's inside as the players find it, and can
 show the titles of what they haven't found yet.
 
-The settings behind all this are `player_site.props.*` and
-`player_site.landing.latest_props`, in
-[site settings](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/site-settings.md#props).
 
 ## An older site's handouts
 
@@ -170,3 +171,18 @@ links, or show something that should stay hidden. Ask:
 > [!you]
 >
 > Move my site's old handouts into the vault.
+
+## The settings behind it
+
+Every setting for the props page, its values and its default:
+[site settings in the plugin docs](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/site-settings.md#props).
+A sample:
+
+```yaml
+player_site:
+  props:
+    title: The Evidence Locker
+    intro: Everything the investigators have picked up so far.
+  landing:
+    latest_props: 3
+```

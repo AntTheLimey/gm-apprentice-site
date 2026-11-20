@@ -76,17 +76,15 @@ to leave the section out. It applies to the whole site.
 Underneath the drawing, each tie is a few lines at the top of a note.
 This is Brenner's tie to Herzfeld, from the Canticle vault:
 
-> [!vault]
->
-> ```yaml
-> relationships:
->   - target: "[[Albin_Herzfeld]]"
->     type: serves
->     tone: fearful
->     strength: 8
->     bidirectional: false
->     description: "Former cult member; broke with Herzfeld over moral horror"
-> ```
+```yaml
+relationships:
+  - target: "[[Albin_Herzfeld]]"
+    type: serves
+    tone: fearful
+    strength: 8
+    bidirectional: false
+    description: "Former cult member; broke with Herzfeld over moral horror"
+```
 
 - **`type`**: the kind of tie, from a fixed list of 78 in 17 groups:
   family, social, power, places, possessions, knowledge, conflict,
