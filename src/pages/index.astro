@@ -142,6 +142,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .msg .who{display:block;font-size:.75rem;font-weight:700;opacity:.7;margin-bottom:2px}
 .b-publish{grid-template-columns:repeat(3,minmax(0,1fr))}
 .b-publish .wide{grid-column:span 2;grid-row:span 2}
+.b-publish .strip{grid-column:1 / -1}
 .lede2{color:var(--dim);font-size:1.12rem;margin-top:16px;max-width:32rem}
 .loopback{margin-top:40px;text-align:center;font-family:var(--display);font-style:italic;font-size:1.25rem;color:var(--brass)}
 .note{margin-top:28px;color:var(--dim);font-size:.95rem;max-width:44rem}
@@ -180,7 +181,7 @@ footer a{color:var(--dim)}
 @media (max-width:900px){
   .stage-head,.b-organize,.b-prep,.b-run,.fork{grid-template-columns:minmax(0,1fr)}
   .b-publish{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .b-publish .wide{grid-column:span 2;grid-row:auto}
+  .b-publish .wide,.b-publish .strip{grid-column:span 2;grid-row:auto}
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
   .top{flex-wrap:wrap;row-gap:12px}
   .fan{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:-60px}
@@ -190,7 +191,7 @@ footer a{color:var(--dim)}
   .cycle a{font-size:1rem;padding:12px 12px 10px}
   .cycle .loop{display:none}
 }
-@media (max-width:520px){.tiles{grid-template-columns:minmax(0,1fr)}.b-publish{grid-template-columns:minmax(0,1fr)}.b-publish .wide{grid-column:auto}.paper{padding:20px}}
+@media (max-width:520px){.tiles{grid-template-columns:minmax(0,1fr)}.b-publish{grid-template-columns:minmax(0,1fr)}.b-publish .wide,.b-publish .strip{grid-column:auto}.paper{padding:20px}}
 </style>
 </head>
 <body>
@@ -251,6 +252,7 @@ footer a{color:var(--dim)}
         <li><strong>Grow a campaign from nothing.</strong> The Midwife offers seeds, asks what you like, and builds the people, places and secrets with you. It asks before it invents.</li>
         <li><strong>Bring your old notes in.</strong> Scrawled session notes, character sheets, a spreadsheet: sorted into linked notes for every NPC, location and faction.</li>
         <li><strong>Catch contradictions before your players do.</strong> A dead NPC who turns up in a later scene, two taverns with the same name, a clue nothing points to.</li>
+        <li><strong>Plain files you own,</strong> so other tools can use them: D&amp;D Beyond characters stay in step, and <a href="/works-with/">GM-Scriptorium and mobRPG</a> work from the same notes.</li>
       </ul>
       <p class="skills"><code>the-midwife</code><code>vault-ingest</code><code>campaign-organizer</code><code>campaign-qa</code></p>
     </div>
@@ -332,6 +334,7 @@ footer a{color:var(--dim)}
         <li><strong>Rules at the speed of play.</strong> Grapple, exhaustion, a SAN roll, a GURPS modifier: the answer and the page, nothing else.</li>
         <li><strong>The fact you forgot,</strong> from your own notes: who has the key, what the abbot promised, which name the players already know.</li>
         <li><strong>An NPC on the spot</strong> when the players turn left instead of right, and jot notes as you go for the wrap-up.</li>
+        <li><strong>Your players at the table too.</strong> They mark hit points on their own sheets from their phones, and <a href="/tutorials/players-at-the-table/">send you requests</a> through the site.</li>
       </ul>
       <p class="skills"><code>session-play</code></p>
     </div>
@@ -364,6 +367,7 @@ footer a{color:var(--dim)}
       <ul>
         <li><strong>Rough notes in, a recap out.</strong> Wrap-up writes the session as prose and updates every NPC, place and thread it touched.</li>
         <li><strong>A website for your players</strong>: the story so far, character sheets, portraits, maps, a timeline, with a look that suits your game.</li>
+        <li><strong>Handouts they can hold.</strong> A letter, a clipping, a terminal printout, written in the voice of whoever sent it, laid out to print, and <a href="/tutorials/handouts/">on the site the moment they find it</a>.</li>
         <li><strong>Who's tied to whom</strong>, on every page: allies, enemies, employers and old debts, drawn as a <a href="/tutorials/connections/">tree, a web or cards</a>.</li>
         <li><strong>Secrets stay hidden until play reveals them.</strong> The traitor, the thing in the cellar, the patron's real reason: none of it reaches the site until your players find out.</li>
       </ul>
@@ -374,6 +378,7 @@ footer a{color:var(--dim)}
     <figure class="shot wide"><img src="/img/sb-story.jpg" alt="Snowbound Session 02 recap page: prose with portraits of Durgan and Tam, a picture of the chapter house"></figure>
     <figure class="shot crop"><img src="/img/sb-map.jpg" alt="Painted cutaway map of Saint Aubren's Rest, a monastery on a snowy cliff"></figure>
     <figure class="shot crop"><img src="/img/connections-web-home.jpg" alt="Connections drawn as a web: a villain in the middle, the people tied to him around him, hostile ties in red"></figure>
+    <div class="strip"><figure class="shot"><img src="/img/handouts-home.jpg" alt="Three handouts: a torn note in a quick hand ending Burn this, a report in green capitals on a datapad, and a corporate notice of unrecovered property"></figure><p class="cap">Handouts from Canticle of the End and Dead End, as they appear on their sites.</p></div>
   </div>
   <p class="loopback">And then? Prep again, this time with notes that make sense.</p>
   <p class="more"><a href="/features/">See everything it does</a></p>

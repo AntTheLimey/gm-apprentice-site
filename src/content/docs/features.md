@@ -37,7 +37,7 @@ can go in [your own rulebook files](/tutorials/your-own-books/).
 | Preps your next session: what happened last time, what got skipped, each character's moment, open threads, and scenes to choose from. [Tutorial](/tutorials/prep-a-session/) | `session-prep` |
 | Answers rules questions, citing the file it found the answer in. | `ttrpg-expert` |
 | Makes characters to the rules, checking the numbers as it goes: a new player's character, an NPC with stats, a monster. [Tutorial](/tutorials/character-sheets/) | `ttrpg-expert` |
-| Writes NPCs, scenes, encounters, places, factions, items and handouts (letters, newspapers, telegrams). New material stays a draft until you accept it. [Tutorial](/tutorials/rules-npcs-and-ideas/) | `ttrpg-expert` |
+| Writes NPCs, scenes, encounters, places, factions, items and handouts (letters, newspapers, telegrams). New material stays a draft until you accept it. [Tutorial](/tutorials/rules-npcs-and-ideas/), [handouts](/tutorials/handouts/) | `ttrpg-expert` |
 | Checks for plot holes and for players who haven't had a moment lately. | `ttrpg-expert` |
 | Uses the books you own, kept on your computer and never shared. [Tutorial](/tutorials/your-own-books/) | `ttrpg-expert` |
 
@@ -63,6 +63,7 @@ can go in [your own rulebook files](/tutorials/your-own-books/).
 | Shows the party on one page: who's in play, how they're doing, and what's still open. | `publish-site` |
 | Changes the site's look: five genre styles, your own colours and fonts, light and dark, a banner for the front page. [Tutorial](/tutorials/change-the-look/) | `publish-site` |
 | Draws portraits and pictures of places and scenes, checks each one and redraws the bad ones. No extra cost on a ChatGPT plan through Codex, or paid on your own Google key within limits you set. [Tutorial](/tutorials/add-pictures/) | `campaign-organizer` |
+| Gives each handout a page laid out to print, in one of nine looks or your own, shows it once the players find it, and lists them all on one page. [Tutorial](/tutorials/handouts/) | `publish-site` |
 | Puts a small preview card on every link, and a Connections section on each page showing who is tied to whom, as a tree, a web or cards. [Tutorial](/tutorials/connections/) | `publish-site` |
 
 ## Not yet
