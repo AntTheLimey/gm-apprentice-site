@@ -51,7 +51,7 @@ agent" route). Cowork, Claude Code and Codex need nothing else.
 For **Claude Code, Codex, Cursor and other coding agents.** Open your agent
 in any folder and paste this line:
 
-```text
+```text wrap
 Fetch https://raw.githubusercontent.com/AntTheLimey/gm-apprentice/main/INSTALL.md with curl and follow it.
 ```
 
