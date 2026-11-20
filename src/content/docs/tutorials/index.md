@@ -52,7 +52,7 @@ ends with a vault of your own.
 - [Character sheets](/tutorials/character-sheets/): full sheets on the
   site, built to the rules (publish-site).
 - [Add pictures](/tutorials/add-pictures/): your own art, or pictures
-  drawn for what's missing (publish-site).
+  drawn for what's missing.
 - [Change the look](/tutorials/change-the-look/): themes, colours,
   lettering and sheet skins (publish-site).
 - [The GM site](/tutorials/gm-site/): a private copy with every secret
