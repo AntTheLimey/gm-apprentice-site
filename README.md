@@ -43,6 +43,27 @@ npm test         # script tests
 4. Run `scripts/preview.sh` and read the post on the preview link.
 5. Open a PR. After it merges, deploy (below).
 
+## Adding a tutorial page
+
+1. Make a worktree: `git worktree add .worktrees/tutorial-<slug> -b tutorial/<slug>`.
+   Name the page after the job, not the skill (`prep-a-session`, not `session-prep`).
+2. Run the example for real on the
+   [Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound)
+   at its sample tag, with a pinned plugin release, and keep the run's transcript.
+   Quotes on the page come from that transcript, trimmed with `[...]` but never
+   reworded.
+3. Write `src/content/docs/tutorials/<slug>.md` with `title`, `description` and
+   `checkedAgainst: "<plugin version>"` (the release the example ran on;
+   `npm run check:drift` warns when it falls a minor release behind), then a
+   `<!-- video -->` line under the front matter, where a video goes later. Mark each
+   quote as in "Conversations in tutorials" below. Pictures go in
+   `public/img/tutorials/`, each with alt text.
+4. Add the page to the Tutorials sidebar in `astro.config.mjs` and to
+   `src/content/docs/tutorials/index.md`, both in campaign order (Organize, Prep,
+   Run, Publish), and, if it's a new feature, a line on `src/content/docs/features.md`.
+5. Run the checks, then `scripts/preview.sh`, and read the page on the preview link.
+6. Open a PR. After it merges, deploy (below).
+
 ## Conversations in tutorials
 
 Tutorial and start-here pages quote real runs. Mark each quote with what it is,

@@ -120,7 +120,7 @@ Midwife invented is marked as a draft until you accept it.
 
 - Ask for help preparing the first session. That's where the landings, the
   clock and the scenes get laid out
-  ([session prep in the plugin docs](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/session-prep.md)).
+  (see [Prep a session](/tutorials/prep-a-session/)).
 - Want to steer the Midwife harder, start from nothing at all, or add a new
   chapter to a campaign you already run? [Grow a campaign from an idea](/tutorials/grow-a-campaign/)
   goes deeper.

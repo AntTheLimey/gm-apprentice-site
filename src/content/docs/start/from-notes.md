@@ -122,6 +122,6 @@ each player character wants, and the threads still open.
 
 - Prep the next session: ask for help preparing session 3, in the same
   folder
-  ([session prep in the plugin docs](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/session-prep.md)).
+  (see [Prep a session](/tutorials/prep-a-session/)).
 - Bigger piles, transcripts, a single character sheet found later:
   [Bring in an existing campaign](/tutorials/bring-in-a-campaign/) goes deeper.

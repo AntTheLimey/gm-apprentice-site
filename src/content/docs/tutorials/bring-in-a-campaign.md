@@ -134,5 +134,5 @@ At the end:
 ## Next
 
 - Prep the next session in the same folder
-  ([session prep in the plugin docs](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/session-prep.md)).
+  (see [Prep a session](/tutorials/prep-a-session/)).
 - Every option vault-ingest has: [its page in the plugin docs](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/vault-ingest.md).
