@@ -42,7 +42,8 @@ export function checkLinks(distDir) {
 // Start and tutorial pages: no Claude Code-only slash commands (readers may be in Cowork
 // or Codex), and nothing private from the machine the examples were captured on.
 const FORBIDDEN = ['/gm-apprentice:', 'antonypegg', 'gmail', '/Users/', '/private/tmp',
-  'Canticle', 'Dead End', 'Special Forces', 'Drakkenheim'];
+  'Canticle', 'Special Forces', 'Drakkenheim'];
+// Dead End is allowed: Ant chose its public pages for the live-sheet tutorial (2026-11-19).
 
 /** One "<page>: \"<text>\"" line per forbidden string in dist/start/ or dist/tutorials/. */
 export function checkText(distDir) {
