@@ -63,7 +63,7 @@ can go in [your own rulebook files](/tutorials/your-own-books/).
 | Shows the party on one page: who's in play, how they're doing, and what's still open. | `publish-site` |
 | Changes the site's look: five genre styles, your own colours and fonts, light and dark, a banner for the front page. [Tutorial](/tutorials/change-the-look/) | `publish-site` |
 | Draws portraits and pictures of places and scenes, checks each one and redraws the bad ones. No extra cost on a ChatGPT plan through Codex, or paid on your own Google key within limits you set. [Tutorial](/tutorials/add-pictures/) | `campaign-organizer` |
-| Puts a small preview card on every link, and a Connections section on each page showing who is tied to whom. | `publish-site` |
+| Puts a small preview card on every link, and a Connections section on each page showing who is tied to whom, as a tree, a web or cards. [Tutorial](/tutorials/connections/) | `publish-site` |
 
 ## Not yet
 

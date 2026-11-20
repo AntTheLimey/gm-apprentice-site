@@ -59,6 +59,7 @@ export default defineConfig({
             { label: 'Players at the table', link: '/tutorials/players-at-the-table/' },
             { label: 'Wrap up a session', link: '/tutorials/wrap-up-a-session/' },
             { label: 'Publish your site', link: '/tutorials/publish-your-site/' },
+            { label: 'Connections', link: '/tutorials/connections/' },
             { label: 'Character sheets', link: '/tutorials/character-sheets/' },
             { label: 'Add pictures', link: '/tutorials/add-pictures/' },
             { label: 'Change the look', link: '/tutorials/change-the-look/' },

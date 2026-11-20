@@ -42,8 +42,9 @@ export function checkLinks(distDir) {
 // Start and tutorial pages: no Claude Code-only slash commands (readers may be in Cowork
 // or Codex), and nothing private from the machine the examples were captured on.
 const FORBIDDEN = ['/gm-apprentice:', 'antonypegg', 'gmail', '/Users/', '/private/tmp',
-  'Canticle', 'Special Forces', 'Drakkenheim'];
-// Dead End is allowed: Ant chose its public pages for the live-sheet tutorial (2026-11-19).
+  'Special Forces', 'Drakkenheim'];
+// Dead End and Canticle of the End are Ant's own games: use them anywhere on the site
+// (Dead End 2026-11-19, Canticle 2026-11-20).
 
 /** One "<page>: \"<text>\"" line per forbidden string in dist/start/ or dist/tutorials/. */
 export function checkText(distDir) {
