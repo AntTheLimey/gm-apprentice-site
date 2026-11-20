@@ -19,6 +19,10 @@ test('a blog subdomain link that already says /blog/ is not doubled', () => {
 
 test('the bare domain and preview hosts are served, not redirected', () => {
   assert.equal(redirectFor('https://gmapprentice.com/blog/'), null);
-  assert.equal(redirectFor('https://gm-apprentice.antthelimey.workers.dev/'), null);
   assert.equal(redirectFor('https://some-branch-gm-apprentice.antthelimey.workers.dev/'), null);
+});
+
+test('the old workers.dev address goes to the bare domain, keeping path and query', () => {
+  assert.equal(redirectFor('https://gm-apprentice.antthelimey.workers.dev/'), 'https://gmapprentice.com/');
+  assert.equal(redirectFor('https://gm-apprentice.antthelimey.workers.dev/tutorials/?a=1'), 'https://gmapprentice.com/tutorials/?a=1');
 });
