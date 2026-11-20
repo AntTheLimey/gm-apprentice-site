@@ -45,3 +45,15 @@ test('nested blockquotes are reached', () => {
 test('an unknown marker fails the build rather than showing raw', () => {
   assert.throws(() => run(el('div', [quote(el('p', [t('[!gm]')]))])), /Unknown exchange marker \[!gm\]/);
 });
+
+test('headings inside a marked quote become exchange-heading paragraphs; plain quotes keep theirs', () => {
+  const q = quote(el('p', [t('[!apprentice]')]), el('h1', [t('Joss')], { id: 'joss' }), el('ul', [el('li', [el('h3', [t('Deep')])])]));
+  const plain = quote(el('h2', [t('Kept')]));
+  run(el('div', [q, plain]));
+  const h = q.children.filter((c) => c.type === 'element')[1];
+  assert.equal(h.tagName, 'p');
+  assert.deepEqual(h.properties, { className: ['exchange-heading'] });
+  assert.equal(h.children[0].value, 'Joss');
+  assert.equal(q.children.at(-1).children[0].children[0].tagName, 'p');
+  assert.equal(plain.children.find((c) => c.type === 'element').tagName, 'h2');
+});

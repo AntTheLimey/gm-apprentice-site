@@ -8,6 +8,10 @@
 //
 // This turns the marker into a class on the blockquote and a visible label, so the
 // three kinds look different (styles in src/styles/theme.css).
+//
+// A heading quoted inside one (a reply or a file often has them) becomes a paragraph
+// with the class exchange-heading: the words stay as quoted, but it doesn't print at
+// page-heading size or join the page's "On this page" list.
 
 export const KINDS = {
   you: 'You type',
@@ -28,6 +32,19 @@ export function markerKind(node) {
   return m[1];
 }
 
+const HEADING = /^h[1-6]$/;
+
+function demoteHeadings(node) {
+  for (const child of node.children ?? []) {
+    if (child.type !== 'element') continue;
+    if (HEADING.test(child.tagName)) {
+      child.tagName = 'p';
+      child.properties = { className: ['exchange-heading'] };
+    }
+    demoteHeadings(child);
+  }
+}
+
 function walk(node) {
   if (node.type === 'element' && node.tagName === 'blockquote') {
     const kind = markerKind(node);
@@ -41,6 +58,7 @@ function walk(node) {
       });
       const cls = node.properties.className ?? [];
       node.properties.className = [...cls, 'exchange', `exchange-${kind}`];
+      demoteHeadings(node);
     }
   }
   for (const child of node.children ?? []) walk(child);

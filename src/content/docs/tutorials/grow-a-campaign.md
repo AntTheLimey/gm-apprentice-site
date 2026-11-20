@@ -198,5 +198,5 @@ sessions later it's the campaign site in the [gallery](/gallery/).
 ## Next
 
 - Prep the first session: ask for help preparing it, in the same folder
-  ([session prep in the plugin docs](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/session-prep.md)).
+  (see [Prep a session](/tutorials/prep-a-session/)).
 - Every option the Midwife has: [its page in the plugin docs](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/the-midwife.md).
