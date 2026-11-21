@@ -144,7 +144,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* paper documents on the table */
 .board{display:grid;gap:24px;align-items:start}
 .paper{background:var(--paper);color:var(--ink);border-radius:6px;padding:26px 28px;box-shadow:0 24px 50px -24px rgba(0,0,0,.75);min-width:0;font-size:.96rem;line-height:1.5}
-.paper h4{font-family:var(--display);font-weight:800;font-size:1.25rem;margin:0 0 4px}
+/* Sample cards: h3 for heading order, sized and spaced as the h4 they were. */
+.paper h3{font-family:var(--display);font-weight:800;font-size:1.25rem;margin:0 0 4px;line-height:inherit;text-wrap:wrap}
 .paper .src{font-size:.78rem;color:#5d6a61;margin-bottom:14px}
 .paper h5{font-family:var(--display);font-weight:700;font-size:1.02rem;margin:16px 0 6px;color:#2f4a3c}
 .paper ol,.paper ul{margin:0;padding-left:20px;display:grid;gap:8px}
@@ -297,7 +298,7 @@ footer a{color:var(--dim)}
   </div>
   <div class="board b-organize">
     <div class="paper">
-      <h4>Three seeds</h4>
+      <h3>Three seeds</h3>
       <p class="src">The Midwife's opening offer for Snowbound, 16 November</p>
       <ol>
         <li><b>The Bridge Town.</b> A town built along one enormous old bridge, where the Toll Wardens above and the barge-folk in the arches below are one bad night from open war.</li>
@@ -332,7 +333,7 @@ footer a{color:var(--dim)}
   </div>
   <div class="board b-prep">
     <div class="paper">
-      <h4>Session 03: Peace, Child</h4>
+      <h3>Session 03: Peace, Child</h3>
       <p class="src">From Snowbound's real session plan, written by session-prep. Not a sample adventure.</p>
       <h5>Active threads</h5>
       <ul>
@@ -350,7 +351,7 @@ footer a{color:var(--dim)}
     </div>
     <div class="col">
       <div class="paper">
-        <h4>GM notes</h4>
+        <h3>GM notes</h3>
         <p class="src">Same plan</p>
         <ul>
           <li><b>Fight budget</b> (six PCs at level 5): 4,200 XP. Moderate for six, more with the abbot's lair actions.</li>
