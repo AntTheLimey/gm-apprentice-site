@@ -17,6 +17,8 @@ export const collections = {
           linkedin: z.string().url().optional(),
           // The plugin release a tutorial's example was last run on (scripts/check-drift.mjs).
           checkedAgainst: z.string().optional(),
+          // A post's link-preview picture when it has no cover (src/routeData.ts).
+          share: z.object({ image: context.image(), alt: z.string() }).optional(),
         }),
     }),
   }),

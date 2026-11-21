@@ -1,7 +1,7 @@
 // Search and link-preview fixes Starlight can't make from frontmatter alone.
 // - Blog pages starlight-blog builds (the index, its later pages, the author page)
 //   get a description.
-// - A post with a cover shares with its own picture, not the site card.
+// - A post with a cover (or a `share` picture) shares with it, not the site card.
 import { defineRouteMiddleware } from '@astrojs/starlight/route-data';
 
 type HeadEntry = { tag: string; attrs?: Record<string, string | boolean | undefined>; content?: string };
@@ -35,7 +35,10 @@ export const onRequest = defineRouteMiddleware((context) => {
     if (page && title?.content) title.content = title.content.replace(/^Blog\b/, `Blog, page ${page}`);
   }
 
-  const cover = (route.entry.data as { cover?: { image?: { src: string; width: number; height: number }; alt?: string } }).cover;
+  type Picture = { image?: { src: string; width: number; height: number }; alt?: string };
+  const data = route.entry.data as { cover?: Picture; share?: Picture };
+  // A cover is also the share picture; `share` gives one to a post without a cover.
+  const cover = data.cover ?? data.share;
   if (cover?.image && context.site) {
     setMeta(head, 'og:image', new URL(cover.image.src, context.site).href);
     setMeta(head, 'og:image:width', String(cover.image.width));
