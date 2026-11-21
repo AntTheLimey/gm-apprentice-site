@@ -25,6 +25,22 @@ const RELAY = '/raven';
 const POSTHOG_API = 'us.i.posthog.com';
 const POSTHOG_ASSETS = 'us-assets.i.posthog.com';
 
+// PostHog throws the reader's address away in cookieless mode before it looks up their
+// location (PostHog issues #48660, #51371), so the page asks /raven/where for the
+// country Cloudflare already knows and attaches it to its events. Only the two-letter
+// code leaves the Worker; no address is stored anywhere.
+export function countryFor(cf) {
+  const code = cf?.country;
+  // XX: unknown. T1: Tor.
+  return typeof code === 'string' && /^[A-Z]{2}$/.test(code) && code !== 'XX' && code !== 'T1' ? code : null;
+}
+
+function where(request) {
+  return new Response(JSON.stringify({ country: countryFor(request.cf) }), {
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+  });
+}
+
 export function relayTarget(url) {
   const { pathname, search } = new URL(url);
   if (!pathname.startsWith(`${RELAY}/`)) return null;
@@ -52,6 +68,7 @@ export default {
   async fetch(request, env) {
     const to = redirectFor(request.url);
     if (to) return Response.redirect(to, 301);
+    if (new URL(request.url).pathname === `${RELAY}/where`) return where(request);
     const target = relayTarget(request.url);
     return target ? relay(request, target) : env.ASSETS.fetch(request);
   },

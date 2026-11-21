@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { redirectFor, relayTarget } from '../worker/index.mjs';
+import { redirectFor, relayTarget, countryFor } from '../worker/index.mjs';
 
 test('www goes to the bare domain, keeping path and query', () => {
   assert.equal(redirectFor('https://www.gmapprentice.com/'), 'https://gmapprentice.com/');
@@ -38,4 +38,12 @@ test('everything else is not relayed', () => {
   assert.equal(relayTarget('https://gmapprentice.com/'), null);
   assert.equal(relayTarget('https://gmapprentice.com/ravens-and-crows/'), null);
   assert.equal(relayTarget('https://gmapprentice.com/blog/raven/'), null);
+});
+
+test('the country is the two-letter code Cloudflare gives, or nothing', () => {
+  assert.equal(countryFor({ country: 'GB' }), 'GB');
+  assert.equal(countryFor({ country: 'XX' }), null);
+  assert.equal(countryFor({ country: 'T1' }), null);
+  assert.equal(countryFor({}), null);
+  assert.equal(countryFor(undefined), null);
 });
