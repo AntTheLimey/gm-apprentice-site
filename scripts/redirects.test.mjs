@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { redirectFor } from '../worker/index.mjs';
+import { redirectFor, ingestTarget } from '../worker/index.mjs';
 
 test('www goes to the bare domain, keeping path and query', () => {
   assert.equal(redirectFor('https://www.gmapprentice.com/'), 'https://gmapprentice.com/');
@@ -25,4 +25,16 @@ test('the bare domain and preview hosts are served, not redirected', () => {
 test('the old workers.dev address goes to the bare domain, keeping path and query', () => {
   assert.equal(redirectFor('https://gm-apprentice.antthelimey.workers.dev/'), 'https://gmapprentice.com/');
   assert.equal(redirectFor('https://gm-apprentice.antthelimey.workers.dev/tutorials/?a=1'), 'https://gmapprentice.com/tutorials/?a=1');
+});
+
+test('/ingest/ relays to PostHog: scripts to the assets host, events to the API host', () => {
+  assert.equal(ingestTarget('https://gmapprentice.com/ingest/static/array.js'), 'https://us-assets.i.posthog.com/static/array.js');
+  assert.equal(ingestTarget('https://gmapprentice.com/ingest/e/?ip=0&ver=1'), 'https://us.i.posthog.com/e/?ip=0&ver=1');
+  assert.equal(ingestTarget('https://gmapprentice.com/ingest/flags/?v=2'), 'https://us.i.posthog.com/flags/?v=2');
+});
+
+test('everything else is not relayed', () => {
+  assert.equal(ingestTarget('https://gmapprentice.com/'), null);
+  assert.equal(ingestTarget('https://gmapprentice.com/ingestion-notes/'), null);
+  assert.equal(ingestTarget('https://gmapprentice.com/blog/ingest/'), null);
 });

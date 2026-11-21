@@ -8,3 +8,4 @@ dist/
 # Raw LinkedIn page captures carry other people's comments and names.
 sources/raw/
 public/downloads/
+.env

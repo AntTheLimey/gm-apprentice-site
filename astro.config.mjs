@@ -34,7 +34,10 @@ export default defineConfig({
       // Blog index descriptions and per-post share pictures (see the file).
       routeMiddleware: './src/routeData.ts',
       // Wraps starlight-blog's own override (see the component).
-      components: { MarkdownContent: './src/components/overrides/MarkdownContent.astro' },
+      components: {
+        Head: './src/components/overrides/Head.astro',
+        MarkdownContent: './src/components/overrides/MarkdownContent.astro',
+      },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/AntTheLimey/gm-apprentice' },
       ],
