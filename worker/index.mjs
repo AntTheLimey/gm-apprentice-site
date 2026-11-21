@@ -20,7 +20,8 @@ export function redirectFor(url) {
 // /raven/* -> PostHog (US cloud), as PostHog's own Cloudflare Worker guide does it. Page
 // analytics go through the site's own address, on a path no blocklist knows, so
 // ad-blockers that block PostHog's hosts don't drop them (src/components/posthog.astro).
-export const RELAY = '/raven';
+// Not exported: a Worker's named exports must be handlers (a constant stops it starting).
+const RELAY = '/raven';
 const POSTHOG_API = 'us.i.posthog.com';
 const POSTHOG_ASSETS = 'us-assets.i.posthog.com';
 
@@ -40,7 +41,9 @@ async function relay(request, target) {
   // PostHog keys travel as "Bearer phc_..."; drop any other credential.
   if (!/^Bearer ph[csx]_/.test(headers.get('authorization') ?? '')) headers.delete('authorization');
   // PostHog's cookieless visitor count and location need the reader's address, not ours.
-  headers.set('X-Forwarded-For', request.headers.get('CF-Connecting-IP') ?? '');
+  // Only when Cloudflare gives one: an empty value blanks the location (seen in wrangler dev).
+  const ip = request.headers.get('CF-Connecting-IP');
+  if (ip) headers.set('X-Forwarded-For', ip);
   const body = request.method === 'GET' || request.method === 'HEAD' ? null : await request.arrayBuffer();
   return fetch(target, { method: request.method, headers, body, redirect: 'manual' });
 }
