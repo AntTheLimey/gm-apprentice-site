@@ -132,5 +132,6 @@ h1#_top {
 }
 .sl-markdown-content blockquote.exchange-apprentice > .exchange-label,
 .sl-markdown-content blockquote.exchange-vault > .exchange-label {
-  color: var(--sl-color-gray-3);
+  /* gray-2, not gray-3: gray-3 fell short of 4.5:1 contrast at this size. */
+  color: var(--sl-color-gray-2);
 }

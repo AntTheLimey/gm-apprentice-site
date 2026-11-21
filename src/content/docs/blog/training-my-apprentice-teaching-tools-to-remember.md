@@ -1,5 +1,6 @@
 ---
 title: "Training My Apprentice: Teaching Your Tools to Remember Your Mistakes"
+description: "A refactor that measured as a quality tie, and the lasting win it left behind: making the tools remember past mistakes so they don't repeat them."
 date: 2026-05-02
 authors: ant
 linkedin: https://www.linkedin.com/pulse/training-my-apprentice-teaching-your-tools-remember-mistakes-pegg-kpxsc/

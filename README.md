@@ -29,11 +29,15 @@ npm test         # script tests
 - The build fails on any broken internal link in a Starlight page, and
   `npm run check:links` checks every internal link and picture in the built
   site, front page included.
+- `npm run check:seo` fails if a page in the built site has no title or
+  description, shares either with another page, has a description outside 50-160
+  characters, or lacks a canonical link, exactly one share picture or valid
+  structured data. Give every new page a `description`.
 
 ## Adding a blog post
 
 1. Make a worktree for the post: `git worktree add .worktrees/post-<slug> -b post/<slug>`.
-2. Write `src/content/docs/blog/<slug>.md` with `title`, `date`, `authors: ant` and an
+2. Write `src/content/docs/blog/<slug>.md` with `title`, `description`, `date`, `authors: ant` and an
    `excerpt`, plus a `cover` if it has one. Pictures go in `src/assets/blog/<slug>/`, each
    with alt text.
 3. A post republished from LinkedIn also gets `linkedin: <url>`. That shows the

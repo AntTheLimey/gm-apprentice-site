@@ -1,6 +1,6 @@
 ---
 title: Wrap up a session
-description: Hand over your notes after the game and get the recap, updated character and NPC notes, what carries forward to next time, and a say in what the players get to see.
+description: Hand over your notes after the game and get the recap, updated character and NPC notes, what carries forward, and a say in what the players get to see.
 checkedAgainst: "1.12.98"
 ---
 

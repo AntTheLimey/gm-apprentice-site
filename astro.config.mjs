@@ -3,8 +3,10 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightBlog from 'starlight-blog';
 import starlightLinksValidator from 'starlight-links-validator';
+import starlightLlmsTxt from 'starlight-llms-txt';
 import { unified } from '@astrojs/markdown-remark';
 import rehypeExchanges from './src/plugins/rehype-exchanges.mjs';
+import rehypeTaskLabels from './src/plugins/rehype-task-labels.mjs';
 
 // The public address comes from SITE_URL so a custom domain is a one-value change.
 const site = process.env.SITE_URL ?? 'https://gmapprentice.com';
@@ -15,8 +17,9 @@ export default defineConfig({
   site,
   // Republished posts keep the author's own characters: no automatic curly quotes,
   // dashes or ellipses.
-  // Tutorial conversations: [!you] / [!apprentice] / [!vault] blockquotes (see the plugin).
-  markdown: { processor: unified({ smartypants: false }), rehypePlugins: [rehypeExchanges] },
+  // Tutorial conversations: [!you] / [!apprentice] / [!vault] blockquotes (see the plugin);
+  // checklist boxes named for screen readers.
+  markdown: { processor: unified({ smartypants: false, rehypePlugins: [rehypeExchanges, rehypeTaskLabels] }) },
   integrations: [
     starlight({
       title: 'GM-Apprentice',
@@ -28,6 +31,8 @@ export default defineConfig({
       },
       favicon: '/favicon.svg',
       customCss: ['./src/styles/theme.css'],
+      // Blog index descriptions and per-post share pictures (see the file).
+      routeMiddleware: './src/routeData.ts',
       // Wraps starlight-blog's own override (see the component).
       components: { MarkdownContent: './src/components/overrides/MarkdownContent.astro' },
       social: [
@@ -88,6 +93,14 @@ export default defineConfig({
           },
         }),
         starlightLinksValidator(),
+        // /llms.txt, /llms-full.txt and /llms-small.txt for AI assistants (llmstxt.org).
+        starlightLlmsTxt({
+          projectName: 'GM-Apprentice',
+          description:
+            'Free, open-source AI skills for tabletop game masters. They organize campaign notes into a linked vault, prep sessions, help at the table, wrap up after play and publish a campaign website for the players. They run inside an AI agent such as Claude Code or Codex, or any agent that takes skills.',
+          promote: ['start/**', 'tutorials/**'],
+          demote: ['blog/**'],
+        }),
       ],
     }),
   ],
