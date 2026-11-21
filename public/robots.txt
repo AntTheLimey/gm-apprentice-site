@@ -1,6 +1,0 @@
-# Every crawler is welcome, search and AI alike: the site exists to be found.
-# Branch previews and the old workers.dev address send X-Robots-Tag: noindex (_headers).
-User-agent: *
-Allow: /
-
-Sitemap: https://gmapprentice.com/sitemap-index.xml

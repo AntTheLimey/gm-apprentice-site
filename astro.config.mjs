@@ -19,7 +19,7 @@ export default defineConfig({
   // dashes or ellipses.
   // Tutorial conversations: [!you] / [!apprentice] / [!vault] blockquotes (see the plugin);
   // checklist boxes named for screen readers.
-  markdown: { processor: unified({ smartypants: false }), rehypePlugins: [rehypeExchanges, rehypeTaskLabels] },
+  markdown: { processor: unified({ smartypants: false, rehypePlugins: [rehypeExchanges, rehypeTaskLabels] }) },
   integrations: [
     starlight({
       title: 'GM-Apprentice',
