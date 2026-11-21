@@ -1,5 +1,6 @@
 ---
 title: "Better Call the Midwife! How the GM's Apprentice Helps you Give Birth To Your Ideas"
+description: "Meet the Midwife, the GM-Apprentice skill that helps you turn a vague idea, or nothing at all, into a campaign or one-shot you can run."
 date: 2026-07-01
 authors: ant
 linkedin: https://www.linkedin.com/pulse/better-call-midwife-how-gms-apprentice-helps-you-give-antony-pegg-mrgfc/

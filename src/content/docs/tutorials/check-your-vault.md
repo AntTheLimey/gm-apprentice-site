@@ -1,6 +1,6 @@
 ---
 title: Check your vault
-description: Ask if anything's broken and get an audit of your campaign notes, from contradictions and stale facts to broken links and look-alike names, with a proposed fix for each.
+description: Ask if anything's broken and get an audit of your campaign notes, from contradictions and stale facts to broken links and look-alike names, each with a fix.
 checkedAgainst: "1.12.98"
 ---
 

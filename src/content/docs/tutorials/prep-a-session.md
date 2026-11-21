@@ -1,6 +1,6 @@
 ---
 title: Prep a session
-description: Ask for next session's prep and get a plan built from what happened last time, with scenes, NPCs, spotlight for every player and the calls it made for you to check.
+description: Ask for next session's prep and get a plan built from last time, with scenes, NPCs, spotlight for every player and the calls it made for you to check.
 checkedAgainst: "1.12.98"
 ---
 

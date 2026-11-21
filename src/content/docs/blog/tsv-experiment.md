@@ -1,5 +1,6 @@
 ---
 title: "Experiment: Can TSV Replace Markdown Tables in LLM Skill Files?"
+description: "Can tab-separated values replace Markdown tables in AI skill files? A measured experiment on token savings against parsing accuracy."
 date: 2026-11-19
 authors: ant
 excerpt: "Markdown tables carry formatting overhead that LLMs don't need."

@@ -1,6 +1,6 @@
 ---
 title: Connections
-description: Every page on the campaign site ends with who and what its subject is tied to, drawn as a tree, a web or cards. How it works for the players, and the vocabulary of ties underneath it for the GM.
+description: Every page on the campaign site ends with who and what its subject is tied to, drawn as a tree, a web or cards, with the vocabulary of ties for the GM.
 checkedAgainst: "1.12.111"
 ---
 

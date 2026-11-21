@@ -1,5 +1,6 @@
 ---
 title: "Training My Apprentice: Skill Priming and Routing"
+description: "The same refactoring technique paid off once and cost 4% more the next time. Why priming and routing are different things in a model's context window."
 date: 2026-05-08
 authors: ant
 linkedin: https://www.linkedin.com/pulse/training-my-apprentice-skill-priming-routing-antony-pegg-venze/

@@ -1,6 +1,6 @@
 ---
 title: Handouts
-description: Letters, clippings, terminal printouts and orders, written in the voice of whoever sent them, laid out to print, and posted to the players' site the moment they find one.
+description: Letters, clippings, printouts and orders in the voice of whoever sent them, laid out to print and posted to the players' site the moment they find one.
 checkedAgainst: "1.12.112"
 ---
 

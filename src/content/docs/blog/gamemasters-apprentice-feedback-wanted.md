@@ -1,5 +1,6 @@
 ---
 title: "A GameMasters Apprentice Claude Skill: Feedback Wanted"
+description: "Why a GM who once ran D&D Beyond built GM-Apprentice, an open-source AI plugin for rules lookups, prep and campaign continuity, and asked for feedback."
 date: 2026-04-15
 authors: ant
 linkedin: https://www.linkedin.com/pulse/gamemasters-apprentice-claude-skill-feedback-wanted-antony-pegg-qzyfc/

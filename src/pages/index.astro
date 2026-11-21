@@ -6,6 +6,34 @@ import { gallery } from '../data/gallery.mjs';
 const preview = process.env.PREVIEW === '1';
 const canonical = new URL('/', Astro.site);
 const campaigns = gallery.filter((e) => e.campaign);
+const title = 'GM-Apprentice: AI skills for tabletop game masters';
+// Structured data: tells search engines and AI answer engines what this is.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': new URL('/#website', Astro.site).href,
+      name: 'GM-Apprentice',
+      url: canonical.href,
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'GM-Apprentice',
+      url: canonical.href,
+      description:
+        'Free, open-source AI skills that organize, prep, run and publish your tabletop campaign: Call of Cthulhu, GURPS, Blades in the Dark, D&D 5e and Pathfinder 2e.',
+      applicationCategory: 'GameApplication',
+      operatingSystem: 'Windows, macOS, Linux',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+      image: new URL('/social-card.png', Astro.site).href,
+      sameAs: ['https://github.com/AntTheLimey/gm-apprentice'],
+      author: { '@type': 'Person', name: 'Antony Pegg', url: 'https://github.com/AntTheLimey' },
+    },
+  ],
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -20,7 +48,8 @@ const campaigns = gallery.filter((e) => e.campaign);
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
-<meta property="og:title" content="GM-Apprentice">
+<meta property="og:title" content={title}>
+<meta property="og:site_name" content="GM-Apprentice">
 <meta property="og:description" content="Free, open-source AI skills that organize, prep, run and publish your tabletop campaign.">
 <meta property="og:url" content={canonical}>
 <meta property="og:image" content={new URL('/social-card.png', Astro.site)}>
@@ -28,7 +57,8 @@ const campaigns = gallery.filter((e) => e.campaign);
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="application/rss+xml" title="GM-Apprentice blog" href="/blog/rss.xml">
-<title>GM-Apprentice</title>
+<title>{title}</title>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 <style is:global>
 body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 

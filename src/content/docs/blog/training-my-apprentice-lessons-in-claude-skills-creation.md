@@ -1,5 +1,6 @@
 ---
 title: "Training My Apprentice: Lessons in Claude Skills Creation"
+description: "Lessons from building AI skills for tabletop GMs across Call of Cthulhu, GURPS, Blades in the Dark and D&D: what worked and what didn't."
 date: 2026-04-20
 authors: ant
 linkedin: https://www.linkedin.com/pulse/training-my-apprentice-lessons-claude-skills-creation-antony-pegg-xpsvc/
