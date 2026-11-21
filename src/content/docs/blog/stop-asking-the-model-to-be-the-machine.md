@@ -19,9 +19,9 @@ One of the coolest things I’m working on is having it create interactive 3D ma
 
 You can [see and play with the full map here](https://dead-end.pages.dev/map/)
 
-However most of the time is spent on efficiency. Really thats the whole point of a Skill, to generate efficiency \- by detailing out how to do repetitive tasks, backed with the necessary knowledge or reference material so that it doesn’t need to be recreated each time.
+However most of the time is spent on efficiency. Really that's the whole point of a Skill, to generate efficiency \- by detailing out how to do repetitive tasks, backed with the necessary knowledge or reference material so that it doesn’t need to be recreated each time.
 
-So, although its way more boring than a cool browser-based 3D interactive space map, here’s a few of my recent learnings and changes I have made:moving procedure out of prose and into code, learning what to measure once you do, and paying the bill that code runs up the moment you want a skill to work somewhere other than Claude Code
+So, although its way more boring than a cool browser-based 3D interactive space map, here’s a few of my recent learnings and changes I have made: moving procedure out of prose and into code, learning what to measure once you do, and paying the bill that code runs up the moment you want a skill to work somewhere other than Claude Code.
 
 ## The Model Was Asked to Be the Machine
 
@@ -41,7 +41,7 @@ The audit's phrase for the worst of it was that *the model was being asked to be
 
 Two quieter patterns sat underneath. Twenty-odd places told the model to hand-check something a script already checked, which gave every rule two implementations and left the model following whichever one it had read last. 
 
-Plenty of rules had nothing checking them at all. the session plan had fourteen stated conformance rules and no check, while the only enforcement of the wrap-up format was a 146-line repair procedure, which basically proves that nobody was following the rules.  
+Plenty of rules had nothing checking them at all. The session plan had fourteen stated conformance rules and no check, while the only enforcement of the wrap-up format was a 146-line repair procedure, which basically proves that nobody was following the rules.  
 ![Diagram: one vault migration run two ways. Before, the skill describes 247 lines of procedure and the model does it by hand: 14 tool calls, about 34,100 tokens of work, every template wrongly declined. After, the skill names a command and a migration script plans, applies and reports: 7 tool calls, about 17,400 tokens, correct end state](../../../assets/blog/stop-asking-the-model-to-be-the-machine/03.png)  
 *The same vault migration, run both ways. The original prose run also got it wrong, declining every template the migration should have added.*
 
@@ -62,7 +62,7 @@ A script that renames a note and then rewrites every link to it in every other f
 **Checkers increase your cost.** A branch that added format checks to the session plan looked 8 to 15% dearer in tokens, a gap small enough to argue with on the handful of runs I had. What I couldn't argue with was the count of edit calls, which went 5, then 8, then 17 across the three versions I compared, because the model was now writing, being marked, and rewriting.   
 Every quality gate stayed green the whole time, and the regression stayed invisible until I compared tool-call counts. 
 
-Then there's the script that didnt save anything. Its job was to write session wrap-up text into the right notes. It came out 1% cheaper and 12% slower than the model doing it by hand. I shipped it anyway, because by being a procedural action, it can't duplicate an entry on a re-run and can't leave GM-only text where players will read it. 
+Then there's the script that didn't save anything. Its job was to write session wrap-up text into the right notes. It came out 1% cheaper and 12% slower than the model doing it by hand. I shipped it anyway, because by being a procedural action, it can't duplicate an entry on a re-run and can't leave GM-only text where players will read it. 
 
 The lesson it left is that a replacer only saves what it replaces, and the migration and rename scripts had replaced nearly the whole job. Estimate the mechanical share before you promise yourself a saving.  
 ![Bar chart of what a script did to the cost of the job, against the model doing it by hand: rename script -58%, migration script -49%, wrap-up writer -1%, plan checker +8 to +15%](../../../assets/blog/stop-asking-the-model-to-be-the-machine/04.png)  
@@ -90,9 +90,9 @@ My plan checker is my painful reminder: it gave an agent-written plan a clean sh
 
 ## Net, Not Gross (contextually speaking)
 
-For most of the year my unit of efficiency was the size of the skill text. Early on, I was obsessed with the skill file sizes. At one point I put my apprentice on a  "skill diet" to try to shrink how much ot added to the Context window. That diet took the nine skill files from 147 KB to 84 KB, and it helped, by trimming something like 20% on the token counter.
+For most of the year my unit of efficiency was the size of the skill text. Early on, I was obsessed with the skill file sizes. At one point I put my apprentice on a  "skill diet" to try to shrink how much it added to the Context window. That diet took the nine skill files from 147 KB to 84 KB, and it helped, by trimming something like 20% on the token counter.
 
-What changed my mind was a mechanization that promised an additional 20% savings, but saved less than 3% on the test counter. This was a real dumbass cringe moment, when I realized .. yeah .. i’d saved 20% of my SKILL, but I had been counting the reduction gains against the FULL context \- system prompts, MCPs, connectors, other installed skills … I had been chasing a phantom efficiency.
+What changed my mind was a mechanization that promised an additional 20% savings, but saved less than 3% on the test counter. This was a real dumbass cringe moment, when I realized .. yeah .. I’d saved 20% of my SKILL, but I had been counting the reduction gains against the FULL context \- system prompts, MCPs, connectors, other installed skills … I had been chasing a phantom efficiency.
 
 The first model call of any run carries a start-up context before the skill has done anything: the harness's instructions and tool definitions, my global notes, the vault's own notes file, and the one-line descriptions of every installed skill. Every later call re-sends it.
 
@@ -115,7 +115,7 @@ Here is that sum for the comparison that woke me up: eighteen prep runs across c
 
 *More than half of what a prep run reads is the harness's own start-up context, sent again on every call.*
 
-The gross figure misleads in both directions. It understates what a change did to the skill's own work, 17.5% against 23.4% here and, in the migration test from earlier, 23% against 49%. And it hides how little of the bill that work is. Overhead was 57% of the first arm and 60% of the second, so more than half of what a prep run reads isn't the skill's to trim, and the bundle I had been filing down for two rounds was a small slice of the remainder. I'd had the subtraction available for a month and still didn't work out the bundle's share before deciding to abandon it completely..
+The gross figure misleads in both directions. It understates what a change did to the skill's own work, 17.5% against 23.4% here and, in the migration test from earlier, 23% against 49%. And it hides how little of the bill that work is. Overhead was 57% of the first arm and 60% of the second, so more than half of what a prep run reads isn't the skill's to trim, and the bundle I had been filing down for two rounds was a small slice of the remainder. I'd had the subtraction available for a month and still didn't work out the bundle's share before deciding to abandon it completely.
 
 The other thing the net figure did was end my interest in file size. After the diet the nine skill files totalled 84 KB. Today they total 127 KB. The release that added the most to the prep skill is the one that actually cut its cost most. You could call that bloat creeping back in, since the diet began when I felt things getting worse at 147 KB. I can't rule it out by looking at the size, and that's my complaint about size: it never told me anything in either direction.  
 ![Bar chart of the nine skill files' total size: 147 KB at the September peak, 84 KB after the diet on 24 September, 115 KB on 11 November, 127 KB on 18 November](../../../assets/blog/stop-asking-the-model-to-be-the-machine/06.png)  
@@ -163,7 +163,7 @@ One particular mechanical turn gets its own heading, because each harness fails 
 
 On my largest campaign, the command that gathers context for prep printed 157 KB. Under Claude Code the model read the saved file twice, re-ran the command into a temp file and sliced it up with `sed` and `grep`, and that took about 8 of the run's 21 turns. Claude's failure costs turns. Codex's costs content, since the model sees a beginning, an end and a one-line marker, and carries on as though it had read the lot.
 
-My first fix was the wrong one. I set a budget of 24,000 characters to fit under both limits and built paging so the model could fetch the rest, The A/B came back with more turns, more tokens and plans that weren’t any better. A control test that differed from the baseline by one small block swung by six turns in either direction, so single runs couldn't separate anything from anything. 
+My first fix was the wrong one. I set a budget of 24,000 characters to fit under both limits and built paging so the model could fetch the rest. The A/B came back with more turns, more tokens and plans that weren’t any better. A control test that differed from the baseline by one small block swung by six turns in either direction, so single runs couldn't separate anything from anything. 
 
 My note on the design was that "read every page seems wrong to me", because the job was never to deliver everything in smaller parcels. The job was to feed the step what it needs and nothing else, and a later test found that between a quarter and a half of what prep was reading was stale information.
 
@@ -179,7 +179,7 @@ Not a single run wrote the batch file directly. One wrote a 34 KB Python script 
 
 **Cheaper and worse.** Gathering everything wrap-up needs into one opening call was 33% cheaper, and the blind judges preferred the original more expensive version in 15 of 18 judgements across three attempts. Reading less of the vault up front meant taking less care with the notes already in it, so that one is parked.
 
-**Proving the wrong commit.** The batched-writes change was proven at \$1.61 a wrap-up, went through two rounds of code review, and shipped at \$2.06, which was 6% dearer than the version it was supposed to beat by 17%. I only found out because the next experiment re-ran its baseline fresh. The judges preferred the shipped version 5 to 1, so the extra 45 cents does buy better wrap-ups, but I hadn't known I was paying it. The lesson: No matter what your original measurement was, by the time its ready to ship, re-measure\!
+**Proving the wrong commit.** The batched-writes change was proven at \$1.61 a wrap-up, went through two rounds of code review, and shipped at \$2.06, which was 6% dearer than the version it was supposed to beat by 17%. I only found out because the next experiment re-ran its baseline fresh. The judges preferred the shipped version 5 to 1, so the extra 45 cents does buy better wrap-ups, but I hadn't known I was paying it. The lesson: No matter what your original measurement was, by the time it's ready to ship, re-measure\!
 
 The instruments failed too. My token counter turned out to have been over-counting by 1.2 to 1.9 times per run, which puts an asterisk on every token percentage I recorded before late October. Twenty-four runs were voided when six parallel runs shared one temp file, and their scores had looked perfectly plausible. About one run in twenty still wanders off and reads the installed copy of the plugin instead of the branch under test.
 
