@@ -4,14 +4,14 @@
 // - Cookieless: no cookies or local storage, so no consent banner. PostHog counts
 //   visitors with a daily server-side hash ("cookieless server hash mode" must be on in
 //   the project's settings).
-// - Events go through the site's own Worker at /ingest (worker/index.mjs), so
+// - Events go through the site's own Worker at /raven (worker/index.mjs), so
 //   ad-blockers that block PostHog's hosts don't drop them.
 // - No session recordings.
 const enabled = process.env.PREVIEW !== '1' && !import.meta.env.DEV;
 const config = {
   key: 'phc_xRKyLwsnksXZPAcdm4iEJTvGsEXN5weNTuWpnbaFrGBT',
   options: {
-    api_host: '/ingest',
+    api_host: '/raven',
     ui_host: 'https://us.posthog.com',
     defaults: '2026-08-30',
     cookieless_mode: 'always',

@@ -17,33 +17,39 @@ export function redirectFor(url) {
   return null;
 }
 
-// /ingest/* -> PostHog (US cloud). Page analytics go through the site's own address so
+// /raven/* -> PostHog (US cloud), as PostHog's own Cloudflare Worker guide does it. Page
+// analytics go through the site's own address, on a path no blocklist knows, so
 // ad-blockers that block PostHog's hosts don't drop them (src/components/posthog.astro).
+export const RELAY = '/raven';
 const POSTHOG_API = 'us.i.posthog.com';
 const POSTHOG_ASSETS = 'us-assets.i.posthog.com';
 
-export function ingestTarget(url) {
+export function relayTarget(url) {
   const { pathname, search } = new URL(url);
-  if (!pathname.startsWith('/ingest/')) return null;
-  const rest = pathname.slice('/ingest'.length);
-  const host = rest.startsWith('/static/') ? POSTHOG_ASSETS : POSTHOG_API;
+  if (!pathname.startsWith(`${RELAY}/`)) return null;
+  const rest = pathname.slice(RELAY.length);
+  // Scripts (/static/) and remote config (/array/) come from the assets host.
+  const host = /^\/(static|array)\//.test(rest) ? POSTHOG_ASSETS : POSTHOG_API;
   return `https://${host}${rest}${search}`;
 }
 
-function relay(request, target) {
+async function relay(request, target) {
   const headers = new Headers(request.headers);
   headers.delete('cookie');
+  headers.delete('host');
+  // PostHog keys travel as "Bearer phc_..."; drop any other credential.
+  if (!/^Bearer ph[csx]_/.test(headers.get('authorization') ?? '')) headers.delete('authorization');
   // PostHog's cookieless visitor count and location need the reader's address, not ours.
-  const ip = request.headers.get('CF-Connecting-IP');
-  if (ip) headers.set('X-Forwarded-For', ip);
-  return fetch(target, { method: request.method, headers, body: request.body, redirect: 'manual' });
+  headers.set('X-Forwarded-For', request.headers.get('CF-Connecting-IP') ?? '');
+  const body = request.method === 'GET' || request.method === 'HEAD' ? null : await request.arrayBuffer();
+  return fetch(target, { method: request.method, headers, body, redirect: 'manual' });
 }
 
 export default {
   async fetch(request, env) {
     const to = redirectFor(request.url);
     if (to) return Response.redirect(to, 301);
-    const target = ingestTarget(request.url);
+    const target = relayTarget(request.url);
     return target ? relay(request, target) : env.ASSETS.fetch(request);
   },
 };
