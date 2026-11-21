@@ -34,6 +34,15 @@ npm test         # script tests
   characters, or lacks a canonical link, exactly one share picture or valid
   structured data. Give every new page a `description`.
 
+## Analytics
+
+PostHog web analytics (US cloud), on the live site only: never on branch previews or
+`astro dev`. It is cookieless (no banner needed; "Cookieless tracking" must stay on in
+the PostHog project), records no sessions, and sends through the Worker at `/raven`
+so ad-blockers don't drop it. The snippet and the named events are in
+`src/components/posthog.astro`; the relay is in `worker/index.mjs`. PostHog ignores
+automated browsers, so a test run needs `opt_out_useragent_filter` set in that page.
+
 ## Adding a blog post
 
 1. Make a worktree for the post: `git worktree add .worktrees/post-<slug> -b post/<slug>`.

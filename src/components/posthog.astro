@@ -1,0 +1,54 @@
+---
+// PostHog web analytics, on the live site only: never on branch previews or `astro dev`.
+// - The project key is PostHog's public one (phc_): it is meant to sit in page source.
+// - Cookieless: no cookies or local storage, so no consent banner. PostHog counts
+//   visitors with a daily server-side hash ("cookieless server hash mode" must be on in
+//   the project's settings).
+// - Events go through the site's own Worker at /raven (worker/index.mjs), so
+//   ad-blockers that block PostHog's hosts don't drop them.
+// - No session recordings.
+const enabled = process.env.PREVIEW !== '1' && !import.meta.env.DEV;
+const config = {
+  key: 'phc_xRKyLwsnksXZPAcdm4iEJTvGsEXN5weNTuWpnbaFrGBT',
+  options: {
+    api_host: '/raven',
+    ui_host: 'https://us.posthog.com',
+    defaults: '2026-08-30',
+    cookieless_mode: 'always',
+    disable_session_recording: true,
+    capture_exceptions: { capture_unhandled_errors: true, capture_unhandled_rejections: true, capture_console_errors: false },
+  },
+};
+---
+{enabled && (
+<script is:inline define:vars={{ config }}>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split('.');2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement('script')).type='text/javascript',p.crossOrigin='anonymous',p.async=!0,p.src=s.api_host+'/static/array.js',(r=t.getElementsByTagName('script')[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a='posthog',u.people=u.people||[],Object.defineProperty(u,'toString',{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e='posthog';return'posthog'!==a&&(e+='.'+a),t||(e+=' (stub)'),e}}),Object.defineProperty(u.people,'toString',{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+'.people (stub)'}}),o='capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId'.split(' '),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init(config.key, config.options);
+
+  // The clicks worth counting by name (autocapture records every click as well):
+  // - install_line_copied / code_copied: a code block's copy button
+  // - file_downloaded: the notes-pile zip and any other download
+  // - outbound_click: any link off the site (GitHub, D&D Beyond, campaign sites)
+  // - getting_started_path_selected: the front page's two doors and its setup link
+  document.addEventListener('click', function (event) {
+    var copy = event.target.closest('.expressive-code .copy button');
+    if (copy) {
+      var code = copy.dataset.code || '';
+      posthog.capture(code.indexOf('INSTALL.md') !== -1 ? 'install_line_copied' : 'code_copied', { page: location.pathname });
+      return;
+    }
+    var link = event.target.closest('a[href]');
+    if (!link) return;
+    if (link.dataset.analyticsStartPath) {
+      posthog.capture('getting_started_path_selected', { start_path: link.dataset.analyticsStartPath });
+      return;
+    }
+    var url = new URL(link.href, location.href);
+    if (/\.(zip|pdf)$/i.test(url.pathname)) {
+      posthog.capture('file_downloaded', { file: url.pathname, page: location.pathname });
+    } else if (url.host !== location.host) {
+      posthog.capture('outbound_click', { url: url.href, host: url.host, page: location.pathname });
+    }
+  });
+</script>
+)}

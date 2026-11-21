@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { redirectFor } from '../worker/index.mjs';
+import { redirectFor, relayTarget } from '../worker/index.mjs';
 
 test('www goes to the bare domain, keeping path and query', () => {
   assert.equal(redirectFor('https://www.gmapprentice.com/'), 'https://gmapprentice.com/');
@@ -25,4 +25,17 @@ test('the bare domain and preview hosts are served, not redirected', () => {
 test('the old workers.dev address goes to the bare domain, keeping path and query', () => {
   assert.equal(redirectFor('https://gm-apprentice.antthelimey.workers.dev/'), 'https://gmapprentice.com/');
   assert.equal(redirectFor('https://gm-apprentice.antthelimey.workers.dev/tutorials/?a=1'), 'https://gmapprentice.com/tutorials/?a=1');
+});
+
+test('/raven/ relays to PostHog: scripts and config to the assets host, events to the API host', () => {
+  assert.equal(relayTarget('https://gmapprentice.com/raven/static/array.js'), 'https://us-assets.i.posthog.com/static/array.js');
+  assert.equal(relayTarget('https://gmapprentice.com/raven/array/phc_x/config.js'), 'https://us-assets.i.posthog.com/array/phc_x/config.js');
+  assert.equal(relayTarget('https://gmapprentice.com/raven/e/?ip=0&ver=1'), 'https://us.i.posthog.com/e/?ip=0&ver=1');
+  assert.equal(relayTarget('https://gmapprentice.com/raven/flags/?v=2'), 'https://us.i.posthog.com/flags/?v=2');
+});
+
+test('everything else is not relayed', () => {
+  assert.equal(relayTarget('https://gmapprentice.com/'), null);
+  assert.equal(relayTarget('https://gmapprentice.com/ravens-and-crows/'), null);
+  assert.equal(relayTarget('https://gmapprentice.com/blog/raven/'), null);
 });
