@@ -125,3 +125,5 @@ each player character wants, and the threads still open.
   (see [Prep a session](/tutorials/prep-a-session/)).
 - Bigger piles, transcripts, a single character sheet found later:
   [Bring in an existing campaign](/tutorials/bring-in-a-campaign/) goes deeper.
+- Tried it? [Tell us how it went](https://github.com/AntTheLimey/gm-apprentice/discussions/new?category=show-and-tell), good or bad. A GitHub
+  account is all you need.
