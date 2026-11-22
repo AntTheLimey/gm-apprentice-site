@@ -3,9 +3,10 @@ title: Where the AI stops
 description: GM-Apprentice is an AI tool, built to assist a GM and not to write the story. What you do, what works without any AI, and what the AI adds on top.
 ---
 
-Yes, GM-Apprentice is an AI tool, and we're not apologizing for it. It's
-here to **assist** you. It isn't here to write your story, because that's
-the part you and your players turn up for.
+Yes, GM-Apprentice is an AI tool, and I'm glad of the help. I made it to
+**assist** with the bookkeeping that piles up around a campaign, so I could
+spend more of my time on the game. It can do the same for you. The story is
+still yours and your players' to make.
 
 Underneath the AI is a folder of notes and a program that turns them into
 a website. You can make, run and publish all of that by hand and never
@@ -93,8 +94,8 @@ and write in them, which programs can't do. Take one row, or all of them.
 - **Are the stories on your campaign sites AI-written?** The table made
   them. The apprentice drafts the write-up from what happened, and the GM
   decides what stays.
-- **Did AI build this?** Much of it, yes, directed and tested by one GM who
-  plays with it. The blog tells that story, mistakes included:
+- **Did AI build this?** Much of it, yes. I direct it, and I test it on
+  my own games. The blog tells that story, mistakes included:
   [start here](/blog/stop-asking-the-model-to-be-the-machine/).
 - **Where do my notes go?** They stay in your folder. The parts an agent
   reads go to whoever runs that agent, under your plan with them. A model on
