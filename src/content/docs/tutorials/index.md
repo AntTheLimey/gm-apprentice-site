@@ -65,3 +65,5 @@ ends with a vault of your own.
 
 Want the whole list of what it can do, one line each?
 See [Everything it does](/features/).
+
+Used it at your table? [Tell us how it went](https://github.com/AntTheLimey/gm-apprentice/discussions/new?category=show-and-tell).
