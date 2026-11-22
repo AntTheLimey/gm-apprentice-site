@@ -71,5 +71,4 @@ build of the site has the rule on its own page:
   players, why an old recap played it differently.
 - **Your own rulebooks are a different thing.** House rules are a few
   lines. If you want the apprentice to know a whole supplement, see
-  [personal reference files](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/personal-reference-files.md)
-  in the plugin docs.
+  [Your own rulebooks](/tutorials/your-own-books/).
