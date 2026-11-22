@@ -20,9 +20,8 @@ All of that stays yours whether you use the AI or not.
 
 ## What works without AI
 
-The core is ordinary files and ordinary programs, and there's no AI inside
-it. We checked: we made a campaign folder, wrote the notes, ran the checks
-and built the site with a text editor and a terminal, and no agent running.
+The core is ordinary files and ordinary programs. There's no AI inside it,
+and it runs the same whether you type the commands or the apprentice does.
 
 - **Your campaign folder.** One command makes it, with a template for each
   kind of note: characters, places, factions, items, clues, sessions, and a
