@@ -38,7 +38,7 @@ export const gallery = [
     name: 'GURPS Special Forces',
     url: 'https://gurps-special-forces.pages.dev',
     img: '/img/sf-home.jpg',
-    alt: 'GURPS Special Forces campaign site front page',
+    alt: 'GURPS Special Forces campaign site: four soldiers outside a hangar at dusk, a glowing portal open behind them',
     system: 'Military GURPS',
     blurb:
       'A special operations team that ended up interviewing thirty alternate-reality versions of the same woman. Military GURPS, played straight until it wasn’t.',
