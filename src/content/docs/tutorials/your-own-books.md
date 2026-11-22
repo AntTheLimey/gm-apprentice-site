@@ -1,30 +1,34 @@
 ---
 title: Your own rulebooks
-description: Let the apprentice use books you own, kept on your computer and never shared, and the two rough edges to know about today.
-checkedAgainst: "1.12.98"
+description: Let the apprentice use books you own. Your notes stay in a folder on your computer, survive updates and are checked by name at the table.
+checkedAgainst: "1.12.119"
 ---
 
 <!-- video -->
 
-GM-Apprentice comes with the free rules for each game it knows (the open
-SRD and ORC texts, and for GURPS the plugin's own summaries). Those cover the rules, not the setting: no named
-factions, no adventure NPCs, no monsters from the book you bought. If you
-own the book, you can turn the parts you need into your own reference
-files. They stay on your computer, are never published, and the
-apprentice reads them at the table.
+GM-Apprentice comes with open rules for each game it knows (built on the
+SRD and ORC texts, and for GURPS the plugin's own summaries). Apart from
+Lovecraft's own places and creatures for Call of Cthulhu, those cover the
+rules, not a published setting: no named factions, no adventure NPCs, no
+monsters from the book you bought. If you own the book, you can turn the
+parts you need into your own reference files. The files stay on your
+computer, outside the plugin and your campaign, and the apprentice reads
+them when you prep, play and wrap up.
 
 **Only for books you own**, or things you wrote yourself. These files
 are for your own copy, the way you'd flip through the book at the table.
 Don't share them, commit them anywhere public or put them on your
-campaign site.
+campaign site. If a book's NPC becomes a note in your campaign, keep the
+book's own wording out of what players can see.
 
 ## From a real run
 
-On GM-Apprentice 1.12.98, using the [Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound/tree/sample-v2)
+On GM-Apprentice 1.12.119, using the [Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound/tree/sample-v2)
 (tag `sample-v2`). We typed the GM's side; the replies are the agent's
 own, trimmed (`[...]`) but not reworded. For the test we used a
-four-section adventure we wrote ourselves, *The Drowned Mill*, so no
-publisher's text was copied anywhere.
+short adventure we wrote ourselves, *The Drowned Mill* (one sheet, with
+page numbers in its headings), so no publisher's text was copied
+anywhere, and a stand-in home folder.
 
 > [!you]
 >
@@ -33,73 +37,100 @@ publisher's text was copied anywhere.
 
 > [!apprentice]
 >
-> gm-apprentice handles this with **personal reference files**. You turn
-> the parts of the book you need into markdown notes, and Claude checks
-> them whenever the built-in rules don't cover something. [...]
+> Give me the PDF's path and ask me to **keep its monsters and NPCs as
+> personal reference files**. I'll read it and write short notes that I
+> can look things up in at the table. [...]
 >
-> If you give me the PDF's path, I can do the conversion and draft the
-> monster and NPC files for you to check against the book.
+> The notes keep the numbers exact, put the descriptions in my own words
+> and cite page numbers. There's nothing to configure. [...]
+>
+> - **Check the stat blocks:** two-column pages and tables often extract
+>   badly, so compare the numbers with your book before relying on them.
+>   [...]
 
-So we did:
+It had also spotted our PDF beside the vault, and asked whether that was
+the book:
 
 > [!you]
 >
-> Let's try it on a short one first: ../drowned-mill.pdf is a four-page
-> adventure I wrote myself. Set it up for me.
+> Yes, do it. It's a short one I wrote myself, so keep the undercroft too.
 
-It drafted an overview, the NPCs and the monsters, then asked about two
-things our adventure had left loose, rather than making numbers up:
+It saved four files: the monsters, the people, the places and an index.
+Then it listed what our adventure leaves open:
 
 > [!apprentice]
 >
-> 1. **Mill Rats are missing their ability scores**, and so Initiative.
->    I've marked them "—" rather than make numbers up. [...]
-> 2. **Is Pull Under a trait or an action?** It's in italics after
->    Grasp, which reads like a trait that happens automatically, but it
->    sits under Actions. [...]
+> **The adventure leaves some things open.** I marked these as "not
+> given" rather than inventing answers:
+>
+> - **Pull Under:** it doesn't say what kind of action this takes. It
+>   also needs the target to be in water, but the race has been dry for
+>   a week and the undercroft isn't described as flooded.
+>
+> [...]
+>
+> - **The miller:** it doesn't say who tied him to the axle, and your
+>   players will probably ask.
+>
+> [...]
 
-We answered, and it saved the files. Then, in a fresh conversation on
-game night:
+Fair questions, both. Then we moved the PDF away and started a fresh
+conversation on game night, without mentioning the files:
 
 > [!you]
 >
-> It's not in the vault, it's in my own reference files for D&D. Check
-> there.
+> We're running the Drowned Mill tonight. The party just cornered Old
+> Wat at the eel traps. What does he know, and what are the Wheel
+> Drowner's stats if they go down to the wheel?
 
 > [!apprentice]
 >
-> Found it in your D&D 5e personal files (`drowned-mill/`).
+> **Old Wat** (eel-catcher, no stats; p. 2): sees everything on the river
+> and trades it for drink. He saw **a pale shape riding the wheel on the
+> night of the flood**. [...]
 >
-> **Old Wat** is the eel-catcher. He watches the river and trades what
-> he sees for drink. On the night of the flood he saw **a pale shape
-> riding the wheel**. [...]
+> **Wheel Drowner** (p. 3): Medium Undead, NE, CR 3
 >
-> **Wheel Drowner**: Undead, Medium, CR 3 (700 XP), Neutral Evil
-> - **AC** 12 | **HP** 45 (7d8+14) | **Init** +1 | **Speed** 20 ft.,
->   swim 40 ft. [...]
+> - **AC** 12 | **HP** 45 (7d8+14) | **Speed** 20 ft., swim 40 ft. |
+>   darkvision 60 ft.
+>
+> [...]
+>
+> - **Lay it to rest:** untie the miller's body from the wheel's axle in
+>   the undercroft (p. 4).
+> - **Not given:** Grasp's reach, Pull Under's action type, immunities,
+>   whether the undercroft holds water. The race has been dry a week, so
+>   decide that before they go down: Pull Under needs water.
+>
+> [...]
 
-## Two rough edges, today
+Neither name is in the campaign, so it looked in our own files before
+answering. (The part we cut off the end is it bringing the sample vault up
+to date with the new version.)
 
-We'd rather you heard these from us than found them on game night.
+## Where your files live
 
-**Say where to look.** On game night we first asked "what does Old Wat
-know?" without mentioning the files, and the apprentice searched the
-campaign, found nothing and said so. It didn't make anything up, but it
-didn't check your own files either. Until that's fixed
-([issue #807](https://github.com/AntTheLimey/gm-apprentice/issues/807)),
-say "check my own reference files" when you ask about something from a
-book.
+In a folder of their own in your home folder, with a folder inside it per
+game, made when the apprentice first saves something for that game:
 
-**Keep a copy somewhere else.** Your files live inside the plugin's own
-folder, in a `personal` folder for your game system. Two things follow
-([issue #806](https://github.com/AntTheLimey/gm-apprentice/issues/806)):
+```text
+~/gm-apprentice/personal/
+  coc-7e/
+  dnd-5e-2024/
+  fitd/
+  gurps-4e/
+  pf2e/
+```
 
-- The apprentice may not be allowed to save there. In our run it saved
-  a copy next to the PDF and gave us one command to copy the files
-  across.
-- When the plugin updates, it gets a new folder and your files stay
-  behind in the old one. Keep your master copy outside the plugin, and
-  copy it back after an update.
+On Windows, `~` is your user folder (`C:\Users\<you>`). The folder is
+outside the plugin, so updating or reinstalling GM-Apprentice leaves your
+files alone. You can open, edit or add to them yourself; they're plain
+Markdown. If you make a game's folder by hand, use the name above.
+
+**If you made files on an older version,** they were inside the plugin.
+The apprentice copies any it finds into the new folder the first time it
+updates your campaign or looks there, and says what it copied. It never
+moves, deletes or overwrites a file.
 
 ## What to put in them
 
@@ -116,5 +147,5 @@ Put descriptions in your own words and note page numbers, so you can
 find the full text in the book. Skip anything already in the free
 rules; the apprentice has those.
 
-The folder for each game is in the
-[plugin's guide](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/personal-reference-files.md).
+The [plugin's guide](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/personal-reference-files.md)
+has more on laying the files out.
