@@ -1,9 +1,11 @@
 ---
 // PostHog web analytics, on the live site only: never on branch previews or `astro dev`.
 // - The project key is PostHog's public one (phc_): it is meant to sit in page source.
-// - Cookieless: no cookies or local storage, so no consent banner. PostHog counts
-//   visitors with a daily server-side hash ("cookieless server hash mode" must be on in
-//   the project's settings).
+// - Cookieless: no cookies, so no consent banner. PostHog counts visitors with a daily
+//   server-side hash ("cookieless server hash mode" must be on in the project's settings).
+// - The site's owner opens ?me=on once in each browser (?me=off undoes it). That browser
+//   then keeps one local-storage flag, and its events carry internal_visitor: true, which
+//   the project's internal-user filter leaves out. Nobody else's browser stores anything.
 // - Events go through the site's own Worker at /raven (worker/index.mjs), so
 //   ad-blockers that block PostHog's hosts don't drop them.
 // - No session recordings.
@@ -27,17 +29,38 @@ const config = {
   // The country comes from the Worker (/raven/where): PostHog can't find it in cookieless
   // mode. Start PostHog once it answers, or after a second without it.
   (function () {
+    // The owner's "this is me" flag: ?me=on sets it, ?me=off clears it, then the
+    // parameter is taken back out of the address.
+    var me = false;
+    try {
+      var params = new URLSearchParams(location.search);
+      var asked = params.get('me');
+      if (asked === 'on') localStorage.setItem('gma-internal', '1');
+      if (asked === 'off') localStorage.removeItem('gma-internal');
+      if (asked !== null) {
+        params.delete('me');
+        var rest = params.toString();
+        history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+      }
+      me = localStorage.getItem('gma-internal') === '1';
+    } catch (e) {}
+
     var started = false;
     function start(country) {
       if (started) return;
       started = true;
+      var name = country;
       if (country) {
-        var name = country;
         try { name = new Intl.DisplayNames(['en'], { type: 'region' }).of(country) || country; } catch (e) {}
+      }
+      if (country || me) {
         config.options.before_send = function (event) {
           if (event && event.properties) {
-            event.properties.$geoip_country_code = country;
-            event.properties.$geoip_country_name = name;
+            if (country) {
+              event.properties.$geoip_country_code = country;
+              event.properties.$geoip_country_name = name;
+            }
+            if (me) event.properties.internal_visitor = true;
           }
           return event;
         };
