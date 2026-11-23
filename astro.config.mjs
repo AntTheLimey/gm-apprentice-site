@@ -73,6 +73,7 @@ export default defineConfig({
             { label: 'Add pictures', link: '/tutorials/add-pictures/' },
             { label: 'Change the look', link: '/tutorials/change-the-look/' },
             { label: 'The GM site', link: '/tutorials/gm-site/' },
+            { label: 'Do it by hand', link: '/tutorials/do-it-by-hand/' },
           ],
         },
         { label: 'Everything it does', link: '/features/' },

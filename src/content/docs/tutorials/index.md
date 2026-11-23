@@ -63,6 +63,12 @@ ends with a vault of your own.
 - [The GM site](/tutorials/gm-site/): a private copy with every secret
   showing, for your tablet (publish-site).
 
+## Without an agent
+
+- [Do it by hand](/tutorials/do-it-by-hand/): a vault, its checks and
+  the players' website, made with GM-Apprentice's own commands and no
+  agent at all.
+
 Want the whole list of what it can do, one line each?
 See [Everything it does](/features/).
 
