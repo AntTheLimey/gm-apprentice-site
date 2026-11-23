@@ -13,7 +13,16 @@ Everything below is from a real run on GM-Apprentice 1.12.98. We typed the
 GM's side for this page; the replies are the Midwife's own, trimmed (`[...]`)
 but not reworded.
 
-New to all this? [Get set up](/start/setup/) first.
+:::note[Installed yet?]
+Paste this line into Claude Code, Codex, Cursor or another coding agent. It
+installs GM-Apprentice and tells you what to say next:
+
+```text wrap
+Fetch https://raw.githubusercontent.com/AntTheLimey/gm-apprentice/main/INSTALL.md with curl and follow it.
+```
+
+No coding agent? [Get set up](/start/setup/) step by step, then come back.
+:::
 
 ## 1. Make an empty folder and open your agent in it
 

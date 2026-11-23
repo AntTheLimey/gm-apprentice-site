@@ -6,7 +6,7 @@ checkedAgainst: "1.12.108"
 
 GM-Apprentice is a set of skills: instructions and small scripts that an AI
 agent follows when you ask it for help with your game. The skills are free
-and open source. You bring the agent. The easiest is a paid Claude or
+and open source. You bring the agent. The easiest is a Claude or
 ChatGPT plan, and that's what this page sets up, but any agent that takes
 skills will run them, including one on a model on your own computer.
 This page gets you from nothing to an installed

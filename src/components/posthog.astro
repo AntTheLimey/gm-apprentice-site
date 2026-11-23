@@ -79,6 +79,11 @@ const config = {
   // - outbound_click: any link off the site (GitHub, D&D Beyond, campaign sites)
   // - getting_started_path_selected: the front page's two doors and its setup link
   document.addEventListener('click', function (event) {
+    var mine = event.target.closest('.install-copy');
+    if (mine) {
+      posthog.capture('install_line_copied', { page: location.pathname, where: mine.closest('section') ? mine.closest('section').id : '' });
+      return;
+    }
     var copy = event.target.closest('.expressive-code .copy button');
     if (copy) {
       var code = copy.dataset.code || '';
