@@ -69,6 +69,9 @@ Cowork? Read on.
 
 ## Pick an agent
 
+Not sure you want AI in your game? [Where the AI stops](/where-the-ai-stops/)
+says which parts need it and which don't.
+
 | If you... | Use | You need |
 |---|---|---|
 | want the least typing in a terminal | **Cowork**, in the Claude desktop app (Mac or Windows) | A paid Claude plan that includes Cowork ([Claude pricing](https://claude.com/pricing)) |
