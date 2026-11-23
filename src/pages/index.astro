@@ -100,7 +100,7 @@ p{margin:0}
 .hero-in>div{max-width:36rem}
 .hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);letter-spacing:-.01em;text-shadow:0 2px 24px rgba(0,0,0,.5)}
 .hero .lede{font-size:1.25rem;color:var(--chalk);opacity:.85;margin-top:22px;max-width:34rem}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
 .hero .cost{margin-top:22px;font-size:.98rem;color:var(--dim);max-width:34rem}
 .hero .cost strong{color:var(--chalk);font-weight:500}
 /* the three sites, dealt onto the table below the picture */
@@ -233,6 +233,14 @@ footer a{color:var(--dim)}
   .cycle .loop{display:none}
 }
 @media (max-width:520px){.tiles{grid-template-columns:minmax(0,1fr)}.b-publish{grid-template-columns:minmax(0,1fr)}.b-publish .wide,.b-publish .strip{grid-column:auto}.paper{padding:20px}}
+
+/* The one-line install: a copyable line, with the setup page for anyone without a coding agent. */
+.install{margin-top:24px;max-width:46rem;background:rgba(10,24,18,.72);border:1px solid rgba(232,224,204,.18);border-radius:10px;padding:12px 14px}
+.install .line{display:flex;gap:10px;align-items:center}
+.install code{flex:1;min-width:0;font:.8rem/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--chalk);overflow-wrap:anywhere}
+.install-copy{flex:none;font:700 .9rem var(--body);background:var(--brass);color:var(--brass-ink);border:0;border-radius:999px;padding:8px 16px;cursor:pointer}
+.install-copy:hover{background:#f0c56c}
+.install .alt{margin-top:8px;font-size:.9rem;color:var(--dim)}
 </style>
 </head>
 <body>
@@ -251,11 +259,15 @@ footer a{color:var(--dim)}
   <div>
     <h1>Run the game. Your apprentice keeps the books.</h1>
     <p class="lede">It grows your campaign from a first idea, preps each session from what really happened, answers at the table, and turns every night's play into a story your players can read.</p>
+    <div class="install">
+      <div class="line"><code>Fetch https://raw.githubusercontent.com/AntTheLimey/gm-apprentice/main/INSTALL.md with curl and follow it.</code><button type="button" class="install-copy" data-code="Fetch https://raw.githubusercontent.com/AntTheLimey/gm-apprentice/main/INSTALL.md with curl and follow it.">Copy</button></div>
+      <p class="alt">Paste it into Claude Code, Codex or Cursor and it installs itself. No coding agent? <a href="/start/setup/" data-analytics-start-path="setup">Get set up step by step</a>.</p>
+    </div>
     <div class="cta">
       <a class="btn btn-primary" href="#start">Start your first campaign</a>
       <a class="btn btn-ghost" href="#gallery">See real campaigns</a>
     </div>
-    <p class="cost"><strong>The skills are free and open source.</strong> They run inside an AI agent: a paid Claude or ChatGPT plan is the easiest, but any agent that takes skills will do, local models included.</p>
+    <p class="cost"><strong>The skills are free and open source.</strong> They run inside an AI agent: a Claude or ChatGPT plan is the easiest, but any agent that takes skills will do, local models included.</p>
   </div>
   </div>
 </section>
@@ -451,6 +463,15 @@ footer a{color:var(--dim)}
   <p class="newbie">New to AI agents? <a class="btn btn-ghost" href="/start/setup/" data-analytics-start-path="setup">Get set up first</a></p>
 </section>
 </main>
+<script is:inline>
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('.install-copy'); if (!b) return;
+  var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 2000); };
+  var pick = function () { var r = document.createRange(); r.selectNodeContents(b.previousElementSibling); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.code).then(done, pick); else pick();
+});
+</script>
+
 
 <footer><div class="wrap"><span>GM-Apprentice is free and open source. Made by a GM, for GMs.</span><span><a href="/features/">Everything it does</a> · <a href="/works-with/">Works with</a> · <a href="/where-the-ai-stops/">Where the AI stops</a> · <a href="/blog/">Blog</a> · <a href="/tutorials/">Tutorials</a> · <a href="https://github.com/AntTheLimey/gm-apprentice/discussions/new?category=show-and-tell">Tell us how it went</a> · <a href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a> · <a href="https://github.com/AntTheLimey/gm-apprentice#license">Licences</a></span></div></footer>
 
