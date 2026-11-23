@@ -53,7 +53,8 @@ settings file, Python and Node. The
 [vault commands](https://github.com/AntTheLimey/gm-apprentice/blob/main/skills/shared/gma/llms.md),
 the [site builder](https://github.com/AntTheLimey/gm-apprentice/blob/main/tools/publish/README.md)
 and the [settings](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/site-settings.md)
-are written up there. If you'd sooner click than type,
+are written up there, and [Do it by hand](/tutorials/do-it-by-hand/)
+walks through them from an empty folder. If you'd sooner click than type,
 [GM-Scriptorium](/works-with/#gm-scriptorium), a separate program by
 another GM, builds a site from the same folder with no agent either.
 
