@@ -124,3 +124,5 @@ Midwife invented is marked as a draft until you accept it.
 - Want to steer the Midwife harder, start from nothing at all, or add a new
   chapter to a campaign you already run? [Grow a campaign from an idea](/tutorials/grow-a-campaign/)
   goes deeper.
+- Tried it? [Tell us how it went](https://github.com/AntTheLimey/gm-apprentice/discussions/new?category=show-and-tell), good or bad. A GitHub
+  account is all you need.
