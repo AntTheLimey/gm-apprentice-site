@@ -24,17 +24,22 @@ GM copy with the secret showing.
 ## From a real run
 
 On GM-Apprentice 1.12.140 on a Mac, starting from nothing. We made a
-folder called `games`, unzipped GM-Apprentice into it and renamed that
-folder to `gm-apprentice`. Every command below is typed in `games`
-unless we say otherwise, and the output is the program's own, trimmed
-(`[...]`) but not reworded.
+folder called `games`, unzipped GM-Apprentice into it and renamed the
+new `gm-apprentice-1.12.140` folder to `gm-apprentice`. Every command
+below is typed in `games` unless we say otherwise, and the output is the
+program's own, trimmed (`[...]`) but not reworded.
 
-The vault commands all go through one script. It's a long line, so on a
-Mac or Linux it's worth a short name first:
+Everything goes through one script, `gma`. Its full name is long, so on
+a Mac or Linux give it a short one first, in `games`:
 
 ```bash
-alias gma="python3 $PWD/gm-apprentice/skills/shared/scripts/gma.py"
+alias gma="python3 '$PWD/gm-apprentice/skills/shared/scripts/gma.py'"
 ```
+
+That lasts until you close the terminal window; put the same line in
+your shell's start-up file to keep it. On Windows, type the full
+`python3` line, with the path to your `gm-apprentice` folder, wherever
+we write `gma`.
 
 Check the computer is ready:
 
@@ -83,16 +88,19 @@ that's already there.
 Copy a template from `_Templates` into the right folder and fill it in,
 in any text editor. [Obsidian](https://obsidian.md) is a good one, and
 the vault opens in it as it is. Each template explains its own parts in
-`{braces}`.
+`{braces}`; delete the ones you don't fill in, and the example
+relationship if you don't need it.
 
 We copied the NPC template to `Characters/NPCs/Odile Marsh.md`. The top
-of a note is its details, between `---` lines. Ours, with the
-fields we left empty cut:
+of a note is its details, between `---` lines. Ours, trimmed:
 
 ```yaml
 name: "Odile Marsh"
 type: npc
 canon_status: CANON
+# [...]
+aliases: ["the lamp-wright"]
+# [...]
 occupation: "Lamp-wright"
 age: 58
 status: alive
@@ -122,7 +130,7 @@ Under it goes what the players know. What they don't goes inside the
 >
 > [...]
 >
-> &lt;!-- gm-only --&gt;
+> `<!-- gm-only -->`
 >
 > ## GM Notes
 >
@@ -131,10 +139,10 @@ Under it goes what the players know. What they don't goes inside the
 > She lets one lamp on the road go dark each new moon, and she is paid
 > to.
 >
-> &lt;!-- /gm-only --&gt;
+> `<!-- /gm-only -->`
 
 A link is a name in double brackets, like `[[The Last Lamp]]`. We
-wrote a note for that inn too, and in it linked a friar,
+wrote a note for that inn too, in `Locations`, and in it linked a friar,
 `[[Brother Calloway]]`, who didn't have a note yet.
 
 ## Check it
@@ -147,41 +155,50 @@ gma links Lantern
 gma vault-check Lantern all
 ```
 
-Ours found three things wrong:
+Ours found four things wrong:
 
 ```text
+# broken: 1 name in 1 note; not checked: _QA, _archive (0 names)
 UNWRITTEN	Brother Calloway	1 note: Locations/The Last Lamp.md
 ```
 
 ```text
 ## frontmatter
+# count: 2
 ERROR	Characters/NPCs/Odile Marsh.md	canon_status: 'CANON' must be one of: AUTHORITATIVE, DRAFT, STUB, SUPERSEDED
 ERROR	Locations/The Last Lamp.md	canon_status: 'CANON' must be one of: AUTHORITATIVE, DRAFT, STUB, SUPERSEDED
 [...]
 ## index
+# count: 2
 WARNING	Characters/NPCs/Odile Marsh.md	not referenced from _meta/index.md
 WARNING	Locations/The Last Lamp.md	not referenced from _meta/index.md
 [...]
 ## relationships
+# count: 1
 WARNING	Locations/The Last Lamp.md:18	'knows' is two-way: set bidirectional: true
+[...]
 ```
 
-All three were ours, and that's what the checks are for:
+All four were ours, and that's what the checks are for:
 
 - **The friar had no note.** We copied the NPC template to
-  `Brother Calloway.md`, set its status to `STUB` (a note still to be
-  written up) and gave it one line.
+  `Characters/NPCs/Brother Calloway.md`, set its status to `STUB` (a
+  note still to be written up), gave it a `located_at` tie to the inn,
+  and cut the body to one line. Left in, the template's example tie and
+  its `{Name}` links get flagged too.
 - **`CANON` isn't a status.** We'd guessed. The error lists the four
   that are; settled notes are `AUTHORITATIVE`.
-- **The index** is a list of every note in `_meta/index.md`. It builds
+- **The index** is a list of every note, in `_meta/index.md`. It builds
   itself: `gma index-build Lantern` shows the change, and `--write`
   makes it.
 - **The inn's tie to Odile** was a `knows`, which goes both ways. Her
   note already says where she works, so we took the inn's tie out.
 
-Run the checks again and they come back clean. `gma graph-check
-Lantern orphans` finds notes nothing links to. `gma llms` lists every
-command, the checks on D&D and GURPS sheet numbers among them.
+Run both again and there are no errors or warnings left. `gma
+graph-check Lantern orphans` finds notes nothing links to (on a new
+vault it lists a few of the scaffold's own files, which is fine).
+`gma llms` lists every command, the checks on D&D and GURPS sheet
+numbers among them.
 
 ## Search, and look up a rule
 
@@ -219,12 +236,12 @@ A monster comes back with its stat block. For rulebooks you own, see
 
 ## Build the website
 
-The site gets its own folder beside the vault. The publish tool is in
-the download too, and `init` makes the folder and turns the site on in
-the vault's settings:
+The site gets its own folder beside the vault. `gma publish` runs the
+publish tool that came in the download, and `init` makes the folder and
+turns the site on in the vault's settings:
 
 ```bash
-node gm-apprentice/tools/publish/bin/gm-publish.js init lantern-site --vault Lantern --title "The Lantern Road"
+gma publish init lantern-site --vault Lantern --title "The Lantern Road"
 cd lantern-site
 npm install
 npm run build
@@ -234,7 +251,7 @@ npm run build
   created package.json
   created vault.config.json
 [...]
-  wrote player_site.publish, player_site.folder, player_site.title, [...] to _meta/vault-config.yaml in [...]/games/Lantern
+  wrote player_site.publish, player_site.folder, player_site.title, [...] to _meta/vault-config.yaml in [...]/Lantern
 ```
 
 ```text
@@ -251,7 +268,7 @@ nothing from the internet. The site is now in `lantern-site/docs`. To
 look at it, still in `lantern-site`:
 
 ```bash
-node ../gm-apprentice/tools/publish/bin/gm-publish.js serve --site player
+gma publish serve --site player
 ```
 
 It prints an address to open, and runs until you press Ctrl+C. Here is
@@ -265,10 +282,11 @@ Two commands answer "is that on the site?" `explain` says, for one note,
 whether it publishes and what's cut from it:
 
 ```bash
-node ../gm-apprentice/tools/publish/bin/gm-publish.js explain "Characters/NPCs/Odile Marsh.md"
+gma publish explain "Characters/NPCs/Odile Marsh.md"
 ```
 
 ```text
+[...]
   VERDICT: publishes at docs/characters/npcs/odile-marsh.html
 
   sections stripped on publish: GM Notes
@@ -279,19 +297,21 @@ node ../gm-apprentice/tools/publish/bin/gm-publish.js explain "Characters/NPCs/O
 through:
 
 ```bash
-node ../gm-apprentice/tools/publish/bin/gm-publish.js leaks check
+gma publish leaks check
 ```
 
 ```text
 No hidden text, secret name or never-show word on the player site (23 files read).
 ```
 
-Worth knowing by hand: **every note in the vault's folders publishes**
-unless something keeps it off. GM Notes sections, `gm-only` fences,
-fields like `secrets`, and folders like `_meta` and `_Templates` stay
-off. A note still marked `DRAFT` goes on. The apprentice keeps a publish
-list for you, and you can keep one too: `gm-publish.js manifest --help`
-explains it.
+Worth knowing by hand: **every note with a `type:`, in a folder the
+site maps, publishes** unless something keeps it off. GM Notes
+sections, `gm-only` fences, fields like `secrets`, and folders like
+`_meta` and `_Templates` stay off, and so does a note that says
+`publish: false`. A note still marked `DRAFT` goes on, with a Draft
+badge. The apprentice keeps a publish list for you, and you can keep
+one too (`gma publish manifest --help`); once there is one, a note
+publishes only if it's on it.
 
 ## The GM copy
 
@@ -299,25 +319,25 @@ The GM site is the same build with everything showing, for your screen
 or a tablet at the table. Turn it on once, then each build makes both:
 
 ```bash
-node ../gm-apprentice/tools/publish/bin/gm-publish.js settings set gm_site.publish=on
+gma publish settings set gm_site.publish=on
 npm run build
-node ../gm-apprentice/tools/publish/bin/gm-publish.js serve
+gma publish serve --port 4411
 ```
 
 ```text
-Made the GM site's folder: [...]/games/lantern-site-gm (gm_site.folder).
+Wrote gm_site.publish.
+Made the GM site's folder: [...]/lantern-site-gm (gm_site.folder).
 ```
 
 ```text
-Serving the GM site from [...]/games/lantern-site-gm
+Serving the GM site from [...]/lantern-site-gm
 http://[...]:4411/
 http://localhost:4411/
 Anyone on this network can open these addresses, players included: serve it only where you trust the network.
 Press Ctrl+C to stop.
 ```
 
-(We gave `serve` a `--port`; without one it uses 4321.) The same page,
-GM copy:
+Without `--port` it uses 4321. The same page, GM copy:
 
 ![Odile Marsh's page on the GM site: a "GM copy: not for players" band across the top, and a GM Notes block with her secret about the lamp on the road](/img/tutorials/by-hand-gm.jpg)
 
@@ -330,36 +350,46 @@ refuses to upload it.
 check, stops if it finds anything, and uploads:
 
 ```bash
-node ../gm-apprentice/tools/publish/bin/gm-publish.js deploy --verify
+gma publish deploy --verify
 ```
 
-- **On Cloudflare Pages** (the default), it uses Cloudflare's own
-  `wrangler` and checks you're logged in to it first. A Cloudflare site
-  can also have [live sheets and the request box](/tutorials/players-at-the-table/).
-- **On GitHub Pages**, set `player_site.host=github-pages` and
-  `player_site.url` with `settings set`, make the site folder a GitHub
-  repository, and `deploy` commits `docs/` and pushes it.
+The first time needs a little setting up on your host:
+
+- **Cloudflare Pages** (the default): save a Cloudflare API token with
+  `gma publish doctor --set-cloudflare-creds`, and create the Pages
+  project once with Cloudflare's `wrangler`. The plugin's
+  [Cloudflare steps](https://github.com/AntTheLimey/gm-apprentice/blob/main/skills/publish-site/references/cloudflare-pages.md)
+  give the commands. A Cloudflare site can also have
+  [live sheets and the request box](/tutorials/players-at-the-table/).
+- **GitHub Pages**: set `player_site.host=github-pages` and
+  `player_site.url` with `gma publish settings set`, make the site folder
+  a GitHub repository with an `origin`, and turn on Pages from its
+  `docs` folder in the repository's settings. The plugin's
+  [GitHub steps](https://github.com/AntTheLimey/gm-apprentice/blob/main/skills/publish-site/references/github-pages.md)
+  go through it. After that, `deploy` commits `docs/` and pushes it.
 
 `deploy --dry-run` shows what it would do and runs the leak check
 without uploading anything.
 
 ## After each session
 
-Write up what happened, update the notes it touched, then from
+Write up what happened and update the notes it touched. Then, from
 `games`:
 
 ```bash
+gma index-build Lantern --write
 gma links Lantern
 gma vault-check Lantern all
-gma index-build Lantern --write
 ```
 
-and from `lantern-site`, `npm run build` and `deploy`.
+and from `lantern-site`, `npm run build` and `gma publish deploy`.
 
-When a new GM-Apprentice comes out, unzip it over the old
-`gm-apprentice` folder and run `gma update Lantern`. It brings the vault
-and the site up to the new version, takes a backup of your notes first,
-and asks before anything that would remove what you wrote.
+When a new GM-Apprentice comes out, delete the old `gm-apprentice`
+folder, unzip the new one and rename it the same way, then run
+`gma update Lantern`. It brings the vault and the site up to the new
+version and takes a backup of your notes first. Anything that would
+remove what you wrote, it lists and leaves alone: answer each with
+`gma update Lantern --answer <id>=<choice>`, as it shows.
 
 ## The settings behind it
 
@@ -367,14 +397,16 @@ The site's settings live in the vault, in `_meta/vault-config.yaml`.
 `init` wrote most of ours; trimmed, it reads:
 
 ```yaml
+version: 1
 vault:
   campaign: The Lantern Road
   system: dnd-5e-2024
   attachments: _attachments
 player_site:
   publish: true
-  folder: [...]/games/lantern-site
+  folder: [...]/lantern-site
   title: The Lantern Road
+  # [...]
   hide:
     folders:
       - _meta
@@ -382,24 +414,26 @@ player_site:
     sections:
       - GM Notes
       - DM Notes
-      [...]
+      # [...]
     fields:
       - secrets
+      # [...]
       - gm_notes
-      [...]
+      # [...]
+    callouts: true
 gm_site:
   publish: true
-  folder: [...]/games/lantern-site-gm
+  folder: [...]/lantern-site-gm
 ```
 
-Change them with `settings set`, or in any text editor.
-`gm-publish.js settings list` names every one, and
-`settings describe <name>` says what one does.
+Change them with `gma publish settings set`, or in any text editor.
+`gma publish settings list` names every one, and
+`gma publish settings describe <name>` says what one does.
 
 ## Next
 
-- Every vault command, with when to use it and an example:
-  `gma llms`, or [the same pages on GitHub](https://github.com/AntTheLimey/gm-apprentice/blob/main/skills/shared/gma/llms.md).
+- Every command, with when to use it and an example: `gma llms`, or
+  [the same pages on GitHub](https://github.com/AntTheLimey/gm-apprentice/blob/main/skills/shared/gma/llms.md).
 - [The publish tool's README](https://github.com/AntTheLimey/gm-apprentice/blob/main/tools/publish/README.md)
   and [every site setting](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/site-settings.md).
 - [Change the look](/tutorials/change-the-look/) and
