@@ -14,7 +14,7 @@
     "check:links": "node scripts/check-links.mjs dist",
     "check:drift": "node scripts/check-drift.mjs",
     "deploy": "npm run build && npm run check:links && npm run check:seo && wrangler deploy",
-    "prebuild": "mkdir -p public/downloads && rm -f public/downloads/notes-pile.zip && cd examples && zip -qrX ../public/downloads/notes-pile.zip notes-pile -x '*.DS_Store'",
+    "prebuild": "mkdir -p public/downloads && rm -f public/downloads/notes-pile.zip && cd examples && zip -qrX ../public/downloads/notes-pile.zip notes-pile -x '*.DS_Store' && cd .. && node scripts/make-image-sizes.mjs",
     "check:seo": "node scripts/check-seo.mjs dist"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "astro": "7.4.13",
     "cheerio": "1.2.0",
     "gray-matter": "4.0.3",
+    "sharp": "0.35.5",
     "starlight-blog": "0.30.2",
     "starlight-links-validator": "0.27.0",
     "starlight-llms-txt": "0.12.0",

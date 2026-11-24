@@ -1,0 +1,10 @@
+---
+// A picture from public/img/ with its smaller copies in an srcset, so the
+// browser downloads the size the layout needs. `sizes` says how wide the
+// picture shows; `eager` is for pictures on the first screen.
+import { srcsetFor } from '../lib/image-sizes.mjs';
+interface Props { src: string; alt: string; sizes: string; eager?: boolean }
+const { src, alt, sizes, eager = false } = Astro.props;
+const srcset = await srcsetFor(src);
+---
+<img src={src} srcset={srcset} sizes={sizes} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async">
