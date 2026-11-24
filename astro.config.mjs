@@ -53,27 +53,56 @@ export default defineConfig({
         {
           label: 'Tutorials',
           items: [
-            // Campaign order, as on the index page: Organize, Prep, Run, Publish.
+            // The same groups, in the same order, as the tutorials index page.
+            // Folded: only the group holding the page being read opens.
             { label: 'All tutorials', link: '/tutorials/' },
-            { label: 'Grow a campaign from an idea', link: '/tutorials/grow-a-campaign/' },
-            { label: 'Bring in an existing campaign', link: '/tutorials/bring-in-a-campaign/' },
-            { label: 'Organize your notes', link: '/tutorials/organize-your-notes/' },
-            { label: 'House rules', link: '/tutorials/house-rules/' },
-            { label: 'Check your vault', link: '/tutorials/check-your-vault/' },
-            { label: 'Prep a session', link: '/tutorials/prep-a-session/' },
-            { label: 'Rules, NPCs and ideas', link: '/tutorials/rules-npcs-and-ideas/' },
-            { label: 'Your own rulebooks', link: '/tutorials/your-own-books/' },
-            { label: 'At the table', link: '/tutorials/at-the-table/' },
-            { label: 'Players at the table', link: '/tutorials/players-at-the-table/' },
-            { label: 'Wrap up a session', link: '/tutorials/wrap-up-a-session/' },
-            { label: 'Publish your site', link: '/tutorials/publish-your-site/' },
-            { label: 'Connections', link: '/tutorials/connections/' },
-            { label: 'Handouts', link: '/tutorials/handouts/' },
-            { label: 'Character sheets', link: '/tutorials/character-sheets/' },
-            { label: 'Add pictures', link: '/tutorials/add-pictures/' },
-            { label: 'Change the look', link: '/tutorials/change-the-look/' },
-            { label: 'The GM site', link: '/tutorials/gm-site/' },
-            { label: 'Do it by hand', link: '/tutorials/do-it-by-hand/' },
+            {
+              label: 'Organize',
+              collapsed: true,
+              items: [
+                { label: 'Grow a campaign from an idea', link: '/tutorials/grow-a-campaign/' },
+                { label: 'Bring in an existing campaign', link: '/tutorials/bring-in-a-campaign/' },
+                { label: 'Organize your notes', link: '/tutorials/organize-your-notes/' },
+                { label: 'House rules', link: '/tutorials/house-rules/' },
+                { label: 'Check your vault', link: '/tutorials/check-your-vault/' },
+              ],
+            },
+            {
+              label: 'Prep',
+              collapsed: true,
+              items: [
+                { label: 'Prep a session', link: '/tutorials/prep-a-session/' },
+                { label: 'Rules, NPCs and ideas', link: '/tutorials/rules-npcs-and-ideas/' },
+                { label: 'Your own rulebooks', link: '/tutorials/your-own-books/' },
+              ],
+            },
+            {
+              label: 'Run',
+              collapsed: true,
+              items: [
+                { label: 'At the table', link: '/tutorials/at-the-table/' },
+                { label: 'Players at the table', link: '/tutorials/players-at-the-table/' },
+              ],
+            },
+            {
+              label: 'Publish',
+              collapsed: true,
+              items: [
+                { label: 'Wrap up a session', link: '/tutorials/wrap-up-a-session/' },
+                { label: 'Publish your site', link: '/tutorials/publish-your-site/' },
+                { label: 'Connections', link: '/tutorials/connections/' },
+                { label: 'Handouts', link: '/tutorials/handouts/' },
+                { label: 'Character sheets', link: '/tutorials/character-sheets/' },
+                { label: 'Add pictures', link: '/tutorials/add-pictures/' },
+                { label: 'Change the look', link: '/tutorials/change-the-look/' },
+                { label: 'The GM site', link: '/tutorials/gm-site/' },
+              ],
+            },
+            {
+              label: 'Without an agent',
+              collapsed: true,
+              items: [{ label: 'Do it by hand', link: '/tutorials/do-it-by-hand/' }],
+            },
           ],
         },
         { label: 'Everything it does', link: '/features/' },
