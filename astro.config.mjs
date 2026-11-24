@@ -89,6 +89,7 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { label: 'Wrap up a session', link: '/tutorials/wrap-up-a-session/' },
+                { label: 'Set up Cloudflare', link: '/tutorials/set-up-cloudflare/' },
                 { label: 'Publish your site', link: '/tutorials/publish-your-site/' },
                 { label: 'The GM site', link: '/tutorials/gm-site/' },
               ],
