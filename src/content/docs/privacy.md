@@ -56,7 +56,7 @@ keeps conversations.
 | GitHub Pages | Publishing your campaign site there, when you choose that host | Your player site, to your own repository |
 | [Cloudflare](https://www.cloudflare.com/privacypolicy/) | Publishing your campaign site there, when you choose that host | Your player site, to your own account |
 | Cloudflare | Players asking for sheet changes or asking questions at the table, if you switch that on | Their requests, stored in your own Cloudflare account |
-| [Google Fonts](https://policies.google.com/privacy) | Building a site that uses a named font | A download of that font, once |
+| [Google Fonts](https://policies.google.com/privacy) | The first time you build a site that uses a named font | A request for that font, from your computer. The site then serves its own copy, so your players never contact Google. |
 | [Google Gemini](https://ai.google.dev/gemini-api/terms) | Drawing a picture, if you set it up with your own key | The picture's description, and any pictures it works from, such as a portrait to keep a likeness |
 | [OpenAI](https://openai.com/policies/privacy-policy/), through Codex | Drawing a picture, if you use Codex for pictures | The picture's description, and any pictures it works from |
 | [D&D Beyond](https://company.wizards.com/en/legal/wizards-coasts-privacy-policy) | Updating a character note linked to a public D&D Beyond character | The character's number |
