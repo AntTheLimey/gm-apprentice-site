@@ -80,6 +80,8 @@ export default defineConfig({
         { label: 'Works with', link: '/works-with/' },
         { label: 'Where the AI stops', link: '/where-the-ai-stops/' },
         { label: 'Gallery', link: '/gallery/' },
+        { label: 'Support', link: '/support/' },
+        { label: 'Privacy', link: '/privacy/' },
       ],
       head: [
         { tag: 'link', attrs: { rel: 'icon', href: '/favicon.ico', sizes: 'any' } },
