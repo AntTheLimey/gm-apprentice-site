@@ -84,23 +84,30 @@ storage if you added it, but not your billing, DNS or other settings.
 
 ## Handing the Token to GM-Apprentice
 
+You save the token with one command in your own terminal, so the token
+never passes through your AI agent. Never paste the token into a chat with
+your apprentice:
+
+1.  Ask your apprentice for the command to save a Cloudflare token in your
+    own terminal.
+
+    Your apprentice gives you one line to run.
+
+2.  Open a terminal window, paste the line, and press Enter. The line runs
+    in a Mac or Linux terminal.
+
+    The line waits for the token without showing a prompt.
+
+3.  Paste the token, and press Enter.
+
+    The token stays hidden while you paste it, and the line clears it
+    afterward.
+
 The setup saves the token where every terminal can find it, and looks up
-your Cloudflare account ID itself. It never prints the token back. Choose
-one of these two ways:
-
-- **Through your apprentice.** Tell your apprentice that you have a
-  Cloudflare token for publishing, and paste the token when it asks. The
-  token passes through your AI agent, like anything else you type to it.
-- **In your own terminal.** Ask your apprentice for the command to save a
-  Cloudflare token in your own terminal. It gives you one line to run.
-  The line waits for you to paste the token, keeps it hidden, and clears
-  it afterward. The token never passes through your AI agent. This route
-  works in a Mac or Linux terminal. On Windows, use your apprentice.
-
-Either way, the setup ends by saying where it saved the token, showing
-your Cloudflare account ID, and confirming that the token works. If you
-have more than one Cloudflare account, check that the account ID is the
-one for your campaign sites.
+your Cloudflare account ID itself. It ends by saying where it saved the
+token, showing your account ID, and confirming that the token works. It
+never prints the token back. If you have more than one Cloudflare account,
+check that the account ID is the one for your campaign sites.
 
 To check the result, ask your apprentice to check your computer for
 publishing to Cloudflare. The **wrangler** row, for Cloudflare's own
