@@ -1,7 +1,7 @@
 ---
 title: Set up Cloudflare
 description: Make a free Cloudflare account and an API token, and hand the token to GM-Apprentice, so your apprentice can publish your campaign site.
-checkedAgainst: "1.12.143"
+checkedAgainst: "1.12.146"
 ---
 
 <!-- video -->
@@ -78,7 +78,7 @@ storage if you added it, but not your billing, DNS or other settings.
     ![The Token Summary, listing Cloudflare Pages: Edit and Workers KV Storage: Edit](/img/tutorials/cloudflare-summary.jpg)
 
 9.  Copy the token that Cloudflare shows, and nothing around it. A stray
-    space or quotation mark makes the setup refuse the token.
+    quotation mark makes the setup refuse the token.
 
     Cloudflare does not show this token again after you leave the page.
 
@@ -91,23 +91,28 @@ your apprentice:
 1.  Ask your apprentice for the command to save a Cloudflare token in your
     own terminal.
 
-    Your apprentice gives you one line to run.
+    Your apprentice gives you one line to run. The same line works on Mac,
+    Linux and Windows.
 
-2.  Open a terminal window, paste the line, and press Enter. The line runs
-    in a Mac or Linux terminal.
+2.  Open a terminal window, paste the line, and press Enter.
 
-    The line waits for the token without showing a prompt.
+    The terminal shows `Paste your Cloudflare API token (it will not
+    show), then press Enter:`.
 
 3.  Paste the token, and press Enter.
 
-    The token stays hidden while you paste it, and the line clears it
-    afterward.
+    Nothing appears while you paste. The setup never prints the token
+    back.
 
 The setup saves the token where every terminal can find it, and looks up
-your Cloudflare account ID itself. It ends by saying where it saved the
-token, showing your account ID, and confirming that the token works. It
-never prints the token back. If you have more than one Cloudflare account,
-check that the account ID is the one for your campaign sites.
+your Cloudflare account ID itself. It ends with a line such as `Cloudflare
+token saved to ~/.zshenv (account <account-id>).`, then `Verified with
+wrangler whoami.`. If you have more than one Cloudflare account, check
+that the account ID is the one for your campaign sites.
+
+On Windows, close and reopen the app your apprentice runs in, and any
+terminal windows, before you publish. Programs that were already open do
+not see the saved token until they start again.
 
 To check the result, ask your apprentice to check your computer for
 publishing to Cloudflare. The **wrangler** row, for Cloudflare's own
