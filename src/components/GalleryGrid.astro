@@ -1,19 +1,27 @@
 ---
 // Cards for gallery entries: picture, name, short line, what it shows off, any note.
 import { gallery } from '../data/gallery.mjs';
+import { srcsetFor } from '../lib/image-sizes.mjs';
 
 interface Props {
   campaigns: boolean;
 }
 const entries = gallery.filter((e) => e.campaign === Astro.props.campaigns);
+const single = entries.length === 1;
+// How wide a card's picture shows, measured on the gallery page: one column
+// up to 600px, then two cards of at most 348px (a lone card: at most 720px).
+const sizes = single
+  ? '(max-width: 780px) calc(100vw - 36px), 720px'
+  : '(max-width: 600px) calc(100vw - 36px), 348px';
+const srcsets = await Promise.all(entries.map((e) => srcsetFor(e.img)));
 ---
 
-<ul class:list={["gallery-grid", "not-content", { single: entries.length === 1 }]}>
+<ul class:list={["gallery-grid", "not-content", { single }]}>
   {
-    entries.map((e) => (
+    entries.map((e, i) => (
       <li class="card">
         <a class="pic" href={e.url}>
-          <img src={e.img} alt={e.alt} width="1200" height="750" loading="lazy" />
+          <img src={e.img} srcset={srcsets[i]} sizes={sizes} alt={e.alt} width="1200" height="750" loading="lazy" decoding="async" />
         </a>
         <h3>
           <a href={e.url}>{e.name}</a>
