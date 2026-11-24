@@ -1,6 +1,7 @@
 ---
 import '../styles/theme.css';
 import { gallery } from '../data/gallery.mjs';
+import Img from '../components/Img.astro';
 import PostHog from '../components/posthog.astro';
 
 // Branch previews (scripts/preview.sh) build with PREVIEW=1 and stay out of search engines.
@@ -272,9 +273,9 @@ footer a{color:var(--dim)}
   </div>
 </section>
 <div class="wrap fan" aria-label="Three campaign sites built with GM-Apprentice">
-    <figure class="deal"><a href="https://dead-end.pages.dev"><img src="/img/de-home.jpg" alt="Dead End campaign site: a rusted space station over a planet, green terminal lettering"></a><figcaption>Dead End · GURPS</figcaption></figure>
-    <figure class="deal"><a href="https://drakkenheim.dorkfish.quest/index.html"><img src="/img/dk-home.jpg" alt="Drakkenheim campaign site: a carriage under a dead tree at dusk"></a><figcaption>Drakkenheim · D&amp;D</figcaption></figure>
-    <figure class="deal"><a href="https://canticle-of-the-end.pages.dev"><img src="/img/cn-home.jpg" alt="Canticle of the End campaign site: a choir beneath a great bell, a city burning"></a><figcaption>Canticle of the End · Call of Cthulhu</figcaption></figure>
+    <figure class="deal"><a href="https://dead-end.pages.dev"><Img src="/img/de-home.jpg" alt="Dead End campaign site: a rusted space station over a planet, green terminal lettering" sizes="(max-width: 900px) calc((100vw - 56px) / 3), 364px" eager /></a><figcaption>Dead End · GURPS</figcaption></figure>
+    <figure class="deal"><a href="https://drakkenheim.dorkfish.quest/index.html"><Img src="/img/dk-home.jpg" alt="Drakkenheim campaign site: a carriage under a dead tree at dusk" sizes="(max-width: 900px) calc((100vw - 56px) / 3), 364px" eager /></a><figcaption>Drakkenheim · D&amp;D</figcaption></figure>
+    <figure class="deal"><a href="https://canticle-of-the-end.pages.dev"><Img src="/img/cn-home.jpg" alt="Canticle of the End campaign site: a choir beneath a great bell, a city burning" sizes="(max-width: 900px) calc((100vw - 56px) / 3), 364px" eager /></a><figcaption>Canticle of the End · Call of Cthulhu</figcaption></figure>
   </div>
 
 <div class="wrap systems" aria-label="Game systems supported">
@@ -323,7 +324,7 @@ footer a{color:var(--dim)}
       <p>"The monks give the dragon their dead. That is why the pilgrims are being murdered."</p>
     </div>
     <div>
-      <a class="pic" href="/tutorials/grow-a-campaign/"><figure class="shot crop"><img src="/img/sb-npc.jpg" alt="Snowbound site page for Master Orrin Gilt, a fat moustached merchant in furs, with his overview"></figure></a>
+      <a class="pic" href="/tutorials/grow-a-campaign/"><figure class="shot crop"><Img src="/img/sb-npc.jpg" alt="Snowbound site page for Master Orrin Gilt, a fat moustached merchant in furs, with his overview" sizes="(max-width: 900px) calc(100vw - 36px), 618px" /></figure></a>
       <p class="cap">From that seed: a linked note for every NPC, place and secret, and a merchant who isn't one. <a href="https://snowbound-dnd.pages.dev/characters/npcs/master-orrin-gilt.html">Meet Master Orrin Gilt</a> or <a href="https://snowbound-dnd.pages.dev">see the whole site</a>. <a class="how" href="/tutorials/grow-a-campaign/">How a campaign grows from a seed</a></p>
     </div>
   </div>
@@ -373,7 +374,7 @@ footer a{color:var(--dim)}
           <li><b>The register's Long Night page</b>, already written in Hollis's hand: "Master Orrin Gilt, to rest. Oswin, to carry."</li>
         </ul>
       </div>
-      <a class="pic" href="/tutorials/rules-npcs-and-ideas/"><figure class="shot"><img src="/img/prep-statblock.jpg" alt="Abbot Severin's stat block in his GM Notes: AC 15, HP 99, ability scores, CR 6, built up as session 3's boss"></figure></a>
+      <a class="pic" href="/tutorials/rules-npcs-and-ideas/"><figure class="shot"><Img src="/img/prep-statblock.jpg" alt="Abbot Severin's stat block in his GM Notes: AC 15, HP 99, ability scores, CR 6, built up as session 3's boss" sizes="(max-width: 900px) calc(100vw - 36px), 393px" /></figure></a>
       <p class="cap"><b>A stat block.</b> The abbot, built to the rules as that session's boss, on the GM's copy of the site. <a class="how" href="/tutorials/rules-npcs-and-ideas/">How it's made</a></p>
     </div>
   </div>
@@ -407,7 +408,7 @@ footer a{color:var(--dim)}
       <p class="cap">Real replies from session-play on the Snowbound vault (gm-apprentice 1.12.94), trimmed.</p>
     </div>
     <div>
-      <a class="pic" href="/tutorials/character-sheets/"><figure class="shot crop"><img src="/img/sb-pc.jpg" alt="Kael Stonehand's character page: portrait, hit points 44 of 44, AC 16, tabs for sheet, combat, spells"></figure></a>
+      <a class="pic" href="/tutorials/character-sheets/"><figure class="shot crop"><Img src="/img/sb-pc.jpg" alt="Kael Stonehand's character page: portrait, hit points 44 of 44, AC 16, tabs for sheet, combat, spells" sizes="(max-width: 900px) calc(100vw - 36px), 562px" /></figure></a>
       <p class="cap"><b>A character sheet.</b> Every PC's sheet, live on the site, for the GM and the player. <a class="how" href="/tutorials/character-sheets/">How sheets work</a></p>
     </div>
   </div>
@@ -433,10 +434,10 @@ footer a{color:var(--dim)}
     </div>
   </div>
   <div class="board b-publish">
-    <div class="wide"><a class="pic" href="/tutorials/wrap-up-a-session/"><figure class="shot"><img src="/img/sb-story.jpg" alt="Snowbound Session 02 recap page: prose with portraits of Durgan and Tam, a picture of the chapter house"></figure></a><p class="cap"><b>A session's story page.</b> The recap wrap-up wrote, with pictures of who and where. <a class="how" href="/tutorials/wrap-up-a-session/">How wrap-up works</a></p></div>
-    <div><a class="pic" href="/tutorials/add-pictures/"><figure class="shot crop"><img src="/img/sb-map.jpg" alt="Painted cutaway map of Saint Aubren's Rest, a monastery on a snowy cliff"></figure></a><p class="cap"><b>A map,</b> drawn for the campaign. <a class="how" href="/tutorials/add-pictures/">Adding pictures</a></p></div>
-    <div><a class="pic" href="/tutorials/connections/"><figure class="shot crop"><img src="/img/connections-web-home.jpg" alt="Connections drawn as a web: a villain in the middle, the people tied to him around him, hostile ties in red"></figure></a><p class="cap"><b>Connections:</b> everyone tied to a villain, friends in green, enemies in red. <a class="how" href="/tutorials/connections/">What it shows</a></p></div>
-    <div class="strip"><a class="pic" href="/tutorials/handouts/"><figure class="shot"><img src="/img/handouts-home.jpg" alt="Three handouts: a torn note in a quick hand ending Burn this, a report in green capitals on a datapad, and a corporate notice of unrecovered property"></figure></a><p class="cap"><b>Handouts</b> from Canticle of the End and Dead End, as they appear on their sites. <a class="how" href="/tutorials/handouts/">Making handouts</a></p></div>
+    <div class="wide"><a class="pic" href="/tutorials/wrap-up-a-session/"><figure class="shot"><Img src="/img/sb-story.jpg" alt="Snowbound Session 02 recap page: prose with portraits of Durgan and Tam, a picture of the chapter house" sizes="(max-width: 900px) calc(100vw - 36px), 757px" /></figure></a><p class="cap"><b>A session's story page.</b> The recap wrap-up wrote, with pictures of who and where. <a class="how" href="/tutorials/wrap-up-a-session/">How wrap-up works</a></p></div>
+    <div><a class="pic" href="/tutorials/add-pictures/"><figure class="shot crop"><Img src="/img/sb-map.jpg" alt="Painted cutaway map of Saint Aubren's Rest, a monastery on a snowy cliff" sizes="(max-width: 520px) calc(100vw - 36px), (max-width: 900px) calc((100vw - 60px) / 2), 368px" /></figure></a><p class="cap"><b>A map,</b> drawn for the campaign. <a class="how" href="/tutorials/add-pictures/">Adding pictures</a></p></div>
+    <div><a class="pic" href="/tutorials/connections/"><figure class="shot crop"><Img src="/img/connections-web-home.jpg" alt="Connections drawn as a web: a villain in the middle, the people tied to him around him, hostile ties in red" sizes="(max-width: 520px) calc(100vw - 36px), (max-width: 900px) calc((100vw - 60px) / 2), 368px" /></figure></a><p class="cap"><b>Connections:</b> everyone tied to a villain, friends in green, enemies in red. <a class="how" href="/tutorials/connections/">What it shows</a></p></div>
+    <div class="strip"><a class="pic" href="/tutorials/handouts/"><figure class="shot"><Img src="/img/handouts-home.jpg" alt="Three handouts: a torn note in a quick hand ending Burn this, a report in green capitals on a datapad, and a corporate notice of unrecovered property" sizes="(max-width: 900px) calc(100vw - 36px), 1148px" /></figure></a><p class="cap"><b>Handouts</b> from Canticle of the End and Dead End, as they appear on their sites. <a class="how" href="/tutorials/handouts/">Making handouts</a></p></div>
   </div>
   <p class="loopback">And then? Prep again, this time with notes that make sense.</p>
   <p class="more"><a href="/features/">See everything it does</a></p>
@@ -447,7 +448,7 @@ footer a{color:var(--dim)}
   <p class="sub">Real games, real tables. Every one of these sites was built from a GM's vault.</p>
   <div class="tiles">
     {campaigns.map((e) => (
-      <a class="tile" href={e.url}><figure class="shot"><img src={e.img} alt={e.alt}></figure><b>{e.name}</b><span>{e.system}</span></a>
+      <a class="tile" href={e.url}><figure class="shot"><Img src={e.img} alt={e.alt} sizes="(max-width: 520px) calc(100vw - 36px), (max-width: 900px) calc((100vw - 60px) / 2), 368px" /></figure><b>{e.name}</b><span>{e.system}</span></a>
     ))}
   </div>
   <p class="more"><a href="/gallery/">See the whole gallery</a></p>
