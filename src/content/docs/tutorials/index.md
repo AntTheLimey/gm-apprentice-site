@@ -47,6 +47,8 @@ ends with a vault of your own.
 
 - [Wrap up a session](/tutorials/wrap-up-a-session/): play notes turned
   into a recap, updated notes and what carries forward (session-wrapup).
+- [Set up Cloudflare](/tutorials/set-up-cloudflare/): a free account and
+  a token, once, so your apprentice can publish there.
 - [Publish your site](/tutorials/publish-your-site/): a campaign website
   for your players, with your secrets left out (publish-site).
 - [The GM site](/tutorials/gm-site/): a private copy with every secret

@@ -19,6 +19,8 @@ way.
 - **A free account with a host.** Cloudflare Pages is the suggested one, and
   the one that supports the live features (hit points that update during
   play, players' sheet change requests). GitHub Pages works too.
+  For Cloudflare, [Set up Cloudflare](/tutorials/set-up-cloudflare/) walks
+  through the account and its token.
 
 Both hosts are free for a campaign site.
 
