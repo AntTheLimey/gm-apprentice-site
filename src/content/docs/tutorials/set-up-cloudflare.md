@@ -12,7 +12,7 @@ campaign site there whenever you ask. The steps use three terms:
 - **Cloudflare Pages** is the free web host that GM-Apprentice suggests for
   a campaign site.
 - An **API token** is a password made for one job. This one lets the
-  setup publish your sites and nothing else.
+  setup work with your Pages sites, and with Workers KV if you add it.
 - **Workers KV** is the Cloudflare storage that the live features use:
   hit points that update during play, and players' sheet change requests.
 
@@ -33,8 +33,8 @@ A free account is all a campaign site needs:
 ## Creating the API Token
 
 The token gives the setup only the permissions that publishing needs. If
-it ever leaked, it could not touch your billing or anything else in your
-account.
+it ever leaked, it could change your Pages sites, and your Workers KV
+storage if you added it, but not your billing, DNS or other settings.
 
 1.  Open [Cloudflare's API tokens page](https://dash.cloudflare.com/profile/api-tokens).
 
@@ -61,8 +61,8 @@ account.
     ![The Cloudflare Pages permission with Edit ticked](/img/tutorials/cloudflare-pages-edit.jpg)
 
 6.  If you want the live features, type `Workers KV` in the search box,
-    then tick **Edit** on the **Workers KV Storage** row. Adding it now
-    saves you from making a second token later:
+    then tick **Edit** on the **Workers KV Storage** row. You can also add
+    it later by editing the token in Cloudflare:
 
     ![The Workers KV Storage permission with Edit ticked](/img/tutorials/cloudflare-kv-edit.jpg)
 
@@ -71,16 +71,14 @@ account.
 
     ![Token expiration set to No expiration, and the Continue to summary button](/img/tutorials/cloudflare-continue.jpg)
 
-    If you choose an expiry date instead, publishing stops on that date
-    until you make a new token.
-
 8.  Check that the summary lists **Cloudflare Pages: Edit**, and
     **Workers KV Storage: Edit** if you added it, then click **Create
     Token**:
 
     ![The Token Summary, listing Cloudflare Pages: Edit and Workers KV Storage: Edit](/img/tutorials/cloudflare-summary.jpg)
 
-9.  Copy the token that Cloudflare shows.
+9.  Copy the token that Cloudflare shows, and nothing around it. A stray
+    space or quotation mark makes the setup refuse the token.
 
     Cloudflare does not show this token again after you leave the page.
 
@@ -96,10 +94,13 @@ one of these two ways:
 - **In your own terminal.** Ask your apprentice for the command to save a
   Cloudflare token in your own terminal. It gives you one line to run.
   The line waits for you to paste the token, keeps it hidden, and clears
-  it afterward. The token never passes through your AI agent.
+  it afterward. The token never passes through your AI agent. This route
+  works in a Mac or Linux terminal. On Windows, use your apprentice.
 
-Either way, the setup ends by saying where it saved the token and which
-Cloudflare account the token belongs to.
+Either way, the setup ends by saying where it saved the token, showing
+your Cloudflare account ID, and confirming that the token works. If you
+have more than one Cloudflare account, check that the account ID is the
+one for your campaign sites.
 
 To check the result, ask your apprentice to check your computer for
 publishing to Cloudflare. The **wrangler** row, for Cloudflare's own
@@ -110,6 +111,7 @@ tool, shows as authenticated with your account ID.
 Your computer can now publish to Cloudflare:
 
 - [Publish your site](/tutorials/publish-your-site/) builds your campaign
-  site and puts it online.
+  site, points it at Cloudflare, and puts it online. Your apprentice
+  creates the Cloudflare project on the first publish.
 - [Players at the table](/tutorials/players-at-the-table/) uses the live
   features that the Workers KV permission allows.
