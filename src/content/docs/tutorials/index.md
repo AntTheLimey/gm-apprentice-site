@@ -49,6 +49,11 @@ ends with a vault of your own.
   into a recap, updated notes and what carries forward (session-wrapup).
 - [Publish your site](/tutorials/publish-your-site/): a campaign website
   for your players, with your secrets left out (publish-site).
+- [The GM site](/tutorials/gm-site/): a private copy with every secret
+  showing, for your tablet (publish-site).
+
+## Customizing
+
 - [Connections](/tutorials/connections/): who and what each page is
   tied to, drawn as a tree, a web or cards (publish-site).
 - [Handouts](/tutorials/handouts/): letters, clippings and printouts,
@@ -60,8 +65,6 @@ ends with a vault of your own.
   drawn for what's missing.
 - [Change the look](/tutorials/change-the-look/): themes, colours,
   lettering and sheet skins (publish-site).
-- [The GM site](/tutorials/gm-site/): a private copy with every secret
-  showing, for your tablet (publish-site).
 
 ## Without an agent
 

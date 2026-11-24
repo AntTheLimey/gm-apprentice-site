@@ -90,12 +90,18 @@ export default defineConfig({
               items: [
                 { label: 'Wrap up a session', link: '/tutorials/wrap-up-a-session/' },
                 { label: 'Publish your site', link: '/tutorials/publish-your-site/' },
+                { label: 'The GM site', link: '/tutorials/gm-site/' },
+              ],
+            },
+            {
+              label: 'Customizing',
+              collapsed: true,
+              items: [
                 { label: 'Connections', link: '/tutorials/connections/' },
                 { label: 'Handouts', link: '/tutorials/handouts/' },
                 { label: 'Character sheets', link: '/tutorials/character-sheets/' },
                 { label: 'Add pictures', link: '/tutorials/add-pictures/' },
                 { label: 'Change the look', link: '/tutorials/change-the-look/' },
-                { label: 'The GM site', link: '/tutorials/gm-site/' },
               ],
             },
             {
