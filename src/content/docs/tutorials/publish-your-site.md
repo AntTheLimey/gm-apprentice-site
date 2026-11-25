@@ -2,6 +2,9 @@
 title: Publish your site
 description: Turn your vault into a campaign website for your players, on Cloudflare Pages or GitHub Pages, with your secrets left out.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Publish a campaign website for your players | GM-Apprentice"
 ---
 
 <!-- video -->

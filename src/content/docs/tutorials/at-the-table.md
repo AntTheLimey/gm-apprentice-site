@@ -2,6 +2,9 @@
 title: At the table
 description: Fast answers while you play, from who an NPC is to what a player rolls, plus names on the spot and notes taken as you go.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "AI help at the table during a TTRPG session | GM-Apprentice"
 ---
 
 <!-- video -->

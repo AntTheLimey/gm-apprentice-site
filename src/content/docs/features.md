@@ -1,7 +1,10 @@
 ---
 title: Everything it does
-description: Every GM-Apprentice feature in one line each, grouped the way a campaign runs, with a link to where to learn it.
+description: "Every GM-Apprentice feature in one line each: campaign notes, session prep, help at the table, recaps and a players' website."
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Every feature for tabletop RPG game masters | GM-Apprentice"
 ---
 
 One line for each thing GM-Apprentice does, grouped the way a campaign

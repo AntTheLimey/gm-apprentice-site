@@ -1,7 +1,10 @@
 ---
 title: Start a new game
-description: From "I've got nothing yet" to a campaign folder ready to prep, with the Midwife.
+description: "Go from \"I've got nothing yet\" to a campaign folder ready to prep, with the Midwife: seeds, a world built with you, and session one."
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Start a new TTRPG campaign with AI | GM-Apprentice"
 ---
 
 You have an idea, or half of one, or nothing at all. In about five replies

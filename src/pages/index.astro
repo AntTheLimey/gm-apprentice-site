@@ -8,7 +8,7 @@ import PostHog from '../components/posthog.astro';
 const preview = process.env.PREVIEW === '1';
 const canonical = new URL('/', Astro.site);
 const campaigns = gallery.filter((e) => e.campaign);
-const title = 'GM-Apprentice: AI skills for tabletop game masters';
+const title = 'GM-Apprentice: free AI assistant for tabletop RPG GMs';
 // Structured data: tells search engines and AI answer engines what this is.
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -43,7 +43,7 @@ const jsonLd = {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 {preview && <meta name="robots" content="noindex">}
-<meta name="description" content="GM-Apprentice: free, open-source AI skills that organize, prep, run and publish your tabletop campaign.">
+<meta name="description" content="Free, open-source AI skills for tabletop GMs: campaign notes, session prep, help at the table and a players' website. D&D, Call of Cthulhu, GURPS.">
 <link rel="canonical" href={canonical}>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">

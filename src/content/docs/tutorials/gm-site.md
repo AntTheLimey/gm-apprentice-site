@@ -2,6 +2,9 @@
 title: The GM site
 description: A private copy of your campaign site with every secret showing, for your tablet at the table. It never goes online.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "A private GM copy of your campaign website | GM-Apprentice"
 ---
 
 <!-- video -->

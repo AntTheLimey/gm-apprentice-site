@@ -2,6 +2,9 @@
 title: Character sheets
 description: Build a new player's character to the rules, show the full sheet on the campaign site, sync D&D characters with D&D Beyond, and keep the party page current.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Character sheets on your campaign website | GM-Apprentice"
 ---
 
 <!-- video -->

@@ -1,6 +1,9 @@
 ---
 title: Where the AI stops
 description: GM-Apprentice is an AI tool, built to assist a GM and not to write the story. What you do, what works without any AI, and what the AI adds on top.
+head:
+  - tag: title
+    content: "Where the AI stops: the GM keeps the story | GM-Apprentice"
 ---
 
 Yes, GM-Apprentice is an AI tool, and I'm glad of the help. I made it to

@@ -1,7 +1,10 @@
 ---
 title: Start from your notes
-description: Turn a pile of old campaign notes into a vault you can play from, with vault-ingest.
+description: "Turn a pile of old TTRPG campaign notes, sheets and transcripts into a linked vault you can play from, with vault-ingest."
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Turn old campaign notes into a playable vault | GM-Apprentice"
 ---
 
 You've run a game already. The notes are in text files, documents, a

@@ -1,7 +1,10 @@
 ---
 title: Get set up
-description: Paste one line into your coding agent and it installs GM-Apprentice for you; or pick an agent, install Python and install it by hand.
+description: "Paste one line into Claude Code, Codex or Cursor and it installs GM-Apprentice, the free AI toolkit for tabletop GMs. Claude desktop app steps too."
 checkedAgainst: "1.12.108"
+head:
+  - tag: title
+    content: "Install GM-Apprentice in Claude Code, Codex or Cursor"
 ---
 
 GM-Apprentice is a set of skills: instructions and small scripts that an AI

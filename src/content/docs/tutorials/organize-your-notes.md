@@ -2,6 +2,9 @@
 title: Organize your notes
 description: Hand the apprentice a scrawl of new NPCs and places, and it files each one as a linked note, checking it against what your vault already says.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Organize campaign notes into linked NPC pages | GM-Apprentice"
 ---
 
 <!-- video -->
