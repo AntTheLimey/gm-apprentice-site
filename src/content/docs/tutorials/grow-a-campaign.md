@@ -2,6 +2,9 @@
 title: Grow a campaign from an idea
 description: How the Midwife turns a spark, or nothing at all, into a campaign you can prep, and how to steer it.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Grow a TTRPG campaign from an idea with AI | GM-Apprentice"
 ---
 
 <!-- video -->

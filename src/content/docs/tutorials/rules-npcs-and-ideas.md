@@ -2,6 +2,9 @@
 title: Rules, NPCs and ideas
 description: Ask for an NPC, a location, a handout or a ruling, and get game-ready material that fits your campaign, rules checked and nothing filed until you say so.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "NPCs, locations and rulings for your campaign | GM-Apprentice"
 ---
 
 <!-- video -->

@@ -2,6 +2,9 @@
 title: Do it by hand
 description: Make a vault, check it, search it and build your players' website with GM-Apprentice's own commands, and no agent at all.
 checkedAgainst: "1.12.140"
+head:
+  - tag: title
+    content: "Run GM-Apprentice without an AI agent"
 ---
 
 <!-- video -->

@@ -2,6 +2,9 @@
 title: Players at the table
 description: Players mark their own hit points on their sheets during play, the party board keeps up, and their requests reach you through the site.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Live hit points and player requests at the table | GM-Apprentice"
 ---
 
 <!-- video -->

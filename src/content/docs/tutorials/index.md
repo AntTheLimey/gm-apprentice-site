@@ -1,6 +1,9 @@
 ---
 title: Tutorials
-description: Every tutorial, in the order a campaign uses them, from the first idea to the players' website.
+description: "Every GM-Apprentice tutorial in campaign order: organize your notes, prep a session, run the table, wrap up and publish a players' site."
+head:
+  - tag: title
+    content: "Tutorials for TTRPG game masters | GM-Apprentice"
 ---
 
 A campaign goes round the same loop: **organize** what you know,

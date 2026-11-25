@@ -2,6 +2,9 @@
 title: Change the look
 description: Ready-made looks, your own colours and lettering, character sheet skins and portrait frames, and your own stylesheet.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Themes for your campaign website and sheets | GM-Apprentice"
 ---
 
 <!-- video -->

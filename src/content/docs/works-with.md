@@ -2,6 +2,9 @@
 title: Works with
 description: Other tools that read or write a GM-Apprentice campaign folder - GM Assistant, D&D Beyond, GM-Scriptorium and mobRPG - what each one does and how to start.
 checkedAgainst: "1.12.110"
+head:
+  - tag: title
+    content: "Works with D&D Beyond, GM Assistant and mobRPG | GM-Apprentice"
 ---
 
 Your campaign lives in ordinary Markdown files in a folder you own, so

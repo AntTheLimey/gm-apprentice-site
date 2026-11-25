@@ -2,6 +2,9 @@
 title: Add pictures
 description: Use your own portraits, maps and handouts, or have the apprentice draw what's missing, and what that costs.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Portraits, maps and art for your campaign | GM-Apprentice"
 ---
 
 <!-- video -->

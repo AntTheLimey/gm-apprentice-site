@@ -2,6 +2,9 @@
 title: Your own rulebooks
 description: Let the apprentice use books you own. Your notes stay in a folder on your computer, survive updates and are checked by name at the table.
 checkedAgainst: "1.12.119"
+head:
+  - tag: title
+    content: "Use your own rulebooks with an AI GM assistant | GM-Apprentice"
 ---
 
 <!-- video -->

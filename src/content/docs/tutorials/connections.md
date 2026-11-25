@@ -2,6 +2,9 @@
 title: Connections
 description: Every page on the campaign site ends with who and what its subject is tied to, drawn as a tree, a web or cards, with the vocabulary of ties for the GM.
 checkedAgainst: "1.12.111"
+head:
+  - tag: title
+    content: "NPC relationship maps on your campaign site | GM-Apprentice"
 ---
 
 Every note in your vault can say who and what it's tied to: who serves

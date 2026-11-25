@@ -1,7 +1,10 @@
 ---
 title: Bring in an existing campaign
-description: How vault-ingest turns old notes, sheets, transcripts and maps into a vault, and what its interview is for.
+description: "How vault-ingest turns old TTRPG notes, character sheets, transcripts and maps into a linked campaign vault, and what its interview is for."
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Import an existing campaign into a vault | GM-Apprentice"
 ---
 
 <!-- video -->

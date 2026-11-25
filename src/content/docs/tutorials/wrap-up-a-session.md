@@ -2,6 +2,9 @@
 title: Wrap up a session
 description: Hand over your notes after the game and get the recap, updated character and NPC notes, what carries forward, and a say in what the players get to see.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "Session recaps and notes after your TTRPG game | GM-Apprentice"
 ---
 
 <!-- video -->

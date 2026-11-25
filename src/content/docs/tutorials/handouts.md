@@ -2,6 +2,9 @@
 title: Handouts
 description: Letters, clippings, printouts and orders in the voice of whoever sent them, laid out to print and posted to the players' site the moment they find one.
 checkedAgainst: "1.12.112"
+head:
+  - tag: title
+    content: "Printable player handouts for your campaign | GM-Apprentice"
 ---
 
 A handout is the thing the players hold: the letter in the dead man's

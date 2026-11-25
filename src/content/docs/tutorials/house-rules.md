@@ -2,6 +2,9 @@
 title: House rules
 description: Where your house rules live, the ways to add one, and how the apprentice puts them ahead of the rulebook.
 checkedAgainst: "1.12.98"
+head:
+  - tag: title
+    content: "House rules your AI GM assistant follows | GM-Apprentice"
 ---
 
 <!-- video -->

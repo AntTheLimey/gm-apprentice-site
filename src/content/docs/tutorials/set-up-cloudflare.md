@@ -2,6 +2,9 @@
 title: Set up Cloudflare
 description: Make a free Cloudflare account and an API token, and hand the token to GM-Apprentice, so your apprentice can publish your campaign site.
 checkedAgainst: "1.12.146"
+head:
+  - tag: title
+    content: "Set up Cloudflare Pages for your campaign site | GM-Apprentice"
 ---
 
 <!-- video -->
