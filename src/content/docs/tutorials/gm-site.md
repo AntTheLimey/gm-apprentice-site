@@ -1,99 +1,159 @@
 ---
 title: The GM site
 description: A private copy of your campaign site with every secret showing, for your tablet at the table. It never goes online.
-checkedAgainst: "1.12.98"
+checkedAgainst: "1.12.146"
 ---
 
 <!-- video -->
 
-Your players' site hides the traitor, the stat blocks and the things in
-the cellar. The GM site is a second copy of it with all of that showing,
-each hidden part marked with why players don't see it. It's built on
-your computer and read on your own screen, or on a tablet or phone on
-your home network. It is never put online: the publish tool refuses to
-upload it.
+You can keep a private copy of your campaign site, with every secret
+showing, and open it on a tablet at the table. The steps use three terms:
 
-## From a real run
+- The **player site** is the public campaign website.
+- The **GM site** is your copy. It has every note, including the ones the
+  player site leaves out.
+- A **hidden part** is anything players do not see, such as a GM Notes
+  section, a secret field or a spoiler.
 
-On GM-Apprentice 1.12.98, using the [Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound/tree/sample-v2)
-(tag `sample-v2`). We typed the GM's side; the replies are the agent's
-own, trimmed (`[...]`) but not reworded.
+## Before You Start
+
+The GM site has no password. Anyone on the same network as your computer
+can open it, players included. If your players join your own Wi-Fi at the
+table, put them on a guest network or mobile data, or stop the GM site
+between sessions. Never serve it on the shared Wi-Fi at a convention or
+a game shop.
+
+## Turning On the GM Site
+
+The GM site is built on your computer, in a folder beside the player
+site's, and served from there. To turn it on:
+
+1.  Ask your apprentice for a GM copy of your campaign site.
+
+    Your apprentice turns the GM site on, builds it and starts it. From
+    now on, every build makes both sites.
+
+2.  On your tablet, open the address your apprentice gives you.
+
+    The tablet must be on the same network as your computer.
+
+In the example below, the GM asks for a GM copy of the
+[Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound/tree/sample-v2)'s
+site on GM-Apprentice 1.12.146, after
+[Publish your site](/tutorials/publish-your-site/). The GM's line was
+typed for this page. The replies are the apprentice's own, trimmed
+(`[...]`) but not reworded, with the computer's network address left out.
 
 > [!you]
 >
-> I'd like my own GM copy of the campaign site, with everything in it,
-> that I can look at on my tablet during the game. My players mustn't be
-> able to see it.
+> I'd like my own GM copy of the campaign site, with everything in it, that I can look at on my tablet during the game. My players mustn't be able to see it.
 
 > [!apprentice]
 >
-> Your GM copy of the Snowbound site is built and running. To see it on
-> your tablet, connect to the same Wi-Fi as this computer and open:
+> Your GM copy of the site is built and running.
 >
-> **http://[...]:4321/**
+> **Open this on your tablet:** http://[...]:4321/
+> (It only works while the tablet is on the same Wi-Fi as this computer. [...]
 >
-> I checked that the home page and the adventure brief both load.
+> **What's in it:** every note in the vault, including what the players' site hides. Each hidden part is marked with the reason players don't see it. Session pages also include your GM Notes, Play Notes and table logs.
 >
-> **What's in it:** every note in the vault, including GM Notes, secrets,
-> spoilers and hidden sections. Each hidden part is marked with why
-> players wouldn't normally see it. That's 118 pages, plus the Snowbound
-> adventure brief, which the default set-up left out. I added the brief
-> to the GM copy only, so it won't appear on any player site. [...]
+> [...]
 >
-> **Who can see it:**
-> - **It never goes online.** The publish tool refuses to upload this
->   folder anywhere.
-> - **Anyone on your Wi-Fi can open that address.** If your players are
->   at your table on the same network, someone who knew or guessed the
->   address could see everything. If that's a worry, have them use a
->   guest network or mobile data, or stop the server between sessions.
+> - **One caveat:** anyone on the same Wi-Fi can open that address. If your players join your Wi-Fi at the table, one who knew or guessed the address could see it.
 
-(The gap is our computer's address on our home network. Yours will be
-your own.)
+The GM site runs inside your apprentice's session, and does not last a
+whole evening there. In the run above, it stopped after ten minutes, and
+the apprentice said so:
 
-Here's Snowbound's abbot on the GM site, at tablet size. The band across
-the top says it's the GM copy, and the box under it lists his ties the
-players haven't found yet:
+> [!apprentice]
+>
+> **For game night, the reliable option is to run it yourself** in a Terminal window on this computer. It then keeps running until you close that window or press Ctrl+C, with no time limit:
+
+For a game, ask your apprentice for the command to run in your own
+terminal, and leave that window open. Press Ctrl+C there to stop it.
+
+## Reading It at the Table
+
+Each page looks like the player site, with your theme, and carries a band
+at the top: `GM copy: not for players`. A page that players do not get at
+all has a second band, `Players don't see this page`, with the reason.
+
+Every hidden part sits where it is in the note, marked with why players
+do not see it:
+
+- A hidden block, such as a GM Notes section, sits in a tinted box with a
+  label.
+- A hidden name is underlined, with what players see in brackets after
+  it.
+- Hidden fields and relationships are listed in a **Hidden from players**
+  box at the top of the page.
+
+Here is an NPC's page on the GM site, at tablet size, with the band and
+the **Hidden from players** box:
 
 ![The GM copy of Abbot Severin's page: a "GM copy: not for players" band, then a "Hidden from players" box listing two GM-only relationships, then his portrait and overview](/img/tutorials/gm-site-top.jpg)
 
-Further down, his GM Notes, which the player site leaves out entirely:
-the whole stat block for the fight, ready to run from.
+Further down, the same page shows the GM Notes that the player site
+leaves out, with the stat block ready to run from:
 
 ![The abbot's GM Notes block on the GM site: armour class, hit points, ability scores, traits and actions](/img/tutorials/gm-site-notes.jpg)
 
-## Using it at the table
-
-- **Start it before the game.** Ask the apprentice to "serve the GM
-  site", or run the command it gives you in a terminal of your own. A
-  terminal of your own is steadier for a whole evening; Ctrl+C stops it.
-- **After you change your notes**, ask for a rebuild and reload the page
-  on your tablet.
-- **Mind the Wi-Fi.** Anyone on the same network who has the address can
-  open it. Put players on a guest network, or stop the server between
-  sessions.
-
-## What it shows
-
-Everything the player site hides, each with a mark saying why: notes the
-player site leaves out (prep, drafts), hidden sections such as GM Notes,
-GM-only relationships, GM-only and spoiler blocks, and the real names
-behind anyone the player site calls "someone". Comments you leave
-yourself in notes stay out unless you switch them on. One thing to
-know: a hidden word that lands in a page's title or description, or a
+Search covers every word on the GM site, the hidden ones included. A
+hidden word that lands in a page's title or description, or in a
 picture's description, shows there without a mark.
 
-The live party board and the players' request box stay on the players'
-site.
+## Seeing What It Shows
 
-## The settings behind it
+The GM site shows everything the player site hides:
 
-```yaml
-gm_site:
-  publish: true
-  show:
-    comments: false
-```
+- notes the player site leaves out, such as prep and drafts
+- every session's Play Notes, Export and Table Log
+- hidden sections, fields and relationships
+- `gm-only` blocks and spoilers
+- callouts the player site hides
+- names the player site prints as "someone" or "somewhere"
 
-Every switch is in the
-[plugin's site settings](https://github.com/AntTheLimey/gm-apprentice/blob/main/docs/site-settings.md#the-gm-site).
+Comments in your notes stay off by default, because most are notes to
+yourself. Ask your apprentice to show them if you want them. Each of the
+others can be turned off the same way.
+
+The live features do not run on the GM site: it has no live hit points,
+no request inbox and no party board.
+
+## Refreshing the GM Site
+
+Every build of the player site rebuilds the GM site too. After a build,
+reload the page on your tablet to see the change. You can also ask your
+apprentice to rebuild the GM site alone.
+
+## Keeping It Offline
+
+Publishing refuses the GM site's folder, so the GM site never goes online
+with the player site. Its pages also tell search engines to stay away.
+
+The folder is yours to keep private. If the folder is inside a Git
+repository, the build warns you not to push it.
+
+## Troubleshooting
+
+These are the problems the GM site runs into most often.
+
+### The Port Is Already in Use
+
+The message reads `Port 4321 is already in use`. Another program, or an
+earlier GM site, holds the port. Ask your apprentice to serve the GM site
+on another port.
+
+### There Is Nothing Built Yet
+
+The message reads `There is nothing built in` and names the folder. Ask
+your apprentice to build the GM site, then serve it again.
+
+## Next Steps
+
+You can now run the session with every secret to hand:
+
+- [At the table](/tutorials/at-the-table/) covers the help your
+  apprentice gives during play.
+- [Publish your site](/tutorials/publish-your-site/) builds and publishes
+  the player site that the GM site copies.
