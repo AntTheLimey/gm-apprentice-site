@@ -1,0 +1,31 @@
+---
+// One screenshot with its caption, for docs pages. `narrow` is a phone
+// screenshot, shown at phone width rather than the page's.
+import Img from './Img.astro';
+interface Props { src: string; alt: string; narrow?: boolean }
+const { src, alt, narrow = false } = Astro.props;
+const sizes = narrow ? '300px' : '(max-width: 800px) calc(100vw - 32px), 720px';
+---
+<figure class:list={['shot-fig', { narrow }]}>
+  <Img src={src} alt={alt} sizes={sizes} />
+  <figcaption><slot /></figcaption>
+</figure>
+
+<style>
+  .shot-fig { margin: 1.25rem 0 0; }
+  .shot-fig :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 14px 34px -18px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--sl-color-hairline);
+  }
+  .shot-fig.narrow { max-width: 300px; }
+  .shot-fig figcaption {
+    margin-top: 0.6rem;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+  /* Two narrow shots side by side: <div class="shot-pair not-content">. */
+  :global(.shot-pair) { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; align-items: start; }
+</style>

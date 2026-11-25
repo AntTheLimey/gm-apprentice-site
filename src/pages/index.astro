@@ -189,6 +189,25 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .loopback{margin-top:40px;text-align:center;font-family:var(--display);font-style:italic;font-size:1.25rem;color:var(--brass)}
 .note{margin-top:28px;color:var(--dim);font-size:.95rem;max-width:44rem}
 
+/* character sheets band: three real sheets, side by side, none hiding another */
+.sheets{padding-block:96px 20px}
+.sheets h2{font-size:clamp(2rem,3.6vw,2.9rem);max-width:22em}
+.sheets .sub{color:var(--dim);margin-top:12px;max-width:44rem}
+.sheetfan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:44px;align-items:start}
+.sheetfan figure{position:relative;margin:0;border-radius:10px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.sheetfan img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.sheetfan figure:nth-child(1){transform:rotate(-2deg) translateY(10px)}
+.sheetfan figure:nth-child(2){transform:translateY(-10px)}
+.sheetfan figure:nth-child(3){transform:rotate(2deg) translateY(10px)}
+.sheetfan figure:hover{transform:translateY(-16px)}
+.sheetfan figcaption{position:absolute;left:10px;bottom:10px;background:rgba(10,20,15,.85);color:var(--chalk);font-size:.8rem;padding:3px 10px;border-radius:999px}
+.sheets .more{margin-top:32px;text-align:center}.sheets .more a{color:var(--brass);font-weight:700}
+.b-run .phone{max-width:300px;margin-inline:auto}
+.b-run .phone + .cap{text-align:center}
+@media (max-width:720px){
+  .sheetfan{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:74%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 2px 20px}
+  .sheetfan figure,.sheetfan figure:nth-child(n){transform:none;scroll-snap-align:start}
+}
 /* gallery */
 .gallery{padding-block:100px 40px}
 .gallery h2,.start h2{font-size:clamp(2rem,3.6vw,2.9rem)}
@@ -249,7 +268,7 @@ footer a{color:var(--dim)}
 <header class="wrap top">
   <a class="brand" href="/"><img src="/brand/logo-horizontal-dark.svg" alt="GM-Apprentice" width="200" height="44"></a>
   <nav aria-label="Site">
-    <a href="/tutorials/">Tutorials</a><a href="/gallery/">Gallery</a><a href="/blog/">Blog</a><a href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a>
+    <a href="/tutorials/">Tutorials</a><a href="/sheets/">Sheets</a><a href="/gallery/">Gallery</a><a href="/blog/">Blog</a><a href="https://github.com/AntTheLimey/gm-apprentice">GitHub</a>
   </nav>
 </header>
 
@@ -408,10 +427,21 @@ footer a{color:var(--dim)}
       <p class="cap">Real replies from session-play on the Snowbound vault (gm-apprentice 1.12.94), trimmed.</p>
     </div>
     <div>
-      <a class="pic" href="/tutorials/character-sheets/"><figure class="shot crop"><Img src="/img/sb-pc.jpg" alt="Kael Stonehand's character page: portrait, hit points 44 of 44, AC 16, tabs for sheet, combat, spells" sizes="(max-width: 900px) calc(100vw - 36px), 562px" /></figure></a>
-      <p class="cap"><b>A character sheet.</b> Every PC's sheet, live on the site, for the GM and the player. <a class="how" href="/tutorials/character-sheets/">How sheets work</a></p>
+      <a class="pic phone" href="/sheets/#at-the-table"><figure class="shot"><Img src="/img/sh-phone-hp.jpg" alt="Six's Dead End sheet on a phone: portrait, then hit points 13 of 13 and fatigue points 12 of 12, each with minus and plus buttons" sizes="300px" /></figure></a>
+      <p class="cap"><b>A player's sheet, on their phone.</b> A hit lands, they tap minus, and the party roster on your screen keeps up. <a class="how" href="/sheets/#at-the-table">At the table</a></p>
     </div>
   </div>
+</section>
+
+<section id="sheets" class="wrap sheets">
+  <h2>Character sheets your players will open between sessions</h2>
+  <p class="sub">Every PC gets a full sheet on the campaign site, dressed for its game: a Regency investigator's record, a replicant's dossier, an SAS file. Players mark their own hit points from their phones during play, and the party roster keeps up.</p>
+  <div class="sheetfan" aria-label="Three character sheets from real campaigns">
+    <figure><a href="https://dead-end.pages.dev/characters/pcs/six"><Img src="/img/sh-front-six.jpg" alt="Six's GURPS sheet from Dead End: portrait, hit and fatigue points with plus and minus buttons, tabs, the gravity warning and his appearance" sizes="(max-width: 720px) 74vw, (max-width: 900px) calc((100vw - 60px) / 3), 364px" /></a><figcaption>Dead End · GURPS</figcaption></figure>
+    <figure><a href="https://canticle-of-the-end.pages.dev/characters/pcs/adrien-de-montferrand"><Img src="/img/sh-front-canticle.jpg" alt="Adrien de Montferrand's Call of Cthulhu sheet from Canticle of the End, on parchment: hit points, Sanity and Luck, characteristics, portrait and skills" sizes="(max-width: 720px) 74vw, (max-width: 900px) calc((100vw - 60px) / 3), 364px" /></a><figcaption>Canticle of the End · Call of Cthulhu</figcaption></figure>
+    <figure><a href="https://gurps-special-forces.pages.dev/characters/pcs/ronnie-vint"><Img src="/img/sh-front-ronnie.jpg" alt="Ronnie Vint's GURPS sheet from GURPS Special Forces, stamped Classified, open at the Combat tab: parries, dodge, armour by hit location and melee attacks" sizes="(max-width: 720px) 74vw, (max-width: 900px) calc((100vw - 60px) / 3), 364px" /></a><figcaption>GURPS Special Forces · GURPS</figcaption></figure>
+  </div>
+  <p class="more"><a href="/sheets/">See what the sheets do</a></p>
 </section>
 
 <section id="publish" class="wrap stage">
