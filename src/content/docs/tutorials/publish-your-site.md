@@ -78,6 +78,58 @@ and pick up later. To set up the site:
     runs before every upload. On success, the last line reads `live at`
     followed by the site's address.
 
+In the example below, the GM publishes the
+[Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound/tree/sample-v2)
+on GM-Apprentice 1.12.146, after the session in
+[Wrap up a session](/tutorials/wrap-up-a-session/). The GM's lines were
+typed for this page. The replies are the apprentice's own, trimmed
+(`[...]`) but not reworded.
+
+> [!you]
+>
+> Put this campaign online for my players.
+
+The vault already held the title, tagline, theme and host, so only three
+questions were left:
+
+> [!apprentice]
+>
+> - **Tools:** Node is installed, and Cloudflare is logged in and ready to deploy.
+> - **Already set:** the title "Snowbound", the tagline, the 404 message "This page has been lost to the snow.", the cold blue and amber colours with Literata and Source Sans 3 fonts, and Cloudflare Pages as the host. You won't need to answer any of those again.
+>
+> I need three answers before I build anything:
+>
+> 1. **Cloudflare project name.** This sets the web address. I suggest `snowbound`, which gives you `https://snowbound.pages.dev`.
+>
+> [...]
+
+> [!you]
+>
+> Call the project tutorial-scratch-campaign, put the site folder at ../snowbound-site next to the vault, and use the Saint Aubren's Rest picture.
+
+After a first build, the apprentice goes through the notes that are new
+to the publish list, and asks about the one that could give something
+away:
+
+> [!apprentice]
+>
+> Eleven files are new since that list was made, so you need to decide on them before anything goes live.
+>
+> [...]
+>
+> 1. **Wat Marsh.** The text players would see only says his name is on Ilyra's list with a lamp beside it. However, his page records him as **dead**, and that status could show on the page. Do the players know he's dead? If not, I can publish the page with the status hidden, or keep the whole page off the site.
+
+> [!you]
+>
+> Publish the five, keep those four off. They know Wat is dead, the lamp means that, so publish him. Use your Chapter 2 sentence. Rebuild, then run the leak check and show me what it finds, but don't upload yet.
+
+> [!apprentice]
+>
+> The leak check found nothing. It read all 114 files in the rebuilt site and none of them shows anything the vault keeps from players. Nothing has been uploaded.
+
+The run stopped there, so no site exists at that address. The real
+Snowbound site is [snowbound-dnd.pages.dev](https://snowbound-dnd.pages.dev).
+
 Share that address with your players. On Cloudflare it looks like
 `https://<project-name>.pages.dev`. On GitHub it looks like
 `https://<user-name>.github.io/<repository-name>/`. A first Cloudflare site

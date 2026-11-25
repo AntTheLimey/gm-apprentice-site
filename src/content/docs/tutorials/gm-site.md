@@ -30,21 +30,47 @@ site's, and served from there. To turn it on:
 
 1.  Ask your apprentice for a GM copy of your campaign site.
 
-    Your apprentice turns the GM site on and builds it. From now on, every
-    build makes both sites.
+    Your apprentice turns the GM site on, builds it and starts it. From
+    now on, every build makes both sites.
 
-2.  Ask your apprentice to serve the GM site.
-
-    It prints one address for each network your computer is on, such as
-    `http://192.168.1.20:4321/`, and one for the computer itself.
-
-3.  On your tablet, open one of the printed addresses in the browser.
+2.  On your tablet, open the address your apprentice gives you.
 
     The tablet must be on the same network as your computer.
 
-The GM site runs inside your apprentice's session, and stops when that
-session ends. For a whole evening, ask your apprentice for the command to
-run in your own terminal instead. Press Ctrl+C there to stop it.
+In the example below, the GM asks for a GM copy of the
+[Snowbound sample vault](https://github.com/AntTheLimey/gm-apprentice-snowbound/tree/sample-v2)'s
+site on GM-Apprentice 1.12.146, after
+[Publish your site](/tutorials/publish-your-site/). The GM's line was
+typed for this page. The replies are the apprentice's own, trimmed
+(`[...]`) but not reworded, with the computer's network address left out.
+
+> [!you]
+>
+> I'd like my own GM copy of the campaign site, with everything in it, that I can look at on my tablet during the game. My players mustn't be able to see it.
+
+> [!apprentice]
+>
+> Your GM copy of the site is built and running.
+>
+> **Open this on your tablet:** http://[...]:4321/
+> (It only works while the tablet is on the same Wi-Fi as this computer. On this computer you can also use http://localhost:4321/.)
+>
+> **What's in it:** every note in the vault, including what the players' site hides. Each hidden part is marked with the reason players don't see it. Session pages also include your GM Notes, Play Notes and table logs.
+>
+> [...]
+>
+> - **One caveat:** anyone on the same Wi-Fi can open that address. If your players join your Wi-Fi at the table, one who knew or guessed the address could see it.
+
+The GM site runs inside your apprentice's session, and does not last a
+whole evening there. In the run above, it stopped after ten minutes, and
+the apprentice said so:
+
+> [!apprentice]
+>
+> **For game night, the reliable option is to run it yourself** in a Terminal window on this computer. It then keeps running until you close that window or press Ctrl+C, with no time limit:
+
+For a game, ask your apprentice for the command to run in your own
+terminal, and leave that window open. Press Ctrl+C there to stop it.
 
 ## Reading It at the Table
 
