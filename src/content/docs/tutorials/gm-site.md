@@ -53,7 +53,7 @@ typed for this page. The replies are the apprentice's own, trimmed
 > Your GM copy of the site is built and running.
 >
 > **Open this on your tablet:** http://[...]:4321/
-> (It only works while the tablet is on the same Wi-Fi as this computer. On this computer you can also use http://localhost:4321/.)
+> (It only works while the tablet is on the same Wi-Fi as this computer. [...]
 >
 > **What's in it:** every note in the vault, including what the players' site hides. Each hidden part is marked with the reason players don't see it. Session pages also include your GM Notes, Play Notes and table logs.
 >
