@@ -115,6 +115,7 @@ export default defineConfig({
         { label: 'Everything it does', link: '/features/' },
         { label: 'Works with', link: '/works-with/' },
         { label: 'Where the AI stops', link: '/where-the-ai-stops/' },
+        { label: 'Character sheets', link: '/sheets/' },
         { label: 'Gallery', link: '/gallery/' },
         { label: 'Support', link: '/support/' },
         { label: 'Privacy', link: '/privacy/' },
