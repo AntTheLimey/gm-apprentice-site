@@ -53,6 +53,7 @@ can go in [your own rulebook files](/tutorials/your-own-books/).
 | Lets players change their own hit points and conditions on their sheets during play, with a party board that keeps up. For Call of Cthulhu, GURPS and D&D, on a Cloudflare site. [Tutorial](/tutorials/players-at-the-table/) | `publish-site` |
 | Gives each player a box on their character page for requests and questions. The apprentice makes the clean sheet changes for you and holds the rest for you to decide. Cloudflare sites only. [Tutorial](/tutorials/players-at-the-table/) | `publish-site` |
 | Works out a GURPS character's chance to hit, on their sheet. | `publish-site` |
+| Runs the session from a run sheet on your computer at the table: what's coming up, fights with each side's rows and the dice, a players' screen for a second monitor, and a log of what happened that wrap-up reads. It works with or without a prepped Plan. Fights for D&D, Call of Cthulhu and GURPS. | `publish-site` |
 
 ## Publish
 
@@ -75,4 +76,4 @@ can go in [your own rulebook files](/tutorials/your-own-books/).
 Some things are still on the
 [roadmap](https://github.com/AntTheLimey/gm-apprentice/blob/main/ROADMAP.md),
 not in your hands: a dice roller, full Pathfinder and Forged in the Dark sheets,
-sheets you can download as a PDF, and a run sheet for the GM site.
+and sheets you can download as a PDF.
